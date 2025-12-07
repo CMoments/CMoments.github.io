@@ -6,20 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Computing P：能在多项式时间内被确定性图灵机解决的问题。   NP：能在多项式时间内被非确定性图灵机解决，或能在多项式时间内验证一个解的问题。   NP-complete：NP 中最难的问题，如果其中一个有多项式时间算法，那么 NP &#x3D; P。   BQP：能在多项式时间内被量子计算机以高概率解决的问题。  陷门函数与计算理论-以RSA为例引入密码学算法RSA算法的安全性基于大">
+    <meta name="description" content="Computing 1. 布尔可满足性问题（SAT） 2. 旅行商问题（TSP） 3. 图着色问题 4. 子集和问题 5. 整数分解（判定问题形式） 6. 离散对数问题   大整数分解问题-RSA算法 局部最优的解决思路-机器学习 离散对数 哈希函数 Cipher Classic Cipher and Enigma 密钥的分级与生命周期 第一级：基础设置 (Grundlegende Eins">
 <meta property="og:type" content="article">
 <meta property="og:title" content="后量子密码学基础">
 <meta property="og:url" content="http://example.com/2025/11/27/Quantum-AI/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Computing P：能在多项式时间内被确定性图灵机解决的问题。   NP：能在多项式时间内被非确定性图灵机解决，或能在多项式时间内验证一个解的问题。   NP-complete：NP 中最难的问题，如果其中一个有多项式时间算法，那么 NP &#x3D; P。   BQP：能在多项式时间内被量子计算机以高概率解决的问题。  陷门函数与计算理论-以RSA为例引入密码学算法RSA算法的安全性基于大">
+<meta property="og:site_name" content="Dong Haixuan&#39;s reports">
+<meta property="og:description" content="Computing 1. 布尔可满足性问题（SAT） 2. 旅行商问题（TSP） 3. 图着色问题 4. 子集和问题 5. 整数分解（判定问题形式） 6. 离散对数问题   大整数分解问题-RSA算法 局部最优的解决思路-机器学习 离散对数 哈希函数 Cipher Classic Cipher and Enigma 密钥的分级与生命周期 第一级：基础设置 (Grundlegende Eins">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/02.png">
+<meta property="og:image" content="http://example.com/images/04.png">
 <meta property="og:image" content="http://example.com/images/03.png">
+<meta property="og:image" content="http://example.com/images/02.png">
 <meta property="article:published_time" content="2025-11-27T13:01:17.000Z">
-<meta property="article:modified_time" content="2025-12-04T06:35:49.345Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2025-12-06T06:51:40.505Z">
+<meta property="article:author" content="Dong Haixuan">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/02.png">
+<meta name="twitter:image" content="http://example.com/images/04.png">
     
     
       
@@ -76,7 +77,7 @@
      --><!--
        --><li><a href="/archives/">Writing</a></li><!--
      --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+       --><li><a href="/null">Projects</a></li><!--
      -->
       </ul>
     </span>
@@ -84,7 +85,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2025/12/04/hello-world/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2025/12/08/hello-world/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/2025/11/26/Quantum-AI-0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -117,7 +118,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Computing"><span class="toc-number">1.</span> <span class="toc-text">Computing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%B7%E9%97%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA-%E4%BB%A5RSA%E4%B8%BA%E4%BE%8B%E5%BC%95%E5%85%A5%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">陷门函数与计算理论-以RSA为例引入密码学算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E6%9C%80%E4%BC%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">局部最优的解决思路-机器学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%9E%E4%BA%8E-NP-%E4%BD%86%E4%B8%8D%E5%B1%9E%E4%BA%8E-P"><span class="toc-number">4.</span> <span class="toc-text">属于 NP 但不属于 P</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B8%83%E5%B0%94%E5%8F%AF%E6%BB%A1%E8%B6%B3%E6%80%A7%E9%97%AE%E9%A2%98%EF%BC%88SAT%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">1. 布尔可满足性问题（SAT）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98%EF%BC%88TSP%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">2. 旅行商问题（TSP）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98"><span class="toc-number">4.3.</span> <span class="toc-text">3. 图着色问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AD%90%E9%9B%86%E5%92%8C%E9%97%AE%E9%A2%98"><span class="toc-number">4.4.</span> <span class="toc-text">4. 子集和问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%EF%BC%88%E5%88%A4%E5%AE%9A%E9%97%AE%E9%A2%98%E5%BD%A2%E5%BC%8F%EF%BC%89"><span class="toc-number">4.5.</span> <span class="toc-text">5. 整数分解（判定问题形式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E9%97%AE%E9%A2%98"><span class="toc-number">4.6.</span> <span class="toc-text">6. 离散对数问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NP-P"><span class="toc-number">4.7.</span> <span class="toc-text">NP !&#x3D; P</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8F%E5%AD%90%E5%AE%89%E5%85%A8%E7%9A%84%E6%A0%B8%E5%BF%83%EF%BC%9A%E4%B8%BA%E4%BD%95%E6%9C%89%E4%BA%9B%E7%AE%97%E6%B3%95%E8%83%BD%E6%8A%B5%E6%8A%97%E9%87%8F%E5%AD%90%E6%94%BB%E5%87%BB%EF%BC%9F"><span class="toc-number">4.7.1.</span> <span class="toc-text">量子安全的核心：为何有些算法能抵抗量子攻击？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E2%80%9C%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%E5%BD%92%E7%BA%A6%E2%80%9D%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-number">4.7.2.</span> <span class="toc-text">3. “最坏情况归约”的重要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E8%B6%8B%E5%8A%BF"><span class="toc-number">4.7.3.</span> <span class="toc-text">总结与趋势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cipher"><span class="toc-number">5.</span> <span class="toc-text">Cipher</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Symmetric-Cipher-to-Asymmetric-Cipher"><span class="toc-number">6.</span> <span class="toc-text">Symmetric Cipher to Asymmetric Cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Asymmetric"><span class="toc-number">6.1.</span> <span class="toc-text">Asymmetric</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#From-PKE-to-KEM"><span class="toc-number">7.</span> <span class="toc-text">From PKE to KEM</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Computing"><span class="toc-number">1.</span> <span class="toc-text">Computing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B8%83%E5%B0%94%E5%8F%AF%E6%BB%A1%E8%B6%B3%E6%80%A7%E9%97%AE%E9%A2%98%EF%BC%88SAT%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">1. 布尔可满足性问题（SAT）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98%EF%BC%88TSP%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">2. 旅行商问题（TSP）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">3. 图着色问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AD%90%E9%9B%86%E5%92%8C%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">4. 子集和问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%EF%BC%88%E5%88%A4%E5%AE%9A%E9%97%AE%E9%A2%98%E5%BD%A2%E5%BC%8F%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">5. 整数分解（判定问题形式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E9%97%AE%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">6. 离散对数问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%E9%97%AE%E9%A2%98-RSA%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">大整数分解问题-RSA算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E6%9C%80%E4%BC%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">局部最优的解决思路-机器学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">离散对数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">哈希函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cipher"><span class="toc-number">6.</span> <span class="toc-text">Cipher</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Classic-Cipher-and-Enigma"><span class="toc-number">7.</span> <span class="toc-text">Classic Cipher and Enigma</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%9A%84%E5%88%86%E7%BA%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">7.1.</span> <span class="toc-text">密钥的分级与生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%BA%A7%EF%BC%9A%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE-Grundlegende-Einstellungen-%E9%80%9A%E5%B8%B8%E6%AF%8F%E6%9C%88%E6%9B%B4%E6%8D%A2"><span class="toc-number">7.1.1.</span> <span class="toc-text">第一级：基础设置 (Grundlegende Einstellungen) - 通常每月更换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%BA%A7%EF%BC%9A%E6%AF%8F%E6%97%A5%E5%AF%86%E9%92%A5-Tagesschlussel-%E6%AF%8F24%E5%B0%8F%E6%97%B6%E6%9B%B4%E6%8D%A2"><span class="toc-number">7.1.2.</span> <span class="toc-text">第二级：每日密钥 (Tagesschlüssel) - 每24小时更换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%BA%A7%EF%BC%9A%E6%B6%88%E6%81%AF%E5%AF%86%E9%92%A5-Spruchschlussel-%E6%AF%8F%E6%9D%A1%E6%B6%88%E6%81%AF%E6%9B%B4%E6%8D%A2"><span class="toc-number">7.1.3.</span> <span class="toc-text">第三级：消息密钥 (Spruchschlüssel) - 每条消息更换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E5%91%98%E7%9A%84%E4%B8%80%E5%A4%A9"><span class="toc-number">7.2.</span> <span class="toc-text">总结：一个操作员的一天</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Symmetric-Cipher-to-Asymmetric-Cipher"><span class="toc-number">8.</span> <span class="toc-text">Symmetric Cipher to Asymmetric Cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Symmetric"><span class="toc-number">8.1.</span> <span class="toc-text">Symmetric</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">8.1.1.</span> <span class="toc-text">对称密码的特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8EDES%E5%88%B0AES%EF%BC%9A"><span class="toc-number">8.2.</span> <span class="toc-text">从DES到AES：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E7%A4%BA%EF%BC%9A"><span class="toc-number">8.3.</span> <span class="toc-text">启示：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Asymmetric"><span class="toc-number">8.4.</span> <span class="toc-text">Asymmetric</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">8.5.</span> <span class="toc-text">密码系统的分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo-on-SSH"><span class="toc-number">8.6.</span> <span class="toc-text">Demo on SSH</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#From-PKE-to-KEM"><span class="toc-number">9.</span> <span class="toc-text">From PKE to KEM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ML-KEM"><span class="toc-number">10.</span> <span class="toc-text">ML-KEM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8F%E5%AD%90%E5%AE%89%E5%85%A8%EF%BC%9A"><span class="toc-number">10.1.</span> <span class="toc-text">量子安全：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%80%9C%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%E5%BD%92%E7%BA%A6%E2%80%9D%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-number">10.2.</span> <span class="toc-text">“最坏情况归约”的重要性</span></a></li></ol></li></ol>
       </div>
     
   </span>
@@ -137,7 +138,7 @@
 
     <div class="meta">
       <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">John Doe</span>
+        <span class="p-name" itemprop="name">Dong Haixuan</span>
       </span>
       
     <div class="postdate">
@@ -163,36 +164,56 @@
 
   <div class="content e-content" itemprop="articleBody">
     <span id="more"></span>
-<h1 id="Computing"><a href="#Computing" class="headerlink" title="Computing"></a>Computing</h1><ul>
+
+<ul>
+<li><a href="#computing">Computing</a><ul>
+<li><a href="#1-%E5%B8%83%E5%B0%94%E5%8F%AF%E6%BB%A1%E8%B6%B3%E6%80%A7%E9%97%AE%E9%A2%98sat">1. 布尔可满足性问题（SAT）</a></li>
+<li><a href="#2-%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98tsp">2. 旅行商问题（TSP）</a></li>
+<li><a href="#3-%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98">3. 图着色问题</a></li>
+<li><a href="#4-%E5%AD%90%E9%9B%86%E5%92%8C%E9%97%AE%E9%A2%98">4. 子集和问题</a></li>
+<li><a href="#5-%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%E5%88%A4%E5%AE%9A%E9%97%AE%E9%A2%98%E5%BD%A2%E5%BC%8F">5. 整数分解（判定问题形式）</a></li>
+<li><a href="#6-%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E9%97%AE%E9%A2%98">6. 离散对数问题</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A4%A7%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%E9%97%AE%E9%A2%98-rsa%E7%AE%97%E6%B3%95">大整数分解问题-RSA算法</a></li>
+<li><a href="#%E5%B1%80%E9%83%A8%E6%9C%80%E4%BC%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">局部最优的解决思路-机器学习</a></li>
+<li><a href="#%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0">离散对数</a></li>
+<li><a href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0">哈希函数</a></li>
+<li><a href="#cipher">Cipher</a></li>
+<li><a href="#classic-cipher-and-enigma">Classic Cipher and Enigma</a><ul>
+<li><a href="#%E5%AF%86%E9%92%A5%E7%9A%84%E5%88%86%E7%BA%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">密钥的分级与生命周期</a><ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E7%BA%A7%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE-grundlegende-einstellungen---%E9%80%9A%E5%B8%B8%E6%AF%8F%E6%9C%88%E6%9B%B4%E6%8D%A2"><strong>第一级：基础设置 (Grundlegende Einstellungen) - 通常每月更换</strong></a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E7%BA%A7%E6%AF%8F%E6%97%A5%E5%AF%86%E9%92%A5-tagesschl%C3%BCssel---%E6%AF%8F24%E5%B0%8F%E6%97%B6%E6%9B%B4%E6%8D%A2"><strong>第二级：每日密钥 (Tagesschlüssel) - 每24小时更换</strong></a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E7%BA%A7%E6%B6%88%E6%81%AF%E5%AF%86%E9%92%A5-spruchschl%C3%BCssel---%E6%AF%8F%E6%9D%A1%E6%B6%88%E6%81%AF%E6%9B%B4%E6%8D%A2"><strong>第三级：消息密钥 (Spruchschlüssel) - 每条消息更换</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E5%91%98%E7%9A%84%E4%B8%80%E5%A4%A9">总结：一个操作员的一天</a></li>
+</ul>
+</li>
+<li><a href="#symmetric-cipher-to-asymmetric-cipher">Symmetric Cipher to Asymmetric Cipher</a><ul>
+<li><a href="#symmetric">Symmetric</a><ul>
+<li><a href="#%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81%E7%9A%84%E7%89%B9%E7%82%B9"><strong>对称密码的特点</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%8Edes%E5%88%B0aes"><strong>从DES到AES：</strong></a></li>
+<li><a href="#%E5%90%AF%E7%A4%BA">启示：</a></li>
+<li><a href="#asymmetric">Asymmetric</a></li>
+<li><a href="#%E5%AF%86%E7%A0%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95">密码系统的分析方法</a></li>
+<li><a href="#demo-on-ssh">Demo on SSH</a></li>
+</ul>
+</li>
+<li><a href="#from-pke-to-kem">From PKE to KEM</a></li>
+<li><a href="#ml-kem">ML-KEM</a><br>- <a href="#%E9%87%8F%E5%AD%90%E5%AE%89%E5%85%A8">量子安全：</a><br>- <a href="#%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%E5%BD%92%E7%BA%A6%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7">“最坏情况归约”的重要性</a></li>
+</ul>
+<h1 id="Computing"><a href="#Computing" class="headerlink" title="Computing"></a>Computing</h1><p>每一个密码学算法，都基于一个数学上难以解决的问题。<br>在数学上，这类问题对应的函数叫陷门函数。<br>而在计算理论中，这类问题必须属于NP但不属于P。</p>
+<p>这个部分希望从计算理论的角度，介绍现代应用的公钥密码：签名，加密，密钥协商。<br>所需要的所有数学工具：大整数分解问题，离散对数问题，椭圆曲线离散对数问题，以及哈希函数</p>
+<ul>
 <li><strong>P</strong>：能在多项式时间内被确定性图灵机解决的问题。  </li>
 <li><strong>NP</strong>：能在多项式时间内被<strong>非确定性</strong>图灵机解决，或能在多项式时间内验证一个解的问题。  </li>
 <li><strong>NP-complete</strong>：NP 中最难的问题，如果其中一个有多项式时间算法，那么 <strong>NP &#x3D; P</strong>。  </li>
 <li><strong>BQP</strong>：能在多项式时间内被量子计算机以高概率解决的问题。</li>
 </ul>
-<h1 id="陷门函数与计算理论-以RSA为例引入密码学算法"><a href="#陷门函数与计算理论-以RSA为例引入密码学算法" class="headerlink" title="陷门函数与计算理论-以RSA为例引入密码学算法"></a>陷门函数与计算理论-以RSA为例引入密码学算法</h1><p>RSA算法的安全性基于大整数分解问题。</p>
-<ul>
-<li><strong>Factoring ∈ NP</strong> ✅  </li>
-<li><strong>Factoring ∉ P</strong>（经典计算机上未知，一般认为不在 P 中）  </li>
-<li><strong>Factoring ∉ NP-complete</strong> ✅  </li>
-<li><strong>Factoring ∈ BQP</strong>（Shor 算法）✅</li>
-</ul>
-<p>&#x3D;&gt;属于NP但不属于P，这就是个单向陷门函数</p>
-<p>为什么这构成了“单向陷门函数”？</p>
-<p>一个单向陷门函数需要三个特性：</p>
-<ol>
-<li><strong>正向计算容易</strong>：给定输入 x，计算 f(x) 是容易的。（在 RSA 中，f(x) 就是“用公钥加密”或“将两个质数相乘”）</li>
-<li><strong>反向求逆困难</strong>：在没有额外信息的情况下，给定 f(x) 的值，想求出 x 是困难的。（在 RSA 中，就是“给定乘积 N，求其质因数 p 和 q”）</li>
-<li><strong>反向求逆容易（当有陷门时）</strong>：如果拥有一个特殊的“陷门”信息，那么从 f(x) 计算 x 就变得容易。（在 RSA 中，“陷门”就是其中一个质因数，或者与欧拉函数相关的私钥）</li>
-</ol>
-<h1 id="局部最优的解决思路-机器学习"><a href="#局部最优的解决思路-机器学习" class="headerlink" title="局部最优的解决思路-机器学习"></a>局部最优的解决思路-机器学习</h1><ol>
-<li><strong>推理是简单的（P）</strong>：使用模型是高效的。</li>
-<li><strong>训练是困难的（NP-Hard）</strong>：从理论上讲，找到完美的模型是极其困难的。</li>
-<li><strong>实践是巧妙的</strong>：我们通过放弃理论上的“完美”（全局最优），拥抱实践中的“好用”（局部最优+泛化），用高效的近似算法（梯度下降）解决了理论上NP-Hard的问题。</li>
-<li><strong>验证和设计是更具挑战的（NP-Complete&#x2F;Hard）</strong>：确保模型绝对安全或自动设计最优模型，是当前面临的最大计算挑战之一。</li>
-</ol>
-<p>理论上的噩梦&#x3D;&gt;实践中的奇迹：SGD、Adam找到一个“足够好”的局部最优解或近似解。</p>
-<p>实际上还是在使用启发式算法，在实践中对于现实世界的数据表现得像 P，但在最坏情况理论下，它解决的是一个 NP-Hard 问题。</p>
-<h1 id="属于-NP-但不属于-P"><a href="#属于-NP-但不属于-P" class="headerlink" title="属于 NP 但不属于 P"></a>属于 NP 但不属于 P</h1><p>这里有几个经典的、被认为 <strong>属于 NP 但不属于 P</strong> 问题的例子。这些问题是密码学、优化和理论计算机科学的核心。</p>
+<p>经典的、被认为 <strong>属于 NP 但不属于 P</strong> 问题的例子。这些问题是密码学、优化和理论计算机科学的核心。</p>
 <hr>
 <h3 id="1-布尔可满足性问题（SAT）"><a href="#1-布尔可满足性问题（SAT）" class="headerlink" title="1. 布尔可满足性问题（SAT）"></a>1. 布尔可满足性问题（SAT）</h3><ul>
 <li><strong>描述</strong>：给定一个布尔逻辑公式（由 AND, OR, NOT 和变量构成），问是否存在一组变量赋值，使得整个公式结果为真。<br>硬件与芯片设计验证，软件包依赖管理，程序分析与漏洞挖掘，“状态机分析器”<br>任何离散系统（包括计算机程序、数字电路、协议流程）都可以被建模为一个状态机，在一个由状态和转换构成的系统中，寻找一条满足特定条件的路径</li>
@@ -221,46 +242,123 @@
 <li><strong>为什么属于 NP</strong>：如果给你 x，你可以在多项式时间内通过模幂运算验证。</li>
 <li><strong>为什么被认为不属于 P</strong>：在经典计算模型下没有已知的多项式时间算法。它是 <strong>Diffie-Hellman 密钥交换</strong> 和 <strong>数字签名算法（DSA）</strong> 安全性的基础。</li>
 </ul>
-<p><strong>关键</strong>：</p>
+<hr>
+<h1 id="大整数分解问题-RSA算法"><a href="#大整数分解问题-RSA算法" class="headerlink" title="大整数分解问题-RSA算法"></a>大整数分解问题-RSA算法</h1><p>RSA算法的安全性基于大整数分解问题。</p>
 <ul>
-<li>最后两个（<strong>整数分解</strong> 和 <strong>离散对数</strong>）是密码学中最重要的 <strong>“属于 NP 但不属于 P 且不是 NP-完全”</strong> 的例子。如果它们是 NP-完全的，那么量子计算机（能解决它们）就能解决所有 NP 问题，这是一个悬而未决的问题。</li>
+<li><strong>Factoring ∈ NP</strong> ✅  </li>
+<li><strong>Factoring ∉ P</strong> </li>
+<li><strong>Factoring ∉ NP-complete</strong> ✅  </li>
+<li><strong>Factoring ∈ BQP</strong>（Shor 算法）✅</li>
 </ul>
-<p>现代密码学的安全性基石，大多建立在那些属于NP类、但被广泛认为不属于P类的计算难题之上。</p>
-<p>“被认为 ∉ P”是这个游戏的核心，因为如果 P &#x3D; NP，那么几乎所有现代非对称密码学都会在理论上瞬间崩塌。</p>
-<p><img src="/images/02.png"></p>
-<h2 id="NP-P"><a href="#NP-P" class="headerlink" title="NP !&#x3D; P"></a>NP !&#x3D; P</h2><p>“不属于 P” 目前只是一个广泛的相信（conjecture），而非被证明的定理。我们尚未证明 P ≠ NP。</p>
-<p>“一个在经典计算模型下被认为‘属于 NP 但不属于 P’的问题，是构建单向陷门函数的理想候选，从而构成了现代非对称密码学的基石。”</p>
-<p><strong>核心假设</strong>：密码学建立在 P ≠ NP 的假设之上。如果 P &#x3D; NP，那么所有在多项式时间内难以解决但易于验证的问题，也都存在多项式时间的解决算法，这意味着所有基于计算复杂性的非对称密码都会失效。</p>
-<h4 id="量子安全的核心：为何有些算法能抵抗量子攻击？"><a href="#量子安全的核心：为何有些算法能抵抗量子攻击？" class="headerlink" title="量子安全的核心：为何有些算法能抵抗量子攻击？"></a>量子安全的核心：为何有些算法能抵抗量子攻击？</h4><ul>
-<li><strong>Shor算法</strong>：能高效解决<strong>整数分解</strong>和<strong>离散对数</strong>问题（包括椭圆曲线上的），在量子计算机上运行时间为多项式级。这直接击溃了RSA、ECC等算法。</li>
-<li><strong>Grover算法</strong>：为搜索问题提供平方根加速，但对对称加密和哈希函数的影响是有限的（例如，将128位安全强度降为64位，我们可以通过将密钥长度增加到256位来轻松应对）。</li>
-<li><strong>格密码（LWE, SIS等）的抵抗力</strong>：目前<strong>没有已知的量子算法</strong>能像Shor算法破解RSA那样，为格问题提供指数级加速。最好的量子算法（如格筛法）也只能提供一些多项式加速，其核心难度依然是指数级的。这就是为什么基于格的问题（如LWE、SIS）被认为是后量子安全的。</li>
+<p>什么构成了“单向陷门函数”？</p>
+<p>一个单向陷门函数需要三个特性：</p>
+<ol>
+<li><strong>正向计算容易</strong>：给定输入 x，计算 f(x) 是容易的。（在 RSA 中，f(x) 就是“用公钥加密”或“将两个质数相乘”）</li>
+<li><strong>反向求逆困难</strong>：在没有额外信息的情况下，给定 f(x) 的值，想求出 x 是困难的。（在 RSA 中，就是“给定乘积 N，求其质因数 p 和 q”）</li>
+<li><strong>反向求逆容易（当有陷门时）</strong>：如果拥有一个特殊的“陷门”信息，那么从 f(x) 计算 x 就变得容易。（在 RSA 中，“陷门”就是其中一个质因数，或者与欧拉函数相关的私钥）</li>
+</ol>
+<h1 id="局部最优的解决思路-机器学习"><a href="#局部最优的解决思路-机器学习" class="headerlink" title="局部最优的解决思路-机器学习"></a>局部最优的解决思路-机器学习</h1><ol>
+<li><strong>推理是简单的（P）</strong>：使用模型是高效的。</li>
+<li><strong>训练是困难的（NP-Hard）</strong>：从理论上讲，找到完美的模型是极其困难的。</li>
+<li><strong>实践是巧妙的</strong>：我们通过放弃理论上的“完美”（全局最优），拥抱实践中的“好用”（局部最优+泛化），用高效的近似算法（梯度下降）解决了理论上NP-Hard的问题。</li>
+<li><strong>验证和设计是更具挑战的（NP-Complete&#x2F;Hard）</strong>：确保模型绝对安全或自动设计最优模型，是当前面临的最大计算挑战之一。</li>
+</ol>
+<h1 id="离散对数"><a href="#离散对数" class="headerlink" title="离散对数"></a>离散对数</h1><h1 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h1><ul>
+<li>哈希函数的两个应用：数据完整性，身份鉴别</li>
 </ul>
-<h4 id="3-“最坏情况归约”的重要性"><a href="#3-“最坏情况归约”的重要性" class="headerlink" title="3. “最坏情况归约”的重要性"></a>3. “最坏情况归约”的重要性</h4><p>这是LWE&#x2F;格密码一个极其强大的理论优势：</p>
+<h1 id="Cipher"><a href="#Cipher" class="headerlink" title="Cipher"></a>Cipher</h1><h1 id="Classic-Cipher-and-Enigma"><a href="#Classic-Cipher-and-Enigma" class="headerlink" title="Classic Cipher and Enigma"></a>Classic Cipher and Enigma</h1><h3 id="密钥的分级与生命周期"><a href="#密钥的分级与生命周期" class="headerlink" title="密钥的分级与生命周期"></a>密钥的分级与生命周期</h3><h4 id="第一级：基础设置-Grundlegende-Einstellungen-通常每月更换"><a href="#第一级：基础设置-Grundlegende-Einstellungen-通常每月更换" class="headerlink" title="第一级：基础设置 (Grundlegende Einstellungen) - 通常每月更换"></a><strong>第一级：基础设置 (Grundlegende Einstellungen) - 通常每月更换</strong></h4><h4 id="第二级：每日密钥-Tagesschlussel-每24小时更换"><a href="#第二级：每日密钥-Tagesschlussel-每24小时更换" class="headerlink" title="第二级：每日密钥 (Tagesschlüssel) - 每24小时更换"></a><strong>第二级：每日密钥 (Tagesschlüssel) - 每24小时更换</strong></h4><h4 id="第三级：消息密钥-Spruchschlussel-每条消息更换"><a href="#第三级：消息密钥-Spruchschlussel-每条消息更换" class="headerlink" title="第三级：消息密钥 (Spruchschlüssel) - 每条消息更换"></a><strong>第三级：消息密钥 (Spruchschlüssel) - 每条消息更换</strong></h4><h3 id="总结：一个操作员的一天"><a href="#总结：一个操作员的一天" class="headerlink" title="总结：一个操作员的一天"></a>总结：一个操作员的一天</h3><ol>
+<li><strong>月初</strong>: 安装本月的转子和反射器。</li>
+<li><strong>每天凌晨</strong>: 根据密钥表设置当天的插接板和环设置。</li>
+<li><strong>发送第一条消息</strong>:<ul>
+<li>随机想一个起始位置（如<code>ABC</code>）。</li>
+<li>用“每日起始位置”加密<code>ABC</code>两次，得到密文<code>XYZ PQR</code>。</li>
+<li>将转子调到<code>ABC</code>。</li>
+<li>发送 <code>XYZ PQR</code> + 加密后的正文。</li>
+</ul>
+</li>
+<li><strong>发送第二条消息</strong>:<ul>
+<li>重新随机想一个起始位置（如<code>LFG</code>）。</li>
+<li>重复上面的步骤。</li>
+</ul>
+</li>
+</ol>
+<p>这个分级策略设计得相当严密，但实际执行中，<strong>操作员的不规范操作</strong>（例如，选择<code>AAA</code>、<code>LOL</code>等有规律的随机密钥，或者在加密消息密钥时出现的漏洞）成为了盟军破解恩尼格玛的重要突破口。</p>
+<p>启示：</p>
 <ul>
-<li><strong>传统密码学（RSA, ECC）</strong>：其安全性基于解决一个<strong>随机实例</strong>的困难性（例如，分解一个随机大整数）。</li>
-<li><strong>LWE&#x2F;格密码</strong>：其安全性可以<strong>归约</strong>到解决格上某个问题的<strong>最坏情况实例</strong>的困难性。这意味着，<strong>如果能破解一个随机的LWE实例，那么你就能解决任意格上的一个最坏情况难题</strong>。</li>
+<li><p>密码系统的柯克霍夫斯（Kerckhoffs）原则：<br>密码体制的安全性仅应依赖于对密钥的保密，而不应依赖于对算法的保密。</p>
+</li>
+<li><p>真正的随机密钥是安全的基础。<br>恩尼格玛在理论上的强度，因密钥生成过程中的“人为随机”而大幅降低。</p>
+</li>
 </ul>
-<p>这提供了一个非常强的安全保证：攻击密码系统不比解决该难题家族中最难的实例容易。</p>
-<h3 id="总结与趋势"><a href="#总结与趋势" class="headerlink" title="总结与趋势"></a>总结与趋势</h3><p>密码学的演进史，就是一部寻找新的、更硬的“数学坚果”来敲碎的历史，其核心始终是依赖 <strong>NP ∩ co-NP</strong> 领域内那些“被认为 ∉ P”的问题。</p>
+<h1 id="Symmetric-Cipher-to-Asymmetric-Cipher"><a href="#Symmetric-Cipher-to-Asymmetric-Cipher" class="headerlink" title="Symmetric Cipher to Asymmetric Cipher"></a>Symmetric Cipher to Asymmetric Cipher</h1><p>实现安全性的方式：<br>对称密钥密码算法是基于复杂的非线性变换与迭代运算实现算法安全性，而非对称密钥密码算法则一般是基于某个公认的数学难题来实现安全性的。</p>
+<h3 id="Symmetric"><a href="#Symmetric" class="headerlink" title="Symmetric"></a>Symmetric</h3><h4 id="对称密码的特点"><a href="#对称密码的特点" class="headerlink" title="对称密码的特点"></a><strong>对称密码的特点</strong></h4><p>对称密码的核心特点是<strong>加密与解密使用同一把密钥</strong>。它具备：</p>
+<ol>
+<li><strong>效率高</strong>：运算速度快，适合加密大量数据。</li>
+<li><strong>安全性强</strong>：依赖复杂的非线性变换和迭代运算，实现混淆与扩散。</li>
+<li><strong>密钥管理挑战</strong>：通信双方必须预先安全地共享同一把密钥。</li>
+</ol>
+<h3 id="从DES到AES："><a href="#从DES到AES：" class="headerlink" title="从DES到AES："></a><strong>从DES到AES：</strong></h3><p>DES曾是全球标准，但其<strong>56位密钥</strong>和<strong>64位分组长度</strong>在算力飞速发展的时代逐渐暴露短板。1997年的公开破解挑战，证明了它已无法满足长期安全需求。</p>
+<p>作为DES的继承者，AES在2001年被确立为新标准。它不仅是简单的“替代”，而是<strong>一次全面的升级</strong>：</p>
 <ul>
-<li><strong>过去与现在</strong>：我们从<strong>数论问题</strong>（分解、离散对数）转向了<strong>格问题</strong>（LWE, SIS）和<strong>编码问题</strong>（McEliece）。</li>
-<li><strong>未来趋势</strong>：<strong>基于格的密码学</strong>，特别是围绕 <strong>ML-KEM (Kyber)</strong> 和 <strong>ML-DSA (Dilithium)</strong> 的算法套件，凭借其强大的安全理论、良好的性能和较小的尺寸，正成为<strong>后量子时代非对称密码学的新标准</strong>，正如您看到的OpenSSH等软件已经开始整合它们。</li>
+<li><strong>密钥更长</strong>：支持128、192、256位，可对抗穷举攻击。</li>
+<li><strong>结构更优</strong>：采用SPN（代换-置换网络）结构，具有更强的扩散性。</li>
+<li><strong>设计更开放</strong>：全球公开竞赛选拔，过程透明，凝聚了密码学界的集体智慧。</li>
 </ul>
-<h1 id="Cipher"><a href="#Cipher" class="headerlink" title="Cipher"></a>Cipher</h1><h1 id="Symmetric-Cipher-to-Asymmetric-Cipher"><a href="#Symmetric-Cipher-to-Asymmetric-Cipher" class="headerlink" title="Symmetric Cipher to Asymmetric Cipher"></a>Symmetric Cipher to Asymmetric Cipher</h1><h3 id="Asymmetric"><a href="#Asymmetric" class="headerlink" title="Asymmetric"></a>Asymmetric</h3><p>把通信设置想象成一个<strong>带锁的信箱</strong>：</p>
+<p><strong>AES的诞生，标志着对称密码设计进入了更安全、更灵活、更经得起公开检验的现代时代。</strong></p>
+<p>DES( Data Encryption Standard )<br>由固定换位、密钥依赖、多次非线性变换而产生全面的混乱。解密算法和加密相同。<br>DES的整个体制是公开的，系统的安全性完全靠密钥的保密。</p>
+<p>DES由美国IBM公司研制，是对早期称作Lucifer密码（密钥长度128bit）的一种发展和修改。<br>1975年被首次公布，1977年被正式批准为美国联邦信息处理标准(FIPS-46)，并规定每隔五年由美国国家安全局( National Security Agency，NSA)做出评估。</p>
+<p>1997年1月28日，美国的RSA数据安全公司在互联网上开展了一项名为“密钥挑战”的竞赛，悬赏一万美元，破解一段用56位密钥加密的DES密文。<br>一位名叫Rocke Verser的程序员设计了一个可以通过互联网分段运行的密钥穷举搜索程序，组织实施了一个称为DESHALL的搜索行动，成千，上万的志愿者加入到计划中.<br>计划实施的第96天，即挑战赛计划公布的第140天，1997年6月17日晚_上10点39分，美国盐湖城Inetz公司的职员MichaelSanders成功地找到了密钥：<br>在计算机上显示了明文: “The unknown message is: Strong cryptography makes the world a safer place </p>
+<h3 id="启示："><a href="#启示：" class="headerlink" title="启示："></a>启示：</h3><ul>
+<li><p>密钥长度必须与时俱进，对抗算力增长<br>DES的56比特密钥在其设计年代（1970年代）被认为是安全的，但摩尔定律使得算力呈指数级增长。1<br>后续影响：直接催生了AES选拔，明确要求支持128、192、256比特的可变长密钥。现代密码学将<strong>128比特</strong>视为对称密钥的最低安全基准。</p>
+</li>
+<li><p>密码算法必须公开，接受全球密码学界审查<br>ES的设计细节（特别是S盒设计准则）曾被NSA要求保密，引发学界对其存在“后门”的猜疑。多年的公开分析最终证明其S盒设计非常优秀，能抵抗当时未知的差分分析。<br>DES的公开分析过程确立了 <strong>“安全通过透明实现”</strong> 的现代密码学原则。这直接印证并强化了<strong>柯克霍夫斯原则——算法的安全性不应依赖于保密</strong>，而应依赖于经得起公开检验的数学强度和密钥保密。</p>
+</li>
+<li><p>分组长度也需要足够大，防止碰撞与效率攻击<br>DES的64位分组长度在数据量巨大时，可能面临生日攻击风险。现代分组密码（如AES）将分组长度提升至128位.</p>
+</li>
+<li><p>标准化过程必须具有前瞻性和全球参与性<br>DES由NSA主导，而AES的选拔由NIST公开进行，全球参与，过程透明。<br>一个密码标准的安全性和可信度，与其制定过程的开放性、竞争性和学术共识直接相关。</p>
+</li>
+</ul>
+<p>任何密码算法的安全性都是相对于特定时代的计算能力而言的。 一个优秀的密码标准，必须具备公开透明、经得起检验的数学结构、足够且可扩展的参数，并预见到未来数十年的算力发展。</p>
+<p>DES的谢幕，标志着密码学从早期的“安全通过隐匿”和固定设计，正式迈入了<strong>算法公开、参数可调、全球共研</strong>的现代密码学时代。</p>
+<h3 id="Asymmetric"><a href="#Asymmetric" class="headerlink" title="Asymmetric"></a>Asymmetric</h3><p>把通信设置想象成一个<strong>带锁的信箱</strong>：</p>
 <ul>
 <li><strong>公钥 ( (\rho, t) )</strong>：就像是这个信箱的<strong>投递口</strong>。它的尺寸和形状是公开的。任何人（Bob）都知道如何通过这个投递口往里面扔信件（加密消息）。把这个投递口的规格告诉别人是安全的，因为它只允许投入，不允许取出。</li>
 <li><strong>私钥 ( s )</strong>：就像是打开信箱的<strong>物理钥匙</strong>。只有 Alice 一个人拥有这把钥匙。她用这把钥匙才能打开信箱，取出并阅读 Bob 投递进来的密文信件。</li>
 </ul>
-<p>所以，Bob 拿到公钥 ( \rho ) 和 ( t )，就像是他知道了 Alice 信箱投递口的精确尺寸，这样他就能准备一封能塞进去的信。</p>
-<h1 id="From-PKE-to-KEM"><a href="#From-PKE-to-KEM" class="headerlink" title="From PKE to KEM"></a>From PKE to KEM</h1><ul>
-<li>从一个信息传递工具变成了通信工具中的组件</li>
-<li>从CCA-安全的密码系统到CPA-安全。(抵御选择密文攻击)</li>
+<p>所以，Bob 拿到公钥 ( \rho ) 和 ( t )，就像是他知道了 Alice 信箱投递口的精确尺寸，这样他就能准备一封能塞进去的信。<br>(加密密钥公开，解密密钥保密)</p>
+<h3 id="密码系统的分析方法"><a href="#密码系统的分析方法" class="headerlink" title="密码系统的分析方法"></a>密码系统的分析方法</h3><p>常见分组密码分析方法：<br>(1)差分密码分析<br>       通过分析两个明文差值对密文差值的影响，来推断出某些密钥比特。<br>(2)线性密码分析<br>      通过寻找给定密码算法的线性近似表达式，来破译密码算法。<br>(3)差分-线性密码分析<br>       将差分密码分析和线性密码分析相结合，降低密码破译的计算复杂度。<br>(4)插值攻击<br>       利用拉格朗日插值公式的思想，给出加解密算法的等价变换，以破译密码算法。<br>(5)密钥相关攻击<br>       根据两个具有某种关系的密钥和相应的明文密文对，来对密码算法进行分析攻击。</p>
+<p>密码系统的攻击方式<br>① 惟密文攻击（Ciphtext-only Attack）<br>在惟密文攻击中，密码分析者知道密码算法，但仅能根据截获的密文进行分析，以得出明文或密钥。由于密码分析者所能利用的数据资源仅为密文，这是对密码分析者最不利的情况。最易抵抗的攻击类型！<br>② 已知明文攻击（Plaintext-known Attack）<br>已知明文攻击是指密码分析者除了有截获的密文外，还有一些已知的“明文—密文对”来破译密码。密码分析者的任务目标是推出密文的某种解密算法，甚至从已知的明文被变换成密文的方式分析出密钥。<br>③ 选择明文攻击（Chosen Plaintext Attack）<br>选择明文攻击是指密码分析者不仅可得到一些“明文—密文对”，还可以选择被加密的明文，并获得相应的密文。这时密码分析者能够选择特定的明文数据块去加密，并比较明文和对应的密文，已分析和发现更多的与密钥相关的信息。<br>密码分析者的任务目标也是推出用来加密的密钥或某种算法，该算法可以对用该密钥加密的任何新的消息进行解密。<br>④ 选择密文攻击(Chosen Ciphertext Attack)<br>选择密文攻击是指密码分析者可以选择一些密文，并得到相应的明文。选择的密文可能与要破解的密文相关。密码分析者的任务目标是推出密钥。</p>
+<h3 id="Demo-on-SSH"><a href="#Demo-on-SSH" class="headerlink" title="Demo on SSH"></a>Demo on SSH</h3><p><a target="_blank" rel="noopener" href="https://github.com/settings/keys">https://github.com/settings/keys</a></p>
+<ul>
+<li>演示ssh协议的工作机制</li>
+<li>展示对称加密、签名、密钥协商的实际应用</li>
+<li>说明哈希算法对中间人攻击的防御——有KEM的地方一定会用哈希</li>
+<li>github的工作方式(git clone)对ssh的封装</li>
+<li>引出密码算法的更多应用：软件分发、HTTPS(TLS&#x2F;SSL)……</li>
+</ul>
+<h1 id="From-PKE-to-KEM"><a href="#From-PKE-to-KEM" class="headerlink" title="From PKE to KEM"></a>From PKE to KEM</h1><img src="/images/04.png" alt="" width="400" height="300">
+
+<!-- <iframe src="../../../../nodeppt/ssh-flowchart.html" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame"></iframe> -->
+
+<ul>
+<li>从一个信息传递工具变成了通信工具中的组件(综合考虑安全、效率等问题)</li>
+<li>从CPA-安全的密码系统到CCA-安全。(抵御选择密文攻击)</li>
 </ul>
 <p>选择密文攻击：<br><img src="/images/03.png"><br>这些例子的一个共同致命弱点是：<strong>它们无法检测密文是否被篡改</strong>。</p>
 <ul>
 <li><strong>CPA安全的系统</strong> 只承诺：<strong>“如果你不碰密文，那么攻击者无法从密文中学到东西。”</strong></li>
 <li><strong>CCA安全的系统</strong> 承诺了更多：<strong>“即使你恶意地篡改了密文，你不仅无法学到东西，而且我还会让这次解密失败（输出错误或随机值），从而不让你获得任何有用的信息。”</strong></li>
+</ul>
+<h1 id="ML-KEM"><a href="#ML-KEM" class="headerlink" title="ML-KEM"></a>ML-KEM</h1><p><img src="/images/02.png"></p>
+<h4 id="量子安全："><a href="#量子安全：" class="headerlink" title="量子安全："></a>量子安全：</h4><ul>
+<li><strong>Shor算法</strong>：能高效解决<strong>整数分解</strong>和<strong>离散对数</strong>问题（包括椭圆曲线上的），在量子计算机上运行时间为多项式级。这直接击溃了RSA、ECC等算法。</li>
+<li><strong>Grover算法</strong>：为搜索问题提供平方根加速，但对对称加密和哈希函数的影响是有限的（例如，将128位安全强度降为64位，我们可以通过将密钥长度增加到256位来轻松应对）。</li>
+<li><strong>格密码（LWE, SIS等）的抵抗力</strong>：目前<strong>没有已知的量子算法</strong>能像Shor算法破解RSA那样，为格问题提供指数级加速。最好的量子算法（如格筛法）也只能提供一些多项式加速，其核心难度依然是指数级的。这就是为什么基于格的问题（如LWE、SIS）被认为是后量子安全的。</li>
+</ul>
+<h4 id="“最坏情况归约”的重要性"><a href="#“最坏情况归约”的重要性" class="headerlink" title="“最坏情况归约”的重要性"></a>“最坏情况归约”的重要性</h4><p>这是LWE&#x2F;格密码一个极其强大的理论优势：</p>
+<ul>
+<li><strong>传统密码学（RSA, ECC）</strong>：其安全性基于解决一个<strong>随机实例</strong>的困难性（例如，分解一个随机大整数）。</li>
+<li><strong>LWE&#x2F;格密码</strong>：其安全性可以<strong>归约</strong>到解决格上某个问题的<strong>最坏情况实例</strong>的困难性。这意味着，<strong>如果能破解一个随机的LWE实例，那么你就能解决任意格上的一个最坏情况难题</strong>。</li>
 </ul>
 
   </div>
@@ -281,7 +379,7 @@
         
           <li><a href="/archives/">Writing</a></li>
         
-          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="/null">Projects</a></li>
         
       </ul>
     </div>
@@ -289,7 +387,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Computing"><span class="toc-number">1.</span> <span class="toc-text">Computing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%B7%E9%97%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA-%E4%BB%A5RSA%E4%B8%BA%E4%BE%8B%E5%BC%95%E5%85%A5%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">陷门函数与计算理论-以RSA为例引入密码学算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E6%9C%80%E4%BC%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">局部最优的解决思路-机器学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%9E%E4%BA%8E-NP-%E4%BD%86%E4%B8%8D%E5%B1%9E%E4%BA%8E-P"><span class="toc-number">4.</span> <span class="toc-text">属于 NP 但不属于 P</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B8%83%E5%B0%94%E5%8F%AF%E6%BB%A1%E8%B6%B3%E6%80%A7%E9%97%AE%E9%A2%98%EF%BC%88SAT%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">1. 布尔可满足性问题（SAT）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98%EF%BC%88TSP%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">2. 旅行商问题（TSP）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98"><span class="toc-number">4.3.</span> <span class="toc-text">3. 图着色问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AD%90%E9%9B%86%E5%92%8C%E9%97%AE%E9%A2%98"><span class="toc-number">4.4.</span> <span class="toc-text">4. 子集和问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%EF%BC%88%E5%88%A4%E5%AE%9A%E9%97%AE%E9%A2%98%E5%BD%A2%E5%BC%8F%EF%BC%89"><span class="toc-number">4.5.</span> <span class="toc-text">5. 整数分解（判定问题形式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E9%97%AE%E9%A2%98"><span class="toc-number">4.6.</span> <span class="toc-text">6. 离散对数问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NP-P"><span class="toc-number">4.7.</span> <span class="toc-text">NP !&#x3D; P</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8F%E5%AD%90%E5%AE%89%E5%85%A8%E7%9A%84%E6%A0%B8%E5%BF%83%EF%BC%9A%E4%B8%BA%E4%BD%95%E6%9C%89%E4%BA%9B%E7%AE%97%E6%B3%95%E8%83%BD%E6%8A%B5%E6%8A%97%E9%87%8F%E5%AD%90%E6%94%BB%E5%87%BB%EF%BC%9F"><span class="toc-number">4.7.1.</span> <span class="toc-text">量子安全的核心：为何有些算法能抵抗量子攻击？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E2%80%9C%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%E5%BD%92%E7%BA%A6%E2%80%9D%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-number">4.7.2.</span> <span class="toc-text">3. “最坏情况归约”的重要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E8%B6%8B%E5%8A%BF"><span class="toc-number">4.7.3.</span> <span class="toc-text">总结与趋势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cipher"><span class="toc-number">5.</span> <span class="toc-text">Cipher</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Symmetric-Cipher-to-Asymmetric-Cipher"><span class="toc-number">6.</span> <span class="toc-text">Symmetric Cipher to Asymmetric Cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Asymmetric"><span class="toc-number">6.1.</span> <span class="toc-text">Asymmetric</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#From-PKE-to-KEM"><span class="toc-number">7.</span> <span class="toc-text">From PKE to KEM</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Computing"><span class="toc-number">1.</span> <span class="toc-text">Computing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B8%83%E5%B0%94%E5%8F%AF%E6%BB%A1%E8%B6%B3%E6%80%A7%E9%97%AE%E9%A2%98%EF%BC%88SAT%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">1. 布尔可满足性问题（SAT）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98%EF%BC%88TSP%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">2. 旅行商问题（TSP）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%9B%BE%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.</span> <span class="toc-text">3. 图着色问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AD%90%E9%9B%86%E5%92%8C%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">4. 子集和问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%EF%BC%88%E5%88%A4%E5%AE%9A%E9%97%AE%E9%A2%98%E5%BD%A2%E5%BC%8F%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">5. 整数分解（判定问题形式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%E9%97%AE%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">6. 离散对数问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%E9%97%AE%E9%A2%98-RSA%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">大整数分解问题-RSA算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E6%9C%80%E4%BC%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">局部最优的解决思路-机器学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">离散对数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">哈希函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cipher"><span class="toc-number">6.</span> <span class="toc-text">Cipher</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Classic-Cipher-and-Enigma"><span class="toc-number">7.</span> <span class="toc-text">Classic Cipher and Enigma</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%9A%84%E5%88%86%E7%BA%A7%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">7.1.</span> <span class="toc-text">密钥的分级与生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%BA%A7%EF%BC%9A%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE-Grundlegende-Einstellungen-%E9%80%9A%E5%B8%B8%E6%AF%8F%E6%9C%88%E6%9B%B4%E6%8D%A2"><span class="toc-number">7.1.1.</span> <span class="toc-text">第一级：基础设置 (Grundlegende Einstellungen) - 通常每月更换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%BA%A7%EF%BC%9A%E6%AF%8F%E6%97%A5%E5%AF%86%E9%92%A5-Tagesschlussel-%E6%AF%8F24%E5%B0%8F%E6%97%B6%E6%9B%B4%E6%8D%A2"><span class="toc-number">7.1.2.</span> <span class="toc-text">第二级：每日密钥 (Tagesschlüssel) - 每24小时更换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%BA%A7%EF%BC%9A%E6%B6%88%E6%81%AF%E5%AF%86%E9%92%A5-Spruchschlussel-%E6%AF%8F%E6%9D%A1%E6%B6%88%E6%81%AF%E6%9B%B4%E6%8D%A2"><span class="toc-number">7.1.3.</span> <span class="toc-text">第三级：消息密钥 (Spruchschlüssel) - 每条消息更换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E4%B8%80%E4%B8%AA%E6%93%8D%E4%BD%9C%E5%91%98%E7%9A%84%E4%B8%80%E5%A4%A9"><span class="toc-number">7.2.</span> <span class="toc-text">总结：一个操作员的一天</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Symmetric-Cipher-to-Asymmetric-Cipher"><span class="toc-number">8.</span> <span class="toc-text">Symmetric Cipher to Asymmetric Cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Symmetric"><span class="toc-number">8.1.</span> <span class="toc-text">Symmetric</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">8.1.1.</span> <span class="toc-text">对称密码的特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8EDES%E5%88%B0AES%EF%BC%9A"><span class="toc-number">8.2.</span> <span class="toc-text">从DES到AES：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E7%A4%BA%EF%BC%9A"><span class="toc-number">8.3.</span> <span class="toc-text">启示：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Asymmetric"><span class="toc-number">8.4.</span> <span class="toc-text">Asymmetric</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">8.5.</span> <span class="toc-text">密码系统的分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo-on-SSH"><span class="toc-number">8.6.</span> <span class="toc-text">Demo on SSH</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#From-PKE-to-KEM"><span class="toc-number">9.</span> <span class="toc-text">From PKE to KEM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ML-KEM"><span class="toc-number">10.</span> <span class="toc-text">ML-KEM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8F%E5%AD%90%E5%AE%89%E5%85%A8%EF%BC%9A"><span class="toc-number">10.1.</span> <span class="toc-text">量子安全：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%80%9C%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%E5%BD%92%E7%BA%A6%E2%80%9D%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-number">10.2.</span> <span class="toc-text">“最坏情况归约”的重要性</span></a></li></ol></li></ol>
       </div>
     
 
@@ -329,7 +427,7 @@
     
     
     2016-2025
-    John Doe
+    Dong Haixuan
   </div>
   <div class="footer-right">
     <nav>
@@ -341,7 +439,7 @@
      --><!--
        --><li><a href="/archives/">Writing</a></li><!--
      --><!--
-       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">Projects</a></li><!--
+       --><li><a href="/null">Projects</a></li><!--
      -->
       </ul>
     </nav>

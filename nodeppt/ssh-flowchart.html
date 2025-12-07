@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH 密钥交换与认证流程</title>
+    <style>
+        :root {
+            --bg-dark: #111827;
+            --text-light: #ffffff;
+            --text-gray: #d1d5db;
+            --accent-blue: #60a5fa;
+            --success-green: #34d399;
+            --border-gray: #4b5563;
+            --phase-bg: rgba(96, 165, 250, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background-color: var(--bg-dark);
+            color: var(--text-gray);
+            line-height: 1.5;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .ssh-diagram {
+            background-color: transparent;
+            width: 100%;
+            max-width: 700px;
+            font-size: 14px;
+        }
+        
+        /* 标题行 */
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .client-header, .server-header {
+            flex: 1;
+            font-weight: bold;
+            color: var(--text-light);
+            padding: 5px 0;
+        }
+        
+        .client-header {
+            color: var(--accent-blue);
+        }
+        
+        .server-header {
+            color: var(--success-green);
+        }
+        
+        /* 阶段分隔 */
+        .phase {
+            margin-bottom: 40px;
+        }
+        
+        .phase-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--text-light);
+            padding: 8px 0;
+            border-top: 1px solid var(--border-gray);
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        .phase-title .number {
+            color: var(--accent-blue);
+            margin-right: 10px;
+        }
+        
+        .phase-title .algorithm {
+            color: var(--text-gray);
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        
+        /* 消息行 */
+        .message-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .message {
+            flex: 1;
+            text-align: center;
+            padding: 12px 15px;
+            border-radius: 4px;
+            background-color: rgba(31, 41, 55, 0.7);
+            border: 1px solid var(--border-gray);
+            color: var(--text-gray);
+        }
+        
+        .message.client {
+            border-color: rgba(96, 165, 250, 0.3);
+            color: var(--accent-blue);
+        }
+        
+        .message.server {
+            border-color: rgba(52, 211, 153, 0.3);
+            color: var(--success-green);
+        }
+        
+        /* 共享密钥行 */
+        .shared-key-row {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+        }
+        
+        .shared-key {
+            display: inline-block;
+            background-color: rgba(52, 211, 153, 0.1);
+            color: var(--success-green);
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 1px solid var(--border-gray);
+        }
+        
+        .shared-key .key {
+            color: var(--text-light);
+            font-family: 'Consolas', monospace;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin: 0 5px;
+        }
+        
+        /* 认证结果 */
+        .auth-result {
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px;
+            background-color: rgba(52, 211, 153, 0.1);
+            border-radius: 4px;
+            border: 1px solid var(--success-green);
+            color: var(--success-green);
+            font-weight: bold;
+        }
+        
+        /* 连接线容器 */
+        .connection-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            height: 20px;
+            margin: 10px 0;
+        }
+        
+        .connection-line {
+            width: 2px;
+            height: 100%;
+            background-color: var(--border-gray);
+            position: relative;
+        }
+        
+        .connection-line:before,
+        .connection-line:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--border-gray);
+        }
+        
+        .connection-line:before {
+            top: -4px;
+        }
+        
+        .connection-line:after {
+            bottom: -4px;
+        }
+        
+        /* 底部标签 */
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .footer-label {
+            flex: 1;
+            font-weight: bold;
+            color: var(--text-light);
+            padding: 5px 0;
+        }
+        
+        /* 悬停效果 */
+        .message {
+            transition: all 0.2s ease;
+        }
+        
+        .message:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .message.client:hover {
+            border-color: var(--accent-blue);
+            background-color: rgba(96, 165, 250, 0.1);
+        }
+        
+        .message.server:hover {
+            border-color: var(--success-green);
+            background-color: rgba(52, 211, 153, 0.1);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .ssh-diagram {
+                font-size: 12px;
+            }
+            
+            .message {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ssh-diagram">
+        <!-- 顶部标题 -->
+        <div class="header-row">
+            <div class="client-header">Client</div>
+            <div class="server-header">Server</div>
+        </div>
+        
+        <!-- 第一阶段：密钥交换 -->
+        <div class="phase">
+            <div class="phase-title">
+                <span class="number">1.</span> 密钥交换阶段
+                <span class="algorithm">（KEX算法）</span>
+            </div>
+            
+            <!-- 消息交换 -->
+            <div class="message-row">
+                <div class="message client">发送DH公钥参数</div>
+                <div class="message server">发送DH公钥参数</div>
+            </div>
+            
+            <div class="connection-container">
+                <div class="connection-line"></div>
+            </div>
+            
+            <div class="message-row">
+                <div class="message client">发送DH公钥参数</div>
+                <div class="message server">发送DH公钥参数</div>
+            </div>
+            
+            <!-- 共享密钥 -->
+            <div class="shared-key-row">
+                <div class="shared-key">
+                    双方各自计算得到相同的共享密钥<span class="key">K</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第二阶段：认证 -->
+        <div class="phase">
+            <div class="phase-title">
+                <span class="number">2.</span> 认证阶段
+                <span class="algorithm">（KEY算法）</span>
+            </div>
+            
+            <!-- 认证消息 -->
+            <div class="message-row">
+                <div class="message client">用私钥签名会话数据</div>
+                <div class="message server">使用存储的客户端公钥验证签名</div>
+            </div>
+            
+            <!-- 认证结果 -->
+            <div class="auth-result">
+                认证成功
+            </div>
+        </div>
+        
+        <!-- 底部标签 -->
+        <div class="footer-row">
+            <div class="footer-label">Client</div>
+            <div class="footer-label">Server</div>
+        </div>
+    </div>
+    
+    <script>
+        // 添加简单交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const messages = document.querySelectorAll('.message');
+            
+            // 消息渐入动画
+            messages.forEach((msg, index) => {
+                msg.style.opacity = '0';
+                msg.style.transform = 'translateY(10px)';
+                
+                setTimeout(() => {
+                    msg.style.transition = 'opacity 0.4s, transform 0.4s';
+                    msg.style.opacity = '1';
+                    msg.style.transform = 'translateY(0)';
+                }, 100 + index * 100);
+            });
+            
+            // 共享密钥脉动效果
+            const sharedKey = document.querySelector('.shared-key');
+            setInterval(() => {
+                sharedKey.style.boxShadow = sharedKey.style.boxShadow 
+                    ? '' 
+                    : '0 0 15px rgba(52, 211, 153, 0.3)';
+            }, 1500);
+            
+            // 认证成功闪烁效果
+            const authResult = document.querySelector('.auth-result');
+            setTimeout(() => {
+                setInterval(() => {
+                    authResult.style.boxShadow = authResult.style.boxShadow 
+                        ? '' 
+                        : '0 0 10px rgba(52, 211, 153, 0.4)';
+                }, 2000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
