@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="携手 Entrust，OpenSSL 启用硬件级代码签名并布局后量子安全 The OpenSSL Corporation Strengthens Code Signing Security with Entrust nShield HSMs  September 8, 2025 OpenSSL 公司宣布将采用 Entrust 的 nShield 5c 硬件安全模块（HSM） 来构建其生产代码签名系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenSSL-News">
+<meta property="og:url" content="http://example.com/2026/01/23/OpenSSL-News/index.html">
+<meta property="og:site_name" content="CISCN 2025">
+<meta property="og:description" content="携手 Entrust，OpenSSL 启用硬件级代码签名并布局后量子安全 The OpenSSL Corporation Strengthens Code Signing Security with Entrust nShield HSMs  September 8, 2025 OpenSSL 公司宣布将采用 Entrust 的 nShield 5c 硬件安全模块（HSM） 来构建其生产代码签名系">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-01-23T01:45:36.000Z">
+<meta property="article:modified_time" content="2026-01-23T02:02:47.743Z">
+<meta property="article:author" content="还没起名字组">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>OpenSSL-News</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/null">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/01/22/%E9%80%89%E9%A2%98%E8%AE%A8%E8%AE%BA-1/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/01/23/OpenSSL-News/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/01/23/OpenSSL-News/&text=OpenSSL-News"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/01/23/OpenSSL-News/&title=OpenSSL-News"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/01/23/OpenSSL-News/&is_video=false&description=OpenSSL-News"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=OpenSSL-News&body=Check out this article: http://example.com/2026/01/23/OpenSSL-News/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/01/23/OpenSSL-News/&title=OpenSSL-News"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/01/23/OpenSSL-News/&title=OpenSSL-News"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/01/23/OpenSSL-News/&title=OpenSSL-News"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/01/23/OpenSSL-News/&title=OpenSSL-News"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/01/23/OpenSSL-News/&name=OpenSSL-News&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/01/23/OpenSSL-News/&t=OpenSSL-News"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%BA%E6%89%8B-Entrust%EF%BC%8COpenSSL-%E5%90%AF%E7%94%A8%E7%A1%AC%E4%BB%B6%E7%BA%A7%E4%BB%A3%E7%A0%81%E7%AD%BE%E5%90%8D%E5%B9%B6%E5%B8%83%E5%B1%80%E5%90%8E%E9%87%8F%E5%AD%90%E5%AE%89%E5%85%A8"><span class="toc-number">1.</span> <span class="toc-text">携手 Entrust，OpenSSL 启用硬件级代码签名并布局后量子安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSSL%E5%BC%95%E5%85%A5%E4%BA%86%E5%AF%B9%E5%90%8E%E9%87%8F%E5%AD%90%E5%AF%86%E7%A0%81%EF%BC%88PQC%EF%BC%89%E7%AE%97%E6%B3%95%E7%9A%84%E6%94%AF%E6%8C%81"><span class="toc-number">2.</span> <span class="toc-text">OpenSSL引入了对后量子密码（PQC）算法的支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSSL-3-6-Release-Announcement-Latest-now"><span class="toc-number">3.</span> <span class="toc-text">OpenSSL 3.6 Release Announcement (Latest now)</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        OpenSSL-News
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">还没起名字组</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-01-23T01:45:36.000Z" class="dt-published" itemprop="datePublished">2026-01-23</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h3 id="携手-Entrust，OpenSSL-启用硬件级代码签名并布局后量子安全">携手 Entrust，OpenSSL 启用硬件级代码签名并布局后量子安全</h3>
+<p><a target="_blank" rel="noopener" href="https://openssl-corporation.org/post/2025-09-08-entrust-ossl-pr/"><strong>The OpenSSL Corporation Strengthens Code Signing Security with Entrust nShield HSMs</strong></a></p>
+<blockquote>
+<p>September 8, 2025<br>
+OpenSSL 公司宣布将采用 Entrust 的 nShield 5c 硬件安全模块（HSM） 来构建其生产代码签名系统，以增强软件发布的安全性。此举旨在通过 FIPS 140-3 认证 的 HSM 建立可信的代码签名根，防止代码被篡改或伪造，从而维护全球依赖 OpenSSL 的数十亿通信系统的安全。</p>
+</blockquote>
+<p>双方长期在标准制定方面合作，近期还共同推动了经典与后量子混合算法的标准化。OpenSSL 选择 Entrust 不仅出于其对传统加密的成熟支持，也因其具备向后量子密码学平滑过渡的能力。nShield 5c 已支持包括 ML-KEM、SLH-DSA、ML-DSA 在内的 NIST 后量子算法，可应对未来量子计算带来的安全挑战。</p>
+<p>双方高管均强调，此次合作将为 OpenSSL 提供硬件级信任根和量子安全的代码签名路径，确保当前与未来的代码安全。</p>
+<blockquote></blockquote>
+<h3 id="OpenSSL引入了对后量子密码（PQC）算法的支持">OpenSSL引入了对后量子密码（PQC）算法的支持</h3>
+<p><a target="_blank" rel="noopener" href="https://openssl-corporation.org/post/2025-04-08-openssl-35-final-release/">OpenSSL 3.5 Final Release</a></p>
+<p>This release adds the following new features:<br>
+……</p>
+<ul>
+<li>Support for PQC algorithms (ML-KEM, ML-DSA and SLH-DSA)<br>
+……</li>
+</ul>
+<h3 id="OpenSSL-3-6-Release-Announcement-Latest-now">OpenSSL 3.6 Release Announcement (Latest now)</h3>
+<p><a target="_blank" rel="noopener" href="https://openssl-library.org/post/2025-10-01-3.6-release-announcement/">Release Announcement for OpenSSL 3.6.0</a><br>
+OpenSSL 3.6.0 版本发布公告-2025年10月1日</p>
+<p>OpenSSL 3.6 的最终版本现已发布。我们谨向所有为 OpenSSL 3.6 版本做出贡献的人员表示感谢，没有你们的付出，OpenSSL 库将无法实现。<br>
+……</p>
+<ul>
+<li>
+<p><strong>新增后量子密码（PQC）支持</strong></p>
+</li>
+<li>
+<p>新增 <strong>LMS 签名验证</strong> 功能（遵循 <strong>SP 800-208</strong> 标准），在 FIPS 及默认提供程序中均可用，标志着向后量子密码学迁移的关键一步。</p>
+</li>
+<li>
+<p><strong>编译器要求升级</strong></p>
+</li>
+<li>
+<p>不再支持仅符合 <strong>ANSI-C 标准</strong>的编译环境，现要求编译器必须支持 <strong>C99 特性</strong>，这可能影响部分老旧系统的升级与兼容性。<br>
+……<br>
+下一版本 <strong>OpenSSL 4.0</strong> 计划于 <strong>2026年4月</strong> 发布。敬请关注我们的 <strong>GitHub</strong>、<strong>OpenSSL 社区</strong> 及 <strong>博客</strong> 获取最新动态。</p>
+</li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/null">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%BA%E6%89%8B-Entrust%EF%BC%8COpenSSL-%E5%90%AF%E7%94%A8%E7%A1%AC%E4%BB%B6%E7%BA%A7%E4%BB%A3%E7%A0%81%E7%AD%BE%E5%90%8D%E5%B9%B6%E5%B8%83%E5%B1%80%E5%90%8E%E9%87%8F%E5%AD%90%E5%AE%89%E5%85%A8"><span class="toc-number">1.</span> <span class="toc-text">携手 Entrust，OpenSSL 启用硬件级代码签名并布局后量子安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSSL%E5%BC%95%E5%85%A5%E4%BA%86%E5%AF%B9%E5%90%8E%E9%87%8F%E5%AD%90%E5%AF%86%E7%A0%81%EF%BC%88PQC%EF%BC%89%E7%AE%97%E6%B3%95%E7%9A%84%E6%94%AF%E6%8C%81"><span class="toc-number">2.</span> <span class="toc-text">OpenSSL引入了对后量子密码（PQC）算法的支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSSL-3-6-Release-Announcement-Latest-now"><span class="toc-number">3.</span> <span class="toc-text">OpenSSL 3.6 Release Announcement (Latest now)</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/01/23/OpenSSL-News/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/01/23/OpenSSL-News/&text=OpenSSL-News"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/01/23/OpenSSL-News/&title=OpenSSL-News"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/01/23/OpenSSL-News/&is_video=false&description=OpenSSL-News"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=OpenSSL-News&body=Check out this article: http://example.com/2026/01/23/OpenSSL-News/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/01/23/OpenSSL-News/&title=OpenSSL-News"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/01/23/OpenSSL-News/&title=OpenSSL-News"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/01/23/OpenSSL-News/&title=OpenSSL-News"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/01/23/OpenSSL-News/&title=OpenSSL-News"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/01/23/OpenSSL-News/&name=OpenSSL-News&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/01/23/OpenSSL-News/&t=OpenSSL-News"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2026
+    还没起名字组
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/null">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = '组名暂未想好';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+<!-- utterances Comments -->
+
+</body>
+</html>
