@@ -13,16 +13,16 @@
 <meta property="og:site_name" content="CISCN 2026">
 <meta property="og:description" content="Benchmarking-RAG-in-Multimodal-Toxicity-Detection 衡量模型在&quot;规则引导&quot;的多模态有害内容检测——面向海量规则的多模态内容合规性检索与判断 核心任务：造一个检测系统完成检测任务。 衡量模型在&quot;规则引导&quot;的多模态有害内容检测——面向海量规则的多模态内容合规性检索与判断 核心任务：造一个检测系统完成检测任务。 其中">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2025/11/28/Detection/images/2026-1-23-6.png">
-<meta property="og:image" content="http://example.com/2025/11/28/Detection/images/2026-1-23-7.jpg">
-<meta property="og:image" content="http://example.com/2025/11/28/Detection/images/2026-1-23-8.png">
-<meta property="og:image" content="http://example.com/2025/11/28/Detection/images/2026-1-23-9.jpg">
-<meta property="og:image" content="http://example.com/2025/11/28/Detection/images/2026-1-23-10.jpg">
+<meta property="og:image" content="http://example.com/images/2026-1-23-6.png">
+<meta property="og:image" content="http://example.com/images/2026-1-23-7.png">
+<meta property="og:image" content="http://example.com/images/2026-1-23-8.png">
+<meta property="og:image" content="http://example.com/images/2026-1-23-9.png">
+<meta property="og:image" content="http://example.com/images/2026-1-23-10.jpg">
 <meta property="article:published_time" content="2025-11-28T05:32:17.000Z">
-<meta property="article:modified_time" content="2026-01-23T05:53:44.717Z">
+<meta property="article:modified_time" content="2026-01-23T07:08:56.086Z">
 <meta property="article:author" content="还没起名字组">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2025/11/28/Detection/images/2026-1-23-6.png">
+<meta name="twitter:image" content="http://example.com/images/2026-1-23-6.png">
     
     
       
@@ -355,11 +355,15 @@ RAG语言模型：qwen-flash<br>
 RAG嵌入模型：text-embedding-v4</p>
 <p>实验数据量：200<br>
 构造如图所示的数据，然后在前端向LightRAG进行提问。</p>
-<p><img src="images/2026-1-23-6.png" alt="01"></p>
-<p><img src="images/2026-1-23-7.jpg" alt="02"></p>
+<div style="display: flex; gap: 10px; justify-content: center;">
+<img src="/images/2026-1-23-6.png" alt="" width="400" height="300">
+<img src="/images/2026-1-23-7.png" alt="" width="400" height="300">
+</div>
 <p>按照560个三级标签将2000条规则列表拆成540个小文件，上传到LightRAG进行提问：</p>
-<p><img src="images/2026-1-23-8.png" alt="03"></p>
-<p><img src="images/2026-1-23-9.jpg" alt="04"></p>
+<div style="display: flex; gap: 10px; justify-content: center;">
+<img src="/images/2026-1-23-8.png" alt="" width="400" height="300">
+<img src="/images/2026-1-23-9.png" alt="" width="400" height="300">
+</div>
 <h4 id="实验结果分析-6">实验结果分析</h4>
 <p>效果还算可以，但是RAG处理的速度太慢了，进行一条数据的实验要花1-2小时，不可以接受。<br>
 500K的文本长度已经远超了RAG的设计文本处理长度，选择拆分成多个小文件，并部署Redis数据库进行存储。<br>
@@ -439,7 +443,7 @@ Match Rate: 80.00%</p>
 1: 包含二级标签、三级标签、四级标签、四级规则 （按照二级标签组织文件）<br>
 2: 包含三级标签、四级标签、四级规则 （按照三级标签组织文件）<br>
 3: 相同数量的文件，所有四级标签、四级规则</p>
-<p><img src="images/2026-1-23-10.jpg" alt="05"></p>
+<img src="/images/2026-1-23-10.jpg" alt="" width="400" height="300">
 <h4 id="实验设置-8">实验设置</h4>
 <p>LightRAG<br>
 RAG语言模型：qwen-flash<br>
