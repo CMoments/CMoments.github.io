@@ -1,0 +1,61 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Multi-line event title</title>
+</head>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+
+	
+<style type="text/css" >
+	html, body{
+		margin:0px;
+		padding:0px;
+		height:100%;
+		overflow:hidden;
+	}
+
+	.dhx_cal_event_clear {
+		height:40px;
+		white-space: normal;
+	}
+
+	.dhx_cal_event_line_content{
+		white-space: normal;
+		align-self: start;
+	}
+
+</style>
+
+<script charset="utf-8">
+	window.addEventListener("DOMContentLoaded", function(){
+		scheduler.config.multi_day = true;
+		
+		scheduler.init('scheduler_here',new Date(2022,6,29),"month");
+		scheduler.xy.bar_height = 40;
+
+		scheduler.parse([
+			{ start_date: "2022-06-30 09:00", end_date: "2022-06-30 12:00", text:"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
+			{ start_date: "2022-06-28 10:00", end_date: "2022-06-30 16:00", text:"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt." }
+		]);	
+		
+	});
+</script>
+
+<body>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+	</div>
+</body>

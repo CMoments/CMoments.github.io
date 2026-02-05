@@ -1,0 +1,17 @@
+export const examples: Array<{ path: string, name: string }> = [
+	{ path: 'basic-init', name: 'Basic Initialization' },
+	{ path: 'templates', name: 'Configs & Templates' },
+	{ path: 'custom-form', name: 'Custom Event Form' },
+	{ path: 'custom-edit-view', name: 'Custom Editor View' },
+	{ path: 'agenda', name: 'List View' },
+	{ path: 'recurring-events', name: 'Recurring Events' },
+	{ path: 'units', name: 'Units View' },
+	{ path: 'timeline', name: 'Timeline View' },
+	{ path: 'redux-toolkit', name: 'Redux Toolkit Integration' },
+	{ path: 'zustand-basic', name: 'Zustand Integration' },
+	{ path: 'mobx-basic', name: 'Mobx Integration' },
+	{ path: 'jotai-atoms', name: 'Jotai Integration' },
+	{ path: 'valtio-proxy', name: 'Valtio Integration' },
+	{ path: 'xstate-fsm', name: 'XState Integration' },
+	{ path: 'export-data', name: 'Export' },
+];

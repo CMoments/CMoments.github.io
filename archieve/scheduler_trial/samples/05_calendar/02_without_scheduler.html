@@ -1,0 +1,52 @@
+<!doctype html>
+<head>
+   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+   <title>Mini calendar without the scheduler</title>
+</head>
+   <script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+   <link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+
+<style type="text/css" >
+   html, body{
+      margin:0px;
+      padding:0px;
+      height:100%;
+      overflow:hidden;
+   }   
+</style>
+
+<script charset="utf-8">
+	window.addEventListener("DOMContentLoaded", function(){
+      scheduler.plugins({
+			minical: true
+		});
+
+		scheduler.init('scheduler_here',new Date(2022,2,1),"day");
+		scheduler.load("../common/events.json", function(){
+			scheduler.renderCalendar({
+				container:"mini_here",
+				date:scheduler.getState().date,
+				navigation:true,
+				handler:function(date,calendar){
+					scheduler.alert(String(date));
+				}
+			});
+		});
+	});
+	
+
+</script>
+
+<body>
+	<div id="mini_here" style="width:250px"></div>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:300px; height:300px; display:none;'>
+      <div class="dhx_cal_navline">
+         <div class="dhx_cal_date"></div>
+         <div class="dhx_cal_tab" data-tab="day"></div>
+      </div>
+      <div class="dhx_cal_header">
+      </div>
+      <div class="dhx_cal_data">
+      </div>
+	</div>
+</body>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Define displayed date range</title>
+	<script src="../../codebase/dhtmlxgantt.js?v=9.1.1"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css?v=9.1.1">
+	<link rel="stylesheet" href="../common/controls_styles.css?v=9.1.1">
+
+	<script src="../common/testdata.js?v=9.1.1"></script>
+	<style>
+		html, body {
+			height: 100%;
+			padding: 0px;
+			margin: 0px;
+			overflow: hidden;
+		}
+		#gantt_here {
+			width: 100%;
+			height: 800px;
+			height: calc(100vh - 52px);
+		}
+
+		.gantt_control{
+			background-color: #e5e0cd;
+		}
+
+	</style>
+</head>
+<body>
+
+<div class="gantt_control">
+	<label>Displayed date range:</label>
+	<input class=start_date type=date value="2023-03-10" onchange="changeDates()">
+	&ndash;
+	<input class=end_date type=date value="2023-04-20" onchange="changeDates()">
+</div>
+<div id="gantt_here"></div>
+<script>
+	function changeDates() {
+		const startDateEl = document.querySelector(".start_date");
+		const endDateEl = document.querySelector(".end_date");
+		const startDate = new Date(startDateEl.value);
+		const endDate = new Date(endDateEl.value);
+
+		if (!+startDate || !+endDate) {
+			return
+		}
+
+		gantt.config.start_date = startDate;
+		gantt.config.end_date = endDate;
+		gantt.render()
+	}
+
+	gantt.setSkin("meadow");
+	gantt.config.scales = [
+		{unit: "month", step: 1, format: "%M"},
+		{unit: "year", step: 1, format: "%Y"},
+		{unit: "day", format: "%d %M"}
+	];
+	gantt.config.scale_height = 3 * 28;
+	gantt.init("gantt_here", new Date(2023, 02, 10), new Date(2023, 03, 20));
+	gantt.parse(demo_tasks);
+</script>
+</body>

@@ -1,0 +1,67 @@
+<!doctype html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Mini calendar in the scheduler header</title>
+</head>
+<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+
+<style type="text/css">
+	html,
+	body {
+		margin: 0px;
+		padding: 0px;
+		height: 100%;
+		overflow: hidden;
+	}
+</style>
+
+<script charset="utf-8">
+	window.addEventListener("DOMContentLoaded", function () {
+		scheduler.plugins({
+			minical: true
+		});
+
+		scheduler.config.multi_day = true;
+
+		scheduler.init('scheduler_here', new Date(2022, 0, 10), "week");
+		scheduler.load("../common/events.json");
+
+		function show_minical() {
+			if (scheduler.isCalendarVisible())
+				scheduler.destroyCalendar();
+			else
+				scheduler.renderCalendar({
+					position: "dhx_minical_icon",
+					date: scheduler.getState().date,
+					navigation: true,
+					handler: function (date, calendar) {
+						scheduler.setCurrentView(date);
+						scheduler.destroyCalendar();
+					}
+				});
+		}
+		scheduler.event(document.querySelector("#dhx_minical_icon"), "click", show_minical);
+	});
+
+</script>
+
+<body>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_minical_icon" id="dhx_minical_icon">&nbsp;</div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+	</div>
+</body>

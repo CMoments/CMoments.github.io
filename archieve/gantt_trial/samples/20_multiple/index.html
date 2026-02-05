@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../common/codehighlight/codemirror.css"/>
+		<link rel="stylesheet" type="text/css" href="../common/docs.css?v="/>
+		<script src="../common/codehighlight/codemirror.js"></script>
+		<script src="../common/codehighlight/xml.js"></script>
+		<script src="../common/codehighlight/htmlmixed.js"></script>
+		<script src="../common/codehighlight/javascript.js"></script>
+		<script src="../common/sample_sources.js"></script>
+		<script src="../common/bodyScrollLock.min.js"></script>
+		<script src="../common/sample_navigation.js"></script>
+		<style class="custom_styles"></style>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="initial-scale = 1.0" />
+		<title>Gantt : Samples</title>
+		
+	</head>
+<body>
+	
+	<header>
+		<a href="https://dhtmlx.com" title="DHTMLX - JavaScript Web App Framework &amp; UI Widgets" class="dhx-logo"
+			target="_blank">
+			<svg xmlns="http://www.w3.org/2000/svg" width="47" height="28" viewBox="0 0 47 28" fill="none">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+					d="M40.8915 20.4166L37.0415 13.1833L33.1915 20.4166H27.4165L33.8332 9.85828L27.4165 0H33.1915L37.0415 5.94997L40.8915 0H46.6665L39.6082 9.85828L46.6665 20.4166H40.8915ZM0 23.3332V22.1665H46.6667V23.3332H0ZM26.8333 20.4166L31.5 13.1833V6.99997L26.8333 0V7.2333H20.4167V0H15.1667V2.21666C16.1 2.97499 16.9167 3.90831 17.5 5.07498C18.2583 6.5333 18.6667 8.22496 18.6667 10.2083C18.6667 12.1333 18.2583 13.8249 17.4417 15.3416C16.8 16.4499 16.0417 17.3832 15.1667 18.1416V20.4166H20.4167V11.8416H26.8333V20.4166ZM18.0833 10.2083C18.0833 12.1333 17.675 13.8249 16.8583 15.3416C16.0417 16.8582 14.9917 18.0249 13.7083 18.7832C12.6583 19.4832 11.4917 19.8916 10.2667 20.1249C9.04167 20.2999 7.7 20.4166 6.3 20.4166H0V0H6.3C7.7 0 9.04167 0.116666 10.325 0.291665C11.55 0.466664 12.7167 0.933329 13.825 1.63333C15.1667 2.50832 16.2167 3.67498 16.975 5.13331C17.675 6.5333 18.0833 8.28329 18.0833 10.2083ZM10.2667 4.55005C11.2001 5.07505 11.9001 5.83338 12.3667 6.76671C12.8334 7.70004 13.0667 8.8667 13.1251 10.15C13.1251 11.55 12.8917 12.6583 12.4834 13.5917C12.0167 14.525 11.3751 15.2833 10.5584 15.8083C9.85839 16.275 9.10006 16.5083 8.34172 16.5667C7.52506 16.625 6.59172 16.625 5.42506 16.625H5.30839V3.85006H5.42506C6.47506 3.85006 7.35006 3.85006 8.10839 3.90839C8.86672 3.96672 9.56672 4.14172 10.2667 4.55005ZM2.33333 25.0833V25.6667H1.16667V27.4167H2.33333V28H0.583333V25.0833H2.33333ZM2.33333 27.4167V25.6667H2.91667V27.4167H2.33333ZM11.0833 26.25H9.91667V25.0833H9.33333V28H9.91667V26.8333H11.0833V28H11.6667V25.0833H11.0833V26.25ZM20.4167 25.0833V25.6667H19.25V28H18.6667V25.6667H17.5V25.0833H20.4167ZM27.4167 25.6667H26.8333V25.0833H26.25V28H26.8333V26.25H27.4167V26.8333H28V26.25H28.5833V28H29.1667V25.0833H28.5833V25.6667H28V26.25H27.4167V25.6667ZM35 25.0833H35.5833V27.4167H37.3333V28H35V25.0833ZM44.3332 25.6667H43.7499V25.0833H43.1665V25.6667H43.7499V26.25H44.3332V25.6667ZM43.7499 26.8333H44.3332V27.4167H43.7499V26.8333ZM43.7499 27.4167V28H43.1665V27.4167H43.7499ZM46.0833 25.6667V25.0833H45.5V25.6667H46.0833ZM44.9166 26.2497V25.6664H45.4999V26.2497H44.9166ZM44.9168 26.2499H44.3335V26.8332H44.9168V27.4165H45.5001V27.9998H46.0835V27.4165H45.5001V26.8332H44.9168V26.2499Z"
+					fill="#2095F3" />
+			</svg>
+		</a>
+
+		<div class="toggle-list-title mobile" onclick="toggle_list()">Gantt Samples</div>
+
+		<div class="toggle-list-btn mobile" onclick="toggle_list()">
+			<div class="toggle-list-btn__row"></div>
+			<div class="toggle-list-btn__row"></div>
+			<div class="toggle-list-btn__row"></div>
+		</div>
+
+		<div class="site-menu m-dropdown desktop">
+			<div class="menu-link-block">
+				<a href="//docs.dhtmlx.com/gantt/" title="" class="menu-link" target="_blank">Documentation</a>
+			</div>
+
+			<div class="menu-link-block">
+				<a href="//docs.dhtmlx.com/gantt/api__refs__gantt.html" title="" class="menu-link" target="_blank">Gantt
+					API</a>
+			</div>
+
+			<div class="menu-link-block">
+				<a href="//forum.dhtmlx.com/c/gantt" title="" class="menu-link" target="_blank">Developer forum</a>
+			</div>
+		</div>
+	</header>
+	<section class="page-body">
+		<div class="page-aside" id="page-aside" onclick="toggle_mobile_menu(event);">
+			<div class="page-aside__container">
+				<div class="close-page-aside-wrapper">
+					<div class="close-page-aside" onclick="toggle_list()">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g id="assets/close">
+							<path id="Vector" d="M5 6.41L6.41 5L12 10.59L17.59 5L19 6.41L13.41 12L19 17.59L17.59 19L12 13.41L6.41 19L5 17.59L10.59 12L5 6.41Z" fill="#606770"/>
+							</g>
+						</svg>
+					</div>
+				</div>
+				<div class="page-aside__inside">
+					<!-- main burger  -->
+					<div class="page-aside__head desktop">
+						<div class="page-aside__head-title" onclick="toggle_list()">Gantt samples</div>
+						<div class="toggle-list-btn" onclick="toggle_list()">
+							<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<g id="assets/angle-dbl-right">
+									<path id="Vector"
+										d="M18.41 7.41L17 6L11 12L17 18L18.41 16.59L13.83 12L18.41 7.41ZM12.41 7.41L11 6L4.99997 12L11 18L12.41 16.59L7.82997 12L12.41 7.41Z"
+										fill="#2095F3" />
+								</g>
+							</svg>
+						</div>
+					</div>
+					<!-- mobile-site-menu  -->
+					<div class="mobile-site-menu">
+						<div class="mobile-site-menu__row">
+							<span class="mobile-menu-title">Resources</span>
+						</div>
+						<div class="mobile-site-menu__row">
+							<a href="//docs.dhtmlx.com/gantt/" title="" class="mobile-menu-link"
+								target="_blank">Documentation</a>
+						</div>
+						<div class="mobile-site-menu__row">
+							<a href="//docs.dhtmlx.com/gantt/api__refs__gantt.html" title="" class="mobile-menu-link"
+								target="_blank">Gantt API</a>
+						</div>
+						<div class="mobile-site-menu__row">
+							<a href="//forum.dhtmlx.com/c/gantt" title="" class="mobile-menu-link"
+								target="_blank">Developer forum</a>
+						</div>
+						<div class="mobile-site-menu__row">
+							<span class="mobile-menu-title">Gantt samples</span>
+						</div>
+					</div>
+					<!-- search-box -->
+					<div class="search-wrapper">
+						<div class="search-box">
+							<label class="search-elem">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+									<path
+										d="M7.91667 2.5C9.35326 2.5 10.731 3.07068 11.7468 4.0865C12.7627 5.10233 13.3333 6.48008 13.3333 7.91667C13.3333 9.25833 12.8417 10.4917 12.0333 11.4417L12.2583 11.6667H12.9167L17.0833 15.8333L15.8333 17.0833L11.6667 12.9167V12.2583L11.4417 12.0333C10.4917 12.8417 9.25833 13.3333 7.91667 13.3333C6.48008 13.3333 5.10233 12.7627 4.0865 11.7468C3.07068 10.731 2.5 9.35326 2.5 7.91667C2.5 6.48008 3.07068 5.10233 4.0865 4.0865C5.10233 3.07068 6.48008 2.5 7.91667 2.5ZM7.91667 4.16667C5.83333 4.16667 4.16667 5.83333 4.16667 7.91667C4.16667 10 5.83333 11.6667 7.91667 11.6667C10 11.6667 11.6667 10 11.6667 7.91667C11.6667 5.83333 10 4.16667 7.91667 4.16667Z"
+										fill="black" fill-opacity="0.3" />
+								</svg>
+								<input type="search" class="search-field" placeholder="Find samples" oninput="filterSamples(this.value)">
+							</label>
+							<span class="no_results">No results</span>
+						</div>
+					</div>
+					<!-- aside-nav links -->
+					<div class="aside-nav links">
+						<div data-level=1 data-folder='20_multiple' id=01_basic.html class="link">Multiple Gantts on the page</div>
+<div data-level=1 data-folder='20_multiple' id=03_layout.html class="link">Gantts in dhtmlxLayout cells (dhtmlxSuite v8.x)</div>
+<div data-level=1 data-folder='20_multiple' id=05_jquery.html class="link">jQuery initialization</div>
+<div data-level=1 data-folder='20_multiple' id=06_export.html class="link">Export data from Gantt</div>
+<div data-level=1 data-folder='20_multiple' id=07_keyboard_navigation.html class="link">Keyboard navigation, multiple gantts</div>
+<div data-level=1 data-folder='20_multiple' id=08_constructor_destructor.html class="link">Using gantt constructor and destructor</div>
+					</div>
+				</div>
+				<!-- more-link-container -->
+				<div class="more-link-container">
+					<div>
+						<a href="https://snippet.dhtmlx.com/40tsh9uz?text=gantt." title="" class="more-link"
+							target="_blank">
+							<div class="more-link__icon">
+								<svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+									xmlns="http://www.w3.org/2000/svg">
+									<path id="Vector"
+										d="M0 10.6583L8.825 1.83332H3.33333V0.166656H11.6667V8.49999H10V3.00832L1.175 11.8333L0 10.6583Z"
+										fill="#606770" fill-opacity="0.7" />
+								</svg>
+							</div>
+							<span>More in Snippet Tool</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="page-container">
+			<div class="demo-container">
+				<!-- demo-nav-bar -->
+				<div class="demo-nav-bar">
+					<!-- demo-nav-bar mobile-->
+					<div class="demo-nav-bar-dropdown mobile">
+						<div class="demo-nav-bar-dropdown-chosen" onclick="navDropdown();">
+							<div class="demo-nav-bar-dropdown-chosen-label" id="nav-dropdown-chosen">Demo</div>
+
+							<div class="demo-nav-bar-dropdown-arrow">
+								<svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+									viewBox="0 0 20 20" fill="none">
+									<path
+										d="M7.15002 6.175L10.975 10L7.15002 13.825L8.33336 15L13.3334 10L8.33336 5L7.15002 6.175Z"
+										fill="black" fill-opacity="0.5" />
+								</svg>
+							</div>
+						</div>
+						<!-- demo-nav-bar-dropdown-list mobile-->
+						<div class="demo-nav-bar-dropdown-list" id="nav-dropdown-list">
+							<div class="demo-nav-bar-dropdown-row">
+								<span class="demo-nav-bar-btn show_demo active"
+									onclick="toggle_demo('demo'); toggle_dropdown(event);">Demo</span>
+							</div>
+
+							<div class="demo-nav-bar-dropdown-row">
+								<span class="demo-nav-bar-btn show_code"
+									onclick="toggle_demo('code'); toggle_dropdown(event);">Source code</span>
+							</div>
+
+							<div class="demo-nav-bar-dropdown-row">
+								<span class="demo-nav-bar-btn show_api"
+									onclick="toggle_demo('api'); toggle_dropdown(event);">API reference</span>
+							</div>
+						</div>
+					</div>
+					<div class="left-side-items">
+						<span class="demo-nav-bar-btn desktop show_demo active"
+							onclick="toggle_demo('demo')">Demo</span>
+						<span class="demo-nav-bar-btn desktop show_code" onclick="toggle_demo('code')">Source
+							code</span>
+						<span class="demo-nav-bar-btn desktop show_api" onclick="toggle_demo('api')">API
+							reference</span>
+					</div>
+					<div class="right-side-items">
+						<span class="demo-nav-bar-btn share" onclick="shareSample()">Share</span>
+						<a href="01_initialization/01_basic_init.html" title="Open the sample in a separate tab" id="current_sample" class="demo-nav-bar-btn show_sample" target="_blank">Open sample</a>
+					</div>
+				</div>
+				<div class="demo-body demo">
+					<iframe id="x6" class="preview_frame" frameborder="0"
+							src="">
+					</iframe>
+					<div id="source_code"></div>
+					<div class="api-container" id=api_reference>
+						<div class="api-container__inside">
+							<div class="card">
+								<div class="card-name">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+										fill="none">
+										<path
+											d="M17.5 5V6.66667H2.5V5H17.5ZM2.5 15H10V13.3333H2.5V15ZM2.5 10.8333H17.5V9.16667H2.5V10.8333Z"
+											fill="#606770" />
+									</svg>
+									<span>Google suggestions</span>
+								</div>
+								<div class="suggestions card-link">
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-name">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+										fill="none">
+										<path
+											d="M11.6667 1.66666H4.99999C4.55797 1.66666 4.13404 1.84225 3.82148 2.15481C3.50892 2.46737 3.33333 2.8913 3.33333 3.33332V16.6667C3.33333 17.1087 3.50892 17.5326 3.82148 17.8452C4.13404 18.1577 4.55797 18.3333 4.99999 18.3333H15C15.442 18.3333 15.8659 18.1577 16.1785 17.8452C16.4911 17.5326 16.6667 17.1087 16.6667 16.6667V6.66666L11.6667 1.66666ZM15 16.6667H4.99999V3.33332H10.8333V7.49999H15V16.6667Z"
+											fill="#606770" />
+									</svg>
+									<span>Files</span>
+								</div>
+								<div class="files card-link">
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-name">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+										fill="none">
+										<path
+											d="M9.99999 6.66666C10.884 6.66666 11.7319 7.01785 12.357 7.64297C12.9821 8.26809 13.3333 9.11593 13.3333 9.99999C13.3333 10.884 12.9821 11.7319 12.357 12.357C11.7319 12.9821 10.884 13.3333 9.99999 13.3333C9.11593 13.3333 8.26809 12.9821 7.64297 12.357C7.01784 11.7319 6.66665 10.884 6.66665 9.99999C6.66665 9.11593 7.01784 8.26809 7.64297 7.64297C8.26809 7.01785 9.11593 6.66666 9.99999 6.66666ZM9.99999 8.33332C9.55796 8.33332 9.13404 8.50892 8.82148 8.82148C8.50892 9.13404 8.33332 9.55796 8.33332 9.99999C8.33332 10.442 8.50892 10.8659 8.82148 11.1785C9.13404 11.4911 9.55796 11.6667 9.99999 11.6667C10.442 11.6667 10.8659 11.4911 11.1785 11.1785C11.4911 10.8659 11.6667 10.442 11.6667 9.99999C11.6667 9.55796 11.4911 9.13404 11.1785 8.82148C10.8659 8.50892 10.442 8.33332 9.99999 8.33332ZM8.33332 18.3333C8.12499 18.3333 7.94999 18.1833 7.91665 17.9833L7.60832 15.775C7.08332 15.5667 6.63332 15.2833 6.19999 14.95L4.12499 15.7917C3.94165 15.8583 3.71666 15.7917 3.61666 15.6083L1.94999 12.725C1.84165 12.5417 1.89165 12.3167 2.04999 12.1917L3.80832 10.8083L3.74999 9.99999L3.80832 9.16666L2.04999 7.80832C1.89165 7.68332 1.84165 7.45832 1.94999 7.27499L3.61666 4.39166C3.71666 4.20832 3.94165 4.13332 4.12499 4.20832L6.19999 5.04166C6.63332 4.71666 7.08332 4.43332 7.60832 4.22499L7.91665 2.01666C7.94999 1.81666 8.12499 1.66666 8.33332 1.66666H11.6667C11.875 1.66666 12.05 1.81666 12.0833 2.01666L12.3917 4.22499C12.9167 4.43332 13.3667 4.71666 13.8 5.04166L15.875 4.20832C16.0583 4.13332 16.2833 4.20832 16.3833 4.39166L18.05 7.27499C18.1583 7.45832 18.1083 7.68332 17.95 7.80832L16.1917 9.16666L16.25 9.99999L16.1917 10.8333L17.95 12.1917C18.1083 12.3167 18.1583 12.5417 18.05 12.725L16.3833 15.6083C16.2833 15.7917 16.0583 15.8667 15.875 15.7917L13.8 14.9583C13.3667 15.2833 12.9167 15.5667 12.3917 15.775L12.0833 17.9833C12.05 18.1833 11.875 18.3333 11.6667 18.3333H8.33332ZM9.37499 3.33332L9.06666 5.50832C8.06666 5.71666 7.18332 6.24999 6.54165 6.99166L4.53332 6.12499L3.90832 7.20832L5.66665 8.49999C5.33332 9.47499 5.33332 10.5333 5.66665 11.5L3.89999 12.8L4.52499 13.8833L6.54999 13.0167C7.19165 13.75 8.06666 14.2833 9.05832 14.4833L9.36665 16.6667H10.6333L10.9417 14.4917C11.9333 14.2833 12.8083 13.75 13.45 13.0167L15.475 13.8833L16.1 12.8L14.3333 11.5083C14.6667 10.5333 14.6667 9.47499 14.3333 8.49999L16.0917 7.20832L15.4667 6.12499L13.4583 6.99166C12.8167 6.24999 11.9333 5.71666 10.9333 5.51666L10.625 3.33332H9.37499Z"
+											fill="#606770" />
+									</svg>
+									<span>Methods</span>
+								</div>
+								<div class="methods card-link">
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-name">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+										fill="none">
+										<path
+											d="M13.75 9.16668L10.8333 6.25001L12 5.08334L13.75 6.83334L17.25 3.33334L18.4167 4.50001L13.75 9.16668ZM9.16667 5.83334H1.66667V7.50001H9.16667V5.83334ZM17.5 11.1667L16.3333 10L14.1667 12.1667L12 10L10.8333 11.1667L13 13.3333L10.8333 15.5L12 16.6667L14.1667 14.5L16.3333 16.6667L17.5 15.5L15.3333 13.3333L17.5 11.1667ZM9.16667 12.5H1.66667V14.1667H9.16667V12.5Z"
+											fill="#606770" />
+									</svg>
+									<span>Properties</span>
+								</div>
+								<div class="properties card-link">
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-name">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+										fill="none">
+										<path
+											d="M6.66667 2.5C6.22464 2.5 5.80072 2.67559 5.48816 2.98816C5.17559 3.30072 5 3.72464 5 4.16667V7.5C5 7.94203 4.82441 8.36595 4.51184 8.67851C4.19928 8.99107 3.77536 9.16667 3.33333 9.16667H2.5V10.8333H3.33333C3.77536 10.8333 4.19928 11.0089 4.51184 11.3215C4.82441 11.634 5 12.058 5 12.5V15.8333C5 16.2754 5.17559 16.6993 5.48816 17.0118C5.80072 17.3244 6.22464 17.5 6.66667 17.5H8.33333V15.8333H6.66667V11.6667C6.66667 11.2246 6.49107 10.8007 6.17851 10.4882C5.86595 10.1756 5.44203 10 5 10C5.44203 10 5.86595 9.8244 6.17851 9.51184C6.49107 9.19928 6.66667 8.77536 6.66667 8.33333V4.16667H8.33333V2.5M13.3333 2.5C13.7754 2.5 14.1993 2.67559 14.5118 2.98816C14.8244 3.30072 15 3.72464 15 4.16667V7.5C15 7.94203 15.1756 8.36595 15.4882 8.67851C15.8007 8.99107 16.2246 9.16667 16.6667 9.16667H17.5V10.8333H16.6667C16.2246 10.8333 15.8007 11.0089 15.4882 11.3215C15.1756 11.634 15 12.058 15 12.5V15.8333C15 16.2754 14.8244 16.6993 14.5118 17.0118C14.1993 17.3244 13.7754 17.5 13.3333 17.5H11.6667V15.8333H13.3333V11.6667C13.3333 11.2246 13.5089 10.8007 13.8215 10.4882C14.134 10.1756 14.558 10 15 10C14.558 10 14.134 9.8244 13.8215 9.51184C13.5089 9.19928 13.3333 8.77536 13.3333 8.33333V4.16667H11.6667V2.5H13.3333Z"
+											fill="#606770" />
+									</svg>
+									<span>Events</span>
+								</div>
+								<div class="events card-link">
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-name">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+										fill="none">
+										<path
+											d="M2.5 9.16667H9.16667V2.5H2.5M4.16667 4.16667H7.5V7.5H4.16667M10.8333 17.5H17.5V10.8333H10.8333M12.5 12.5H15.8333V15.8333H12.5M2.5 17.5H9.16667V10.8333H2.5M4.16667 12.5H7.5V15.8333H4.16667M10.8333 2.5V9.16667H17.5V2.5M15.8333 7.5H12.5V4.16667H15.8333V7.5Z"
+											fill="#606770" />
+									</svg>
+									<span>Templates</span>
+								</div>
+								<div class="templates card-link">
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-name">
+									<span>Other</span>
+								</div>
+								<div class="other card-link">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+</body>
+<script>
+	document.addEventListener("DOMContentLoaded", function (event) {
+		loadSampleFromParams()
+	});
+</script>
+</html>

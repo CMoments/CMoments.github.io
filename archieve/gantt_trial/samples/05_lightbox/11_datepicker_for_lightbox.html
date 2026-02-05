@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<head>
+	<meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+	<title>Datepicker in lightbox</title>
+	<script src="https://cdn.dhtmlx.com/suite/8.3/suite.js?v=9.1.1"></script>
+	<script src='../../codebase/dhtmlxgantt.js?v=9.1.1'></script>
+
+	<link rel="stylesheet" href="https://cdn.dhtmlx.com/suite/8.3/suite.css?v=9.1.1">
+	<link rel='stylesheet' href='../../codebase/dhtmlxgantt.css?v=9.1.1'>
+
+	<script src="../common/data.js?v=9.1.1"></script>
+</head>
+
+<body>
+	<style>
+		html,
+		body {
+			padding: 0px;
+			margin: 0px;
+			height: 100%;
+		}
+
+		.dhx_calendar_cont input {
+			height: 30px;
+			text-align: center;
+			border: 1px solid #ccc;
+			color: #070707;
+			padding: 0;
+		}
+	</style>
+	<div id='gantt_here' style="width:100%; height:100%;"></div>
+	<script>
+
+
+		gantt.form_blocks["dhx_calendar"] = {
+			render: function (sns) {
+				return `<div class='dhx_calendar_cont'>
+            <input type="text" id="startDateCalendar" readonly data-widget-control style="margin-left: 10px;">
+            &#8211;
+            <input type="text" id="endDateCalendar" readonly data-widget-control style="margin-left: 10px;">
+            <label id='duration'></label>
+        </div>`;
+			},
+			set_value: function (node, value, task, data) {
+				// init calendar without container, use null instead of container
+				const startDateCalendar = new dhx.Calendar(null, { date: task.start_date, dateFormat: "%d %F %Y %H:%i", timePicker: true, css: "dhx_widget--bordered" });
+				startDateCalendar.setValue(task.start_date);
+				// init popup and attach calendar
+				const startDatePopup = new dhx.Popup();
+				startDatePopup.attach(startDateCalendar);
+
+				// when calendar value is changed, update input value and hide popup
+				startDateCalendar.events.on("change", function () {
+					startDateInput.value = startDateCalendar.getValue();
+					startDatePopup.hide();
+					updateDuration()
+				});
+
+				const startDateInput = node.querySelector("#startDateCalendar");
+				startDateInput.value = startDateCalendar.getValue();
+
+				startDateInput.addEventListener("click", function () {
+					startDatePopup.show(startDateInput);
+					updateDuration()
+				});
+
+
+				const endDateCalendar = new dhx.Calendar(null, { date: task.end_date, dateFormat: "%d %F %Y %H:%i", timePicker: true, css: "dhx_widget--bordered" });
+				endDateCalendar.setValue(task.end_date);
+
+				const endDatePopup = new dhx.Popup();
+				endDatePopup.attach(endDateCalendar);
+
+				endDateCalendar.events.on("change", function () {
+					endDateInput.value = endDateCalendar.getValue();
+					endDatePopup.hide();
+					updateDuration()
+				});
+
+				const endDateInput = node.querySelector("#endDateCalendar");
+				endDateInput.value = endDateCalendar.getValue();
+
+				endDateInput.addEventListener("click", function () {
+					endDatePopup.show(endDateInput);
+					updateDuration()
+				});
+
+				startDateCalendar.link(endDateCalendar);
+				updateDuration();
+
+				function updateDuration() {
+					const startDate = strToDate(startDateCalendar.getValue());
+					const endDate = strToDate(endDateCalendar.getValue());
+
+					const duration = gantt.calculateDuration({ start_date: startDate, end_date: endDate, task });
+					const durationEl = node.querySelector("#duration");
+					let postfix = " day";
+					if (duration !== 1) {
+						postfix += "s"
+					}
+					durationEl.innerHTML = duration + postfix;
+				}
+			},
+			get_value: function (node, task) {
+				task.start_date = strToDate(node.childNodes[1].value)
+				task.end_date = strToDate(node.childNodes[3].value)
+				return task;
+			},
+			focus: function (node) {
+			}
+		};
+
+		function strToDate(date) {
+			return gantt.date.str_to_date("%d %F %Y %H:%i")(date)
+		}
+
+		gantt.config.lightbox.sections = [
+			{ name: "description", type: "textarea", height: 80, map_to: "text", focus: true },
+			{ name: "time", type: "dhx_calendar", map_to: "auto", skin: '', date_format: '%d %M %Y' }
+		];
+
+		gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
+		gantt.init("gantt_here");
+		gantt.parse(taskData);
+
+		var first = gantt.getTaskByTime()[0];
+		gantt.showLightbox(first.id);
+
+
+		gantt.message({
+			text: "This example uses DHTMLX Suite's Calendar which can be used under GPLv2 license or has to be obtained separately. <br><br> You can do this or use a third-party datepicker widget instead.",
+			expire: 1000 * 30
+		});
+
+	</script>
+</body>

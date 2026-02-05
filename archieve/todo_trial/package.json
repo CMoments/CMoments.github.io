@@ -1,0 +1,13 @@
+{
+  "name": "@dhx/trial-todolist",
+  "version": "1.3.1",
+  "main": "dist/todo.es.js",
+  "license": "LicenseRef-license.txt",
+  "publishConfig": {
+    "registry": "https://npm.dhtmlx.com"
+  },
+  "files": [
+    "dist",
+    "license.txt"
+  ]
+}

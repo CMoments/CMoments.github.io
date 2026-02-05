@@ -1,0 +1,360 @@
+<!doctype html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Customize and switch between themes</title>
+
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<script src="https://cdn.dhtmlx.com/suite/pro/8.3/suite.js?v=7.2.11"></script>
+	<link rel="stylesheet" href="https://cdn.dhtmlx.com/suite/pro/8.3/suite.css?v=7.2.11" type="text/css" charset="utf-8">
+
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+	<link rel="stylesheet" href="../common/controls_styles.css?v=7.2.11">
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+
+		html,
+		body {
+			margin: 0px;
+			padding: 0px;
+			height: 100%;
+			overflow: hidden;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		body {
+			display: flex;
+		}
+
+		.controls {
+			flex-basis: 340px;
+			background: #f1f1f1;
+			overflow: auto;
+		}
+
+		.controls select {
+			height: 32px;
+			padding: 4px 8px;
+			box-sizing: border-box;
+			width: 100%;
+			font-size: 16px;
+		}
+
+		.theme-variables {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.theme-variables__var>label {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		#scheduler_here {
+			width: 100%;
+			transition: all 100ms;
+		}
+	</style>
+
+	<script charset="utf-8">
+		window.addEventListener("DOMContentLoaded", function () {
+
+			scheduler.message({
+				text: "You can switch and customize themes using the lefthand panel",
+				expire: 20000
+			});
+
+			scheduler.plugins({
+				agenda_view: true,
+				year_view: true,
+				editors: true,
+				minical: true
+			});
+
+			scheduler.config.multi_day = true;
+			const pizza_size = [
+				{ key: 1, label: 'Small' },
+				{ key: 2, label: 'Medium' },
+				{ key: 3, label: 'Large' }
+			];
+
+			scheduler.locale.labels.section_text = 'Text';
+			scheduler.locale.labels.section_checkbox = 'Checkbox';
+			scheduler.locale.labels.section_radiobutton = 'Radiobutton';
+			scheduler.locale.labels.section_select = 'Select';
+			scheduler.locale.labels.section_template = 'Template';
+
+			scheduler.config.lightbox.sections = [
+				{ name: "text", height: 50, map_to: "text", type: "textarea", focus: true },
+				{ name: "checkbox", map_to: "single_checkbox", type: "checkbox", checked_value: "registrable", unchecked_value: "unchecked" },
+				{ name: "radiobutton", height: 95, options: pizza_size, map_to: "radiobutton_option", type: "radio", vertical: true },
+				{ name: "select", height: 21, map_to: "type", type: "select", options: pizza_size },
+				{ name: "template", height: 21, map_to: "text", type: "template" },
+				{ name: "time", height: 72, type: "calendar_time", map_to: "auto" },
+				{ name: "time", height: 72, type: "time", map_to: "auto" }
+			];
+
+			scheduler.config.full_day = true;
+
+			scheduler.init('scheduler_here',new Date(2024,3,20),"week");
+			scheduler.parse([
+				{ id:1, classname:"blue", start_date: "2024-04-15 02:00", end_date: "2024-04-15 10:20", text:"Product Strategy Hike" },
+				{ id:2, classname:"blue", start_date: "2024-04-15 12:00", end_date: "2024-04-15 16:00", text:"Agile Meditation and Release" },
+				{ id:3, classname:"violet", start_date: "2024-04-16 06:00", end_date: "2024-04-16 11:00", text:"Tranquil Tea Time" },
+				{ id:4, classname:"green", start_date: "2024-04-16 11:30", end_date: "2024-04-16 19:00", text:"Sprint Review and Retreat" },
+				{ id:5, classname:"violet", start_date: "2024-04-17 01:00", end_date: "2024-04-17 03:00", text:"Kayaking Workshop" },
+				{ id:6, classname:"yellow", start_date: "2024-04-17 06:00", end_date: "2024-04-17 08:00", text:"Stakeholder Sunset Yoga Session" },
+				{ id:7, classname:"green", start_date: "2024-04-17 07:00", end_date: "2024-04-17 12:00", text:"Roadmap Alignment Walk" },
+				{ id:8, classname:"violet", start_date: "2024-04-17 13:00", end_date: "2024-04-17 18:00", text:"Mindful Team Building" },
+				{ id:9, classname:"blue", start_date: "2024-04-18 01:00", end_date: "2024-04-18 18:00", text:"Cross-Functional Expedition" },
+				{ id:10, classname:"yellow", start_date: "2024-04-18 14:00", end_date: "2024-04-18 20:00", text:"User Feedback Picnic" },
+				{ id:11, classname:"blue", start_date: "2024-04-19 03:00", end_date: "2024-04-19 08:00", text:"Demo and Showcase" },
+				{ id:12, classname:"yellow", start_date: "2024-04-19 11:00", end_date: "2024-04-19 17:00", text:"Quality Assurance Spa Day" },
+				{ id:13, classname:"violet", start_date: "2024-04-20 01:00", end_date: "2024-04-20 03:00", text:"Motion Cycling Adventure" },
+				{ id:14, classname:"blue", start_date: "2024-04-20 10:00", end_date: "2024-04-20 16:00", text:"Competitor Analysis Beach Day" },
+				{ id:15, classname:"blue", start_date: "2024-04-21 02:00", end_date: "2024-04-21 06:00", text:"Creativity Painting Retreat" }
+			]);
+
+
+			/* theme selector panel */
+			const form = new dhx.Form(document.querySelector(".controls"), {
+				css: "dhx_widget--bg_white dhx_widget--bordered",
+				padding: 20,
+				rows: [
+					{
+						type: "fieldset",
+						label: "Select Theme",
+						rows: [
+							{
+								type: "select",
+								label: "Theme",
+								options: [
+									{ value: "terrace", content: "Terrace" },
+									{ value: "dark", content: "Dark" },
+									{ value: "material", content: "Material" },
+									{ value: "flat", content: "Flat" },
+									{ value: "contrast-white", content: "Contrast-White" },
+									{ value: "contrast-black", content: "Contrast-Black" }
+								],
+								value: "terrace",
+								name: "theme"
+							},
+							{
+								type: "select",
+								label: "Locale",
+								options: [
+									{ value: "en", content: "en" },
+									{ value: "ar", content: "ar" },
+									{ value: "be", content: "be" },
+									{ value: "ca", content: "ca" },
+									{ value: "cn", content: "cn" },
+									{ value: "cs", content: "cs" },
+									{ value: "da", content: "da" },
+									{ value: "de", content: "de" },
+									{ value: "el", content: "el" },
+									{ value: "es", content: "es" },
+									{ value: "fi", content: "fi" },
+									{ value: "fr", content: "fr" },
+									{ value: "he", content: "he" },
+									{ value: "hu", content: "hu" },
+									{ value: "id", content: "id" },
+									{ value: "it", content: "it" },
+									{ value: "jp", content: "jp" },
+									{ value: "nb", content: "nb" },
+									{ value: "nl", content: "nl" },
+									{ value: "no", content: "no" },
+									{ value: "pl", content: "pl" },
+									{ value: "pt", content: "pt" },
+									{ value: "ro", content: "ro" },
+									{ value: "ru", content: "ru" },
+									{ value: "si", content: "si" },
+									{ value: "sk", content: "sk" },
+									{ value: "sv", content: "sv" },
+									{ value: "tr", content: "tr" },
+									{ value: "ua", content: "ua" }
+								],
+								value: "en",
+								name: "locale"
+							}
+						]
+					},
+					{
+						type: "fieldset",
+						label: "Customize Theme",
+						rows: [
+
+
+							{
+								type: "colorpicker",
+								label: "Primary Color",
+								name: "--dhx-scheduler-base-colors-primary"
+							},
+							{
+								type: "colorpicker",
+								label: "Event Background Color",
+								name: "--dhx-scheduler-event-background"
+							},
+							{
+								type: "colorpicker",
+								label: "Event Text Color",
+								name: "--dhx-scheduler-event-color"
+							},
+							{
+								type: "colorpicker",
+								label: "Background Color",
+								name: "--dhx-scheduler-container-background"
+							},
+							{
+								type: "colorpicker",
+								label: "Text Color",
+								name: "--dhx-scheduler-container-color"
+							},
+							{
+								type: "colorpicker",
+								label: "Toolbar Text Color",
+								name: "--dhx-scheduler-navline-font-color"
+							},
+							{
+								type: "colorpicker",
+								label: "Header Text Color",
+								name: "--dhx-scheduler-scale-color"
+							},
+
+							{
+								type: "colorpicker",
+								label: "Border Color",
+								name: "--dhx-scheduler-base-colors-border"
+							},
+							{
+								type: "input",
+								label: "Font Size",
+								name: "--dhx-scheduler-font-size"
+							},
+							{
+								type: "input",
+								label: "Border Radius",
+								name: "--dhx-scheduler-border-radius"
+							}
+						]
+					}
+
+				]
+			});
+
+			form.events.on("change", function (name, value) {
+
+				if (name === "theme") {
+					scheduler.setSkin(value);
+					onThemeChange();
+				} else if (name === "locale") {
+					scheduler.i18n.setLocale(value);
+					scheduler.render();
+				} else {
+					onVariableChange();
+				}
+			});
+
+			let ignoreChange = false;
+			onThemeChange();
+
+			function onThemeChange() {
+				ignoreChange = true;
+				applyFormValues(null);
+				form.forEach((input) => {
+					if (input.config.type !== "fieldset" && input.config.name !== "theme" && input.config.name !== "locale") {
+						input.clear();
+					}
+				});
+				fillInputs(readThemeVariables());// fill form variables
+				ignoreChange = false;
+			}
+
+			function onVariableChange() {
+				if (ignoreChange) return;
+				applyFormValues(readFormValues());
+			}
+
+			function getCustomizableVariables() {
+				const cssVars = [
+					'--dhx-scheduler-base-colors-primary',
+					'--dhx-scheduler-event-background',
+					'--dhx-scheduler-event-color',
+					'--dhx-scheduler-container-background',
+					'--dhx-scheduler-navline-font-color',
+					'--dhx-scheduler-container-color',
+					'--dhx-scheduler-base-colors-border',
+					'--dhx-scheduler-font-size',
+					'--dhx-scheduler-border-radius',
+					'--dhx-scheduler-toolbar-height'
+				];
+
+				return cssVars.reduce((value, property) => {
+					value[property] = '';
+					return value;
+				}, {});
+			}
+
+			function readThemeVariables() {
+				const style = getComputedStyle(document.documentElement);
+
+				const vars = getCustomizableVariables();
+				for (const property in vars) {
+					vars[property] = style.getPropertyValue(property);
+				}
+				return vars;
+			}
+
+			function fillInputs(themeVars) {
+				form.setValue(themeVars);
+			}
+
+			function readFormValues() {
+				return form.getValue();
+			}
+
+			function applyFormValues(values) {
+				let styleElement = document.querySelector("#css-vars");
+				if (!styleElement) {
+					styleElement = document.createElement("style");
+					styleElement.id = "css-vars";
+					document.querySelector("head").appendChild(styleElement);
+				}
+
+				if (!values) {
+					styleElement.innerHTML = "";
+				} else {
+					const rules = [];
+					for (const i in values) {
+						if (!values[i]) continue;
+						rules.push(`${i}: ${values[i]} !important;`);
+					}
+					styleElement.innerHTML = `:root { ${rules.join("\n")}  }`;
+				}
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<div class='controls'>
+	</div>
+
+	<div id="scheduler_here" class="dhx_cal_container">
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+			<div class="dhx_cal_tab" data-tab="agenda"></div>
+			<div class="dhx_cal_tab" data-tab="year"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+	</div>
+</body>

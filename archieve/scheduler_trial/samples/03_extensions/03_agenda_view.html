@@ -1,0 +1,106 @@
+<!doctype html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Agenda view</title>
+
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+
+	<style type="text/css">
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.violet {
+			--dhx-scheduler-event-background: linear-gradient(180deg, #D071EF 0%, #EE71D5 100%);
+		}
+
+		.green {
+			--dhx-scheduler-event-background: linear-gradient(180deg, #12D979 0%, #1ECDEB 100%);
+		}
+
+		.yellow {
+			--dhx-scheduler-event-background: linear-gradient(180deg, #FFB725 0%, #FFBB25 31.25%, #FAEA27 100%);
+		}
+	</style>
+
+	<script charset="utf-8">
+		window.addEventListener("DOMContentLoaded", function () {
+			scheduler.plugins({
+				agenda_view: true
+			});
+			scheduler.templates.event_class = function (start, end, event) {
+				return event.classname || "";
+			};
+
+			scheduler.init('scheduler_here', new Date(2024, 3, 10), "agenda");
+			scheduler.parse([
+				{ id: 1, classname: "blue", start_date: "2024-04-15 02:00", end_date: "2024-04-15 10:20", text: "Product Strategy Hike" },
+				{ id: 2, classname: "yellow", start_date: "2024-04-15 11:00", end_date: "2024-04-15 13:00", text: "Innovation Brainstorming" },
+				{ id: 3, classname: "violet", start_date: "2024-04-16 08:00", end_date: "2024-04-16 10:30", text: "Leadership Workshop" },
+				{ id: 4, classname: "green", start_date: "2024-04-16 12:00", end_date: "2024-04-17 14:00", text: "Market Analysis Seminar" },
+				{ id: 5, classname: "blue", start_date: "2024-04-17 09:00", end_date: "2024-04-17 11:00", text: "Team Efficiency Meeting" },
+				{ id: 6, classname: "yellow", start_date: "2024-04-17 15:00", end_date: "2024-04-17 17:30", text: "Client Engagement Forum" },
+				{ id: 7, classname: "violet", start_date: "2024-04-18 10:00", end_date: "2024-04-18 12:00", text: "Sales Strategy Session" },
+				{ id: 8, classname: "green", start_date: "2024-04-18 14:00", end_date: "2024-04-19 16:00", text: "Corporate Culture Workshop" },
+				{ id: 9, classname: "blue", start_date: "2024-04-19 08:00", end_date: "2024-04-19 10:00", text: "Brand Development Talk" },
+				{ id: 10, classname: "yellow", start_date: "2024-04-20 11:00", end_date: "2024-04-20 13:30", text: "Financial Planning Discussion" },
+				{ id: 11, classname: "violet", start_date: "2024-04-21 09:00", end_date: "2024-04-21 11:00", text: "Digital Marketing Insights" },
+				{ id: 12, classname: "green", start_date: "2024-04-21 14:00", end_date: "2024-04-22 15:00", text: "Project Management Training" },
+				{ id: 13, classname: "blue", start_date: "2024-04-22 08:00", end_date: "2024-04-22 10:00", text: "Agile Methodologies Review" },
+				{ id: 14, classname: "yellow", start_date: "2024-04-23 11:00", end_date: "2024-04-23 13:00", text: "Customer Experience Strategies" },
+				{ id: 15, classname: "violet", start_date: "2024-04-24 09:00", end_date: "2024-04-24 16:00", text: "Business Process Optimization" },
+				{ id: 16, classname: "green", start_date: "2024-04-25 10:00", end_date: "2024-04-25 12:00", text: "Risk Management Techniques" },
+				{ id: 17, classname: "blue", start_date: "2024-04-26 08:00", end_date: "2024-04-26 10:30", text: "Operational Efficiency Workshop" },
+				{ id: 18, classname: "yellow", start_date: "2024-04-27 13:00", end_date: "2024-04-28 14:00", text: "Human Resources Best Practices" },
+				{ id: 19, classname: "violet", start_date: "2024-04-28 09:00", end_date: "2024-04-28 17:00", text: "Organizational Change Management" },
+				{ id: 20, classname: "green", start_date: "2024-04-29 08:00", end_date: "2024-04-29 12:00", text: "Effective Communication Skills" },
+				{ id: 21, classname: "blue", start_date: "2024-04-29 14:00", end_date: "2024-04-29 16:00", text: "Innovative Thinking Workshop" },
+				{ id: 22, classname: "yellow", start_date: "2024-04-30 10:00", end_date: "2024-04-30 12:00", text: "Data-Driven Decision Making" },
+				{ id: 23, classname: "violet", start_date: "2024-05-01 09:00", end_date: "2024-05-01 11:00", text: "Strategic Leadership Forum" },
+				{ id: 24, classname: "green", start_date: "2024-05-02 13:00", end_date: "2024-05-02 15:00", text: "Building High-Performance Teams" },
+				{ id: 25, classname: "blue", start_date: "2024-05-03 08:00", end_date: "2024-05-03 10:30", text: "Global Market Trends Analysis" },
+				{ id: 26, classname: "yellow", start_date: "2024-05-04 15:00", end_date: "2024-05-04 17:00", text: "Customer Journey Mapping" },
+				{ id: 27, classname: "violet", start_date: "2024-05-06 10:00", end_date: "2024-05-06 12:00", text: "Productivity Hacks Seminar" },
+				{ id: 28, classname: "green", start_date: "2024-05-07 09:00", end_date: "2024-05-07 11:00", text: "Time Management Techniques" },
+				{ id: 29, classname: "blue", start_date: "2024-05-08 14:00", end_date: "2024-05-08 16:00", text: "Effective Negotiation Skills" },
+				{ id: 30, classname: "yellow", start_date: "2024-05-09 11:00", end_date: "2024-05-09 13:00", text: "Creative Problem-Solving" },
+				{ id: 31, classname: "violet", start_date: "2024-05-11 09:00", end_date: "2024-05-11 12:00", text: "Social Media Marketing Workshop" },
+				{ id: 32, classname: "green", start_date: "2024-05-12 10:00", end_date: "2024-05-12 15:00", text: "Business Intelligence Insights" },
+				{ id: 33, classname: "blue", start_date: "2024-05-14 08:00", end_date: "2024-05-14 10:00", text: "Corporate Social Responsibility" },
+				{ id: 34, classname: "yellow", start_date: "2024-05-15 13:00", end_date: "2024-05-15 16:00", text: "Emerging Technologies Conference" },
+				{ id: 35, classname: "violet", start_date: "2024-05-17 09:00", end_date: "2024-05-17 11:00", text: "Branding and Identity Design" },
+				{ id: 36, classname: "green", start_date: "2024-05-18 12:00", end_date: "2024-05-18 14:00", text: "Financial Forecasting Session" },
+				{ id: 37, classname: "blue", start_date: "2024-05-20 08:00", end_date: "2024-05-20 10:30", text: "Stakeholder Engagement Meeting" },
+				{ id: 38, classname: "yellow", start_date: "2024-05-21 15:00", end_date: "2024-05-21 17:00", text: "Change Management Strategies" },
+				{ id: 39, classname: "violet", start_date: "2024-05-23 10:00", end_date: "2024-05-23 12:00", text: "Digital Transformation Symposium" },
+				{ id: 40, classname: "green", start_date: "2024-05-24 14:00", end_date: "2024-05-24 16:00", text: "Sustainable Business Practices" }
+
+			]);
+		});
+	</script>
+</head>
+
+<body>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="agenda"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+	</div>
+</body>

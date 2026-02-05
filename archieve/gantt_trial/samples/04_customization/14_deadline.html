@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Displaying deadlines</title>
+
+	<script src="../../codebase/dhtmlxgantt.js?v=9.1.1"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css?v=9.1.1">
+	<script src="../common/data_deadlines.js?v=9.1.1"></script>
+	<style>
+		html, body {
+			height: 100%;
+			padding: 0px;
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		[data-column-name="deadline"] .gantt_tree_content{
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.overdue-indicator {
+			width: 18px;
+			margin-top: 8px;
+			height: 18px;
+			border-radius: 12px;
+			color: white;
+			background: var(--dhx-gantt-base-colors-error);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 18px;
+			flex-shrink: 0;
+		}
+
+
+	</style>
+</head>
+<body>
+<div id="gantt_here" style='width:100%; height:100%;'></div>
+<script>
+	gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
+
+	gantt.config.lightbox.sections = [
+		{ name: "description", height: 70, map_to: "text", type: "textarea", focus: true },
+		{ name: "time", map_to: "auto", type: "duration" },
+		{ name: "deadline", map_to: "deadline", type: "duration_optional", button: true, single_date: true }
+	];
+
+
+	gantt.config.columns = [
+		{ name: "text", label: "Task name", width: 150, tree: true, resize: true },
+		{ name: "start_date", label: "Start time", align: "center", width: 100, resize: true },
+		{
+			name: "deadline", label: "Deadline", width: 120, resize: true, align: "center", template: function (task) {
+				if (task.deadline) {
+					const deadlineString = gantt.date.date_to_str(gantt.config.date_grid)(task.deadline);
+					let overdueIndicator = "";
+					if (task.end_date > task.deadline) {
+						overdueIndicator = '<div class="overdue-indicator">!</div>';
+					};
+					return deadlineString + overdueIndicator;
+				}
+			}
+		},
+		{ name: "duration", label: "Duration", align: "center", width: 60, resize: true },
+		{ name: "add", label: "", width: 36 }
+	];
+
+	gantt.templates.task_class = function (start, end, task) {
+		if (task.deadline && end.valueOf() > task.deadline.valueOf()) {
+			return 'overdue';
+		}
+	};
+
+	gantt.templates.rightside_text = function (start, end, task) {
+		if (task.deadline) {
+			if (end.valueOf() > task.deadline.valueOf()) {
+				const overdue = gantt.calculateDuration(task.deadline, end);
+				const text = "<b>Overdue: " + overdue + " days</b>";
+				return text;
+			}
+		}
+	};
+
+	gantt.config.open_split_tasks = true;
+
+	gantt.init("gantt_here");
+	gantt.parse(taskData);
+
+</script>
+</body>

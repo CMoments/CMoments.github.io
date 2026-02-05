@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+	<title>Slider control in lightbox</title>
+	<script src="https://cdn.dhtmlx.com/suite/8.3/suite.js?v=9.1.1"></script>
+	<script src='../../codebase/dhtmlxgantt.js?v=9.1.1'></script>
+
+	<link rel="stylesheet" href="https://cdn.dhtmlx.com/suite/8.3/suite.css?v=9.1.1">
+	<link rel='stylesheet' href='../../codebase/dhtmlxgantt.css?v=9.1.1'>
+
+	<script src="../common/data.js?v=9.1.1"></script>
+	<style>
+		html, body {
+			padding: 0px;
+			margin: 0px;
+			height: 100%;
+		}
+
+		#slider_container {
+			display: flex;
+			margin-left: 20px;
+		}
+
+			#slider{
+					width: 250px;
+			}
+
+		#slider_label {
+			margin-left: 10px;
+			font-size: 15px;
+		}
+	</style>
+</head>
+<body>
+
+<div id='gantt_here' style="width:100%; height:100%;"></div>
+<script>
+
+	gantt.form_blocks["dhx_slider"] = {
+		render: function (sns) {
+			return `<div id="slider_container">
+            <div id="slider"></div>
+            <label id="slider_label"></label>
+        </div>`
+		},
+		set_value: function (node, value, task, data) {
+			const slider = new dhx.Slider("slider", {
+				name: "progress",
+				type: "slider",
+				id: "progress",
+				min: 0,
+				max: 100,
+				value: task.progress * 100
+			});
+
+			node._slider = slider;
+
+			slider.events.on("Change", function (newValue, oldValue, isRange) {
+				updateProgressLabel(newValue)
+			});
+
+			updateProgressLabel(task.progress * 100)
+
+			function updateProgressLabel(newValue) {
+				document.querySelector("#slider_label").innerHTML = parseInt(newValue) + "%"
+			}
+
+			const id = gantt.attachEvent("onAfterLightbox", function () {
+				node._slider.destructor();
+				node._slider = null;
+				this.detachEvent(id);
+			});
+		},
+		get_value: function (node, task) {
+			return node._slider && node._slider.getValue() / 100 || 0;
+		},
+		focus: function (node) {
+		}
+	};
+
+	gantt.config.lightbox.sections = [
+		{name: "description", height: 80, map_to: "text", type: "textarea", focus: true},
+		{name: "progress", type: "dhx_slider", map_to: "progress", step: 5},
+		{name: "time", type: "duration", map_to: "auto"}
+	];
+
+	gantt.locale.labels.section_progress = "Progress";
+
+	gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
+	gantt.init("gantt_here");
+	gantt.parse(taskData);
+
+	var first = gantt.getTaskByTime()[0];
+	gantt.showLightbox(first.id);
+
+	gantt.message({
+	    text:"This example uses DHTMLX Suite's Slider which can be used under GPLv2 license or has to be obtained separately. <br><br> You can do this or use a third-party slider widget instead.",
+	    expire:1000*30
+	});
+
+</script>
+</body>

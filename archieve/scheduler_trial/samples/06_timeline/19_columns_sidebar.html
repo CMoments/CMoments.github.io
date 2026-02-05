@@ -1,0 +1,125 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Timeline Sidebar columns</title>
+
+	<script src='../../codebase/dhtmlxscheduler.js?v=7.2.11' charset="utf-8"></script>
+	<link rel='stylesheet' type='text/css' href='../../codebase/dhtmlxscheduler.css?v=7.2.11'>
+	
+	<style type="text/css" >
+		html, body{
+			margin:0;
+			padding:0;
+			height:100%;
+			overflow:hidden;
+		}
+	</style>
+
+	<script charset="utf-8">
+
+
+		window.addEventListener("DOMContentLoaded", function(){
+			scheduler.plugins({
+				timeline: true,
+				collision: true
+			});
+			scheduler.locale.labels.timeline_tab = "Timeline";
+			scheduler.locale.labels.section_custom="Section";
+			scheduler.config.details_on_create=true;
+			scheduler.config.details_on_dblclick=true;
+
+			//===============
+			//Configuration
+			//===============
+			var sections=[
+				{key:1, label:"101", room_no: "101", room_type: "1 bed", room_status: "Ready", color: "#43a047"},
+				{key:2, label:"102", room_no: "102", room_type: "1 bed", room_status: "Clean up", color: "#ffb300"},
+				{key:3, label:"103", room_no: "103", room_type: "1 bed", room_status: "Ready", color: "#43a047"},
+				{key:4, label:"104", room_no: "104", room_type: "1 bed", room_status: "Ready", color: "#43a047"},
+				{key:5, label:"105", room_no: "105", room_type: "2 beds", room_status: "Dirty", color: "#e53935"},
+				{key:6, label:"201", room_no: "201", room_type: "2 beds", room_status: "Ready", color: "#43a047"},
+				{key:7, label:"202", room_no: "202", room_type: "2 beds", room_status: "Dirty", color: "#e53935"},
+				{key:8, label:"203", room_no: "203", room_type: "1 bed", room_status: "Ready", color: "#43a047"},
+				{key:9, label:"204", room_no: "204", room_type: "1 bed", room_status: "Dirty", color: "#e53935"},
+				{key:10, label:"301", room_no: "301", room_type: "3 beds", room_status: "Ready", color: "#43a047"},
+				{key:11, label:"302", room_no: "302", room_type: "1 bed", room_status: "Clean up", color: "#ffb300"},
+				{key:12, label:"303", room_no: "303", room_type: "1 bed", room_status: "Ready", color: "#43a047"}
+			];
+
+			scheduler.createTimelineView({
+				name:	"timeline",
+				x_unit:	"minute",
+				x_date:	"%H:%i",
+				x_step:	30,
+				x_size: 24,
+				x_start: 16,
+				x_length:	48,
+				y_unit:	sections,
+				event_dy: "full",
+				y_property:	"section_id",
+				render:"bar",
+				columns: [
+					{ label: "Room #",  width: 70, template: function(obj){ return obj.room_no; } },
+					{ label: "Type",  width: 90, template: function(obj){ return obj.room_type; } },
+					{ width: 5, template: function(obj){ return `<div style="background:${obj.color};height:100%;width:100%">&nbsp;</div>`; } },
+					{ label: "Status",  width: 90, template: function(obj){ return obj.room_status; } }
+				]
+			});
+
+			var eventDateFormat = scheduler.date.date_to_str("%d %M %Y");
+			scheduler.templates.event_bar_text = function (start, end, event) {
+				var startDate = eventDateFormat(event.start_date);
+				var endDate = eventDateFormat(event.end_date);
+				return [event.text + "<br />",
+					startDate + " - " + endDate].join("");
+			};
+
+			//===============
+			//Data loading
+			//===============
+			scheduler.config.lightbox.sections=[
+				{name:"description", height:50, map_to:"text", type:"textarea" , focus:true},
+				{name:"custom", height:30, type:"select", options:sections, map_to:"section_id" },
+				{name:"time", height:72, type:"time", map_to:"auto"}
+			];
+
+			scheduler.init('scheduler_here',new Date(2022,5,30),"timeline");
+			scheduler.parse([
+				{ start_date: "2022-06-30 09:00", end_date: "2022-06-30 12:00", text:"A-12458", section_id:1},
+				{ start_date: "2022-06-30 10:00", end_date: "2022-06-30 16:00", text:"A-89411", section_id:2},
+				{ start_date: "2022-06-30 10:00", end_date: "2022-06-30 14:00", text:"A-64168", section_id:7},
+				{ start_date: "2022-06-30 16:00", end_date: "2022-06-30 19:00", text:"A-46598", section_id:4},
+
+				{ start_date: "2022-06-30 12:00", end_date: "2022-06-30 20:00", text:"B-48865", section_id:5},
+				{ start_date: "2022-06-30 14:00", end_date: "2022-06-30 16:00", text:"B-44864", section_id:6},
+				{ start_date: "2022-06-30 16:30", end_date: "2022-06-30 18:00", text:"B-46558", section_id:7},
+				{ start_date: "2022-06-30 18:30", end_date: "2022-06-30 20:00", text:"B-45564", section_id:8},
+
+				{ start_date: "2022-06-30 08:00", end_date: "2022-06-30 12:00", text:"C-32421", section_id:9},
+				{ start_date: "2022-06-30 14:30", end_date: "2022-06-30 16:45", text:"C-14244", section_id:10},
+
+				{ start_date: "2022-06-30 09:20", end_date: "2022-06-30 12:20", text:"D-52688", section_id:12},
+				{ start_date: "2022-06-30 11:40", end_date: "2022-06-30 16:30", text:"D-46588", section_id:3},
+				{ start_date: "2022-06-30 12:00", end_date: "2022-06-30 18:00", text:"D-12458", section_id:11}
+			]);
+		});
+	</script>
+</head>
+<body>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="timeline"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>		
+	</div>
+</body>

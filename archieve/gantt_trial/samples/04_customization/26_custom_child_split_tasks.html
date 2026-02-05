@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Split Tasks with Mixed Placement</title>
+	<script src="../../codebase/dhtmlxgantt.js?v=9.1.1"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css?v=9.1.1">
+	<style>
+		html,
+		body {
+			height: 100%;
+			padding: 0px;
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		.complex_gantt_bar {
+			background: transparent;
+			border: none;
+		}
+
+		.complex_gantt_bar .gantt_task_progress {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="gantt_here" style='width:100%; height:100%'></div>
+	<script>
+		gantt.plugins({
+			auto_scheduling: true
+		});
+
+		gantt.config.auto_types = true;
+		gantt.config.auto_scheduling = {
+			enabled: true,
+			apply_constraints: false
+		};
+		gantt.config.scale_height = 90;
+		gantt.config.min_column_width = 30;
+		gantt.locale.labels.section_split = "Display";
+		gantt.config.lightbox.project_sections = [
+			{ name: "description", height: 70, map_to: "text", type: "textarea", focus: true },
+			{
+				name: "split", type: "checkbox", map_to: "render", options: [
+					{ key: "split", label: "Split Task" }
+				]
+			},
+			{ name: "time", type: "duration", readonly: true, map_to: "auto" }
+		];
+		gantt.config.scales = [
+			{ unit: "year", step: 1, format: "%Y" },
+			{ unit: "month", step: 1, format: "%F" },
+			{ unit: "day", step: 1, format: "%j" }
+		];
+		gantt.config.open_split_tasks = true;
+		gantt.init("gantt_here");
+
+		gantt.parse({
+			data: [
+				{ id: 1, text: "Q2 Product Launch", start_date: "01-04-2025", duration: 60, progress: 0.2, open: true },
+				{ id: 10, text: "Creative Production", parent: 1, render: "split", start_date: "01-04-2025", duration: 35, open: true },
+				{ id: 11, text: "Photo Shoot", parent: 10, start_date: "03-04-2025", duration: 3, split_placement: "inline" },
+				{ id: 12, text: "Video Editing", parent: 10, start_date: "12-04-2025", duration: 8, split_placement: "subrow" },
+				{ id: 13, text: "Copywriting", parent: 10, start_date: "06-04-2025", duration: 6 },
+				{ id: 14, text: "Localization", parent: 10, start_date: "20-04-2025", duration: 4, color: "red", split_placement: "inline" },
+				{ id: 15, text: "Legal Review", parent: 10, start_date: "24-04-2025", duration: 5, split_placement: "subrow" },
+				{ id: 16, text: "Asset Handover", parent: 10, type: "milestone", start_date: "29-04-2025", duration: 0 },
+
+				{ id: 20, text: "Manufacturing Prep", parent: 1, render: "split", start_date: "08-04-2025", duration: 40, open: true },
+
+				{ id: 21, text: "BOM Finalisation", parent: 20, start_date: "08-04-2025", duration: 5 }, // auto
+				{ id: 22, text: "Tooling Order", parent: 20, start_date: "15-04-2025", duration: 9, split_placement: "inline" },
+				{ id: 23, text: "Pilot Run", parent: 20, start_date: "02-05-2025", duration: 5, split_placement: "subrow" },
+				{ id: 24, text: "QA & Certification", parent: 20, start_date: "08-05-2025", duration: 10 }, // auto
+				{ id: 25, text: "Packaging Design", parent: 20, start_date: "25-04-2025", duration: 6, split_placement: "inline" },
+
+				{ id: 30, text: "Go-To-Market", parent: 1, start_date: "28-04-2025", duration: 34, open: true },
+				{ id: 31, text: "Landing Page", parent: 30, start_date: "02-05-2025", duration: 10, progress: 0.1 },
+				{ id: 32, text: "App Store Listing", parent: 30, start_date: "05-05-2025", duration: 7 },
+				{ id: 33, text: "PR Pitching", parent: 30, start_date: "06-05-2025", duration: 10 },
+				{ id: 34, text: "Beta Program", parent: 30, start_date: "15-04-2025", duration: 14 },
+				{ id: 35, text: "Launch Day", parent: 30, type: "milestone", start_date: "18-05-2025", duration: 0 }
+			],
+			links: [
+				{ id: 100, source: 11, target: 12, type: "0" },
+				{ id: 101, source: 13, target: 16, type: "0" },
+				{ id: 102, source: 12, target: 16, type: "0" },
+
+				{ id: 110, source: 21, target: 22, type: "0" },
+				{ id: 111, source: 22, target: 23, type: "0" },
+				{ id: 112, source: 23, target: 24, type: "0" },
+
+				{ id: 120, source: 16, target: 31, type: "0" },
+				{ id: 121, source: 25, target: 31, type: "0" },
+
+				{ id: 130, source: 24, target: 35, type: "0" },
+				{ id: 131, source: 31, target: 35, type: "0" },
+				{ id: 132, source: 32, target: 35, type: "0" },
+				{ id: 133, source: 33, target: 35, type: "0" },
+				{ id: 134, source: 34, target: 35, type: "0" }
+			]
+		});
+	</script>
+</body>

@@ -1,0 +1,60 @@
+.gantt_grid_scale .gantt_grid_head_cell,
+.gantt_task .gantt_task_scale .gantt_scale_cell {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.folder_row {
+	font-weight: bold;
+}
+
+.highlighted_resource,
+.highlighted_resource.odd {
+	background-color: rgba(255, 251, 224, 0.6);
+}
+
+.gantt_task_cell.week_end {
+	background-color: #e8e8e87d;
+}
+
+.gantt_task_row.gantt_selected .gantt_task_cell.week_end {
+	background-color: #e8e8e87d !important;
+}
+
+
+.group_row,
+.group_row.odd,
+.gantt_task_row.group_row {
+	background-color: rgba(232, 232, 232, 0.6);
+}
+
+.owner-label {
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	display: inline-block;
+	border: 1px solid #cccccc;
+	border-radius: 25px;
+	background: #e6e6e6;
+	color: #6f6f6f;
+	margin: 0 3px;
+	font-weight: bold;
+}
+
+
+.resource-select-panel .gantt_layout_content {
+	line-height: 35px;
+	text-align: right;
+	padding: 8px;
+	overflow: hidden !important;
+}
+
+.resource-select {
+	padding: 3px;
+	margin-left: 13px;
+}
+
+.column_overload .gantt_histogram_fill {
+	background-color: color-mix(in srgb, var(--dhx-gantt-base-colors-error), transparent 60%);
+}

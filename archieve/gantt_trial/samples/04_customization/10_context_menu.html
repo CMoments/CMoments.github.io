@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Context menu to control tasks</title>
+	<script src="https://cdn.dhtmlx.com/suite/8.3/suite.js?v=9.1.1"></script>
+	<script src="../../codebase/dhtmlxgantt.js?v=9.1.1"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css?v=9.1.1">
+
+
+	<link rel="stylesheet" href="https://cdn.dhtmlx.com/suite/8.3/suite.css?v=9.1.1">
+
+	<script src="../common/testdata.js?v=9.1.1"></script>
+	<style>
+		html, body {
+			height: 100%;
+			padding: 0px;
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		.task_to_cut.gantt_row,
+		.task_to_cut.gantt_row.odd,
+		.task_to_cut.gantt_task_line {
+			opacity: 0.5;
+		}
+
+		.task_to_copy.gantt_row,
+		.task_to_copy.gantt_row.odd,
+		.task_to_copy.gantt_task_line {
+			border: 2px dotted LightSkyBlue;
+		}
+
+	</style>
+</head>
+
+<body>
+<div id="gantt_here" style='width:100%; height:100%'></div>
+<div id="context"></div>
+
+<script>
+
+
+	let contextMenu = new dhx.ContextMenu(null, { css: "dhx_widget--bg_gray" });
+
+	let targetId, clickDate;
+	gantt.attachEvent("onContextMenu", function (taskId, linkId, event) {
+			itemsConfig = null;
+			if (taskId) {
+					const task = gantt.getTask(taskId);
+					const isTaskBar = event.target.closest(".gantt_task_line");
+					const isParentTask = gantt.hasChild(task.id);
+					const isSplitTask = task.render === "split";
+					const barHidden = task.hide_bar;
+
+					let hasSplitParent = false;
+					if (task.parent) {
+							const parent = gantt.getTask(task.parent);
+							hasSplitParent = parent.render === "split";
+					}
+
+					itemsConfig = { isTaskBar, isParentTask, isSplitTask, barHidden, hasSplitParent };
+			}
+			targetId = taskId;
+
+			contextMenu.data.removeAll();
+			contextMenu.data.parse(generateMenuItems(itemsConfig));
+
+			contextMenu.showAt(event);
+
+			const clickPosition = gantt.utils.dom.getRelativeEventPosition(event, gantt.$task_data).x;
+			clickDate = gantt.dateFromPos(clickPosition)
+
+			return false;
+	});
+
+
+	contextMenu.events.on("click", function (id, e) {
+			applyCommand(id, event);
+			targetId = null;
+	});
+
+	contextMenu.events.on("beforeHide", function (id, event) {
+			return event.type === "click";
+	});
+
+	// Context menu commands
+	function applyCommand(command, event) {
+			let task;
+			if (targetId) {
+					task = gantt.getTask(targetId);
+			}
+
+			switch (command) {
+					case "add_sibling_above":
+							gantt.createTask({ id: gantt.uid(), text: "New task", start_date: task.start_date, duration: 1 }, task.parent, gantt.getTaskIndex(task.id));
+							break;
+
+					case "add_sibling_below":
+							gantt.createTask({ id: gantt.uid(), text: "New task", start_date: task.start_date, duration: 1 }, task.parent, gantt.getTaskIndex(task.id) + 1);
+							break;
+
+					case "add_subtask_top":
+							gantt.createTask({ id: gantt.uid(), text: "New subtask", start_date: task.start_date, duration: 1 }, task.id, 0);
+							break;
+
+					case "add_subtask_bottom":
+							gantt.createTask({ id: gantt.uid(), text: "New subtask", start_date: task.start_date, duration: 1 }, task.id);
+							break;
+
+					case "edit":
+							gantt.showLightbox(task.id);
+							break;
+
+					case "delete":
+							gantt.confirm({
+									text: "Delete task?",
+									ok: "Yes",
+									cancel: "No",
+									callback: function (result) {
+											if (result && gantt.isTaskExists(task.id)) {
+													gantt.deleteTask(task.id);
+											}
+									}
+							});
+							break;
+
+					case "indent":
+							const prevId = gantt.getPrevSibling(task.id);
+							if (prevId) {
+									const newParent = gantt.getTask(prevId);
+									gantt.moveTask(task.id, gantt.getChildren(newParent.id).length, newParent.id);
+									newParent.type = gantt.config.types.project;
+									newParent.$open = true;
+									gantt.updateTask(task.id);
+									gantt.updateTask(newParent.id);
+									return task.id;
+							}
+							break;
+
+					case "outdent":
+							const oldParent = task.parent;
+							if (gantt.isTaskExists(oldParent) && oldParent != gantt.config.root_id) {
+									var index = gantt.getTaskIndex(oldParent) + 1;
+
+									gantt.moveTask(task.id, index, gantt.getParent(task.parent));
+									if (!gantt.hasChild(oldParent)) {
+											gantt.getTask(oldParent).type = gantt.config.types.task;
+									}
+									gantt.updateTask(task.id);
+									gantt.updateTask(oldParent);
+									return task.id;
+							}
+							break;
+
+					case "type_task":
+							task.type = "task";
+							task.duration = task.duration || 1;
+							task.end_date = gantt.calculateEndDate(task);
+							gantt.updateTask(task.id);
+							break;
+
+					case "type_project":
+							task.type = "project";
+							gantt.updateTask(task.id);
+							break;
+
+					case "type_milestone":
+							task.type = "milestone";
+							gantt.updateTask(task.id);
+							break;
+
+					case "rollup":
+							task.rollup = !task.rollup;
+							gantt.updateTask(task.id);
+							gantt.updateTask(task.parent);
+							break;
+
+					case "hide_bar":
+							task.hide_bar = !task.hide_bar;
+							gantt.updateTask(task.id);
+							break;
+
+					case "hide_row":
+							hiddenTasks[task.id] = true;
+							gantt.updateTask(task.id);
+							break;
+
+					case "show_hidden":
+							hiddenTasks = {};
+							gantt.render();
+							break;
+
+					case "complete":
+							task.progress = 1;
+							gantt.updateTask(task.id);
+							break;
+
+					case "cut":
+							const copyIndex = tasksToCopy.indexOf(task.id) > -1;
+							if (copyIndex) {
+									tasksToCopy.splice(copyIndex, 1)
+							}
+							// exclude duplicates
+							if (tasksToCut.indexOf(task.id) === -1) {
+									tasksToCut.push(task.id);
+							}
+							gantt.refreshTask(task.id);
+							break;
+
+					case "copy":
+							const cutIndex = tasksToCut.indexOf(task.id) > -1;
+							if (cutIndex) {
+									tasksToCut.splice(cutIndex, 1)
+							}
+							// exclude duplicates
+							if (tasksToCopy.indexOf(task.id) === -1) {
+									tasksToCopy.push(task.id);
+							}
+							gantt.refreshTask(task.id);
+							break;
+
+					case "paste_sibling":
+							pasteTasks(task.parent, gantt.getTaskIndex(task.id) + 1);
+							break;
+
+					case "paste_child":
+							pasteTasks(task.id);
+							break;
+
+					case "cancel_paste":
+							tasksToCopy = [];
+							tasksToCut = [];
+							gantt.render();
+							break;
+
+					case "split":
+							gantt.batchUpdate(function () {
+									if (gantt.hasChild(task.id)) {
+											gantt.message("The task already has children, so, it won't be split to new sub tasks");
+											return;
+									}
+
+									const leftChild = gantt.copy(task);
+									leftChild.id = gantt.uid();
+									leftChild.end_date = new Date(clickDate);
+									leftChild.parent = task.id;
+									leftChild.type = "task";
+
+									const rightChild = gantt.copy(task);
+									rightChild.id = gantt.uid();
+									rightChild.start_date = new Date(clickDate)
+									rightChild.parent = task.id;
+									rightChild.type = "task";
+
+									task.render = 'split';
+									task.type = "project";
+									gantt.updateTask(task.id);
+
+									gantt.close(task.id);
+
+									gantt.addTask(leftChild);
+									gantt.addTask(rightChild);
+							})
+							break;
+
+					case "unsplit":
+							unsplit(task)
+							break;
+
+					case "unsplit_parent":
+							const parent = gantt.getTask(task.parent);
+							unsplit(parent)
+							break;
+
+			}
+
+			function unsplit(task) {
+					gantt.batchUpdate(function () {
+							gantt.eachTask(function (child) {
+									if (gantt.isTaskExists(child.id)) {
+											gantt.deleteTask(child.id);
+									}
+							}, task.id)
+							delete task.render;
+							task.type = "task";
+							gantt.updateTask(task.id);
+					})
+			}
+	}
+
+	// hide/filter tasks
+	let hiddenTasks = {};
+	gantt.attachEvent("onBeforeTaskDisplay", function (id, task) {
+			return !hiddenTasks[task.id]
+	});
+
+	// copy/cut + paste implementation
+	let tasksToCopy = [];
+	let tasksToCut = [];
+
+	function pasteTasks(parentId, index) {
+			gantt.batchUpdate(function () {
+					tasksToCopy.forEach(function (id) {
+							const task = gantt.getTask(id);
+							const clone = gantt.copy(task);
+							clone.id = gantt.uid();
+							gantt.addTask(clone, parentId, index);
+					});
+
+					tasksToCut.forEach(function (id) {
+							gantt.moveTask(id, index, parentId);
+					});
+					gantt.open(parentId);
+
+					tasksToCopy = [];
+					tasksToCut = [];
+			})
+	}
+
+	gantt.templates.grid_row_class =
+			gantt.templates.task_class = function (start, end, task) {
+					if (tasksToCopy.indexOf(task.id) > -1) {
+							return "task_to_copy"
+					}
+					if (tasksToCut.indexOf(task.id) > -1) {
+							return "task_to_cut"
+					}
+					return "";
+			};
+
+
+
+	function generateMenuItems(config) {
+			const cancelCopyCut = {
+					icon: "dxi dxi-close",
+					type: "menuItem",
+					id: "cancel_paste",
+					value: "Cancel copy/cut operation",
+			};
+			const showAllHidden = {
+					icon: "dxi dxi-eye",
+					type: "menuItem",
+					id: "show_hidden",
+					value: "Show all hidden tasks",
+			};
+			if (config) {
+					let hideBar = {
+							icon: "dxi dxi-eye-off",
+							type: "menuItem",
+							id: "hide_bar",
+							value: "Hide task bar",
+					};
+					if (config.barHidden) {
+							hideBar = {
+									icon: "dxi dxi-eye",
+									type: "menuItem",
+									id: "hide_bar",
+									value: "Show task bar",
+							};
+					}
+					const pasteSibling = {
+							icon: "dxi dxi-chevron-down",
+							type: "menuItem",
+							id: "paste_sibling",
+							value: "Paste as sibling",
+					}
+					const pasteChild = {
+							icon: "dxi dxi-format-vertical-align-bottom",
+							type: "menuItem",
+							id: "paste_child",
+							value: "Paste as child",
+					}
+					if (tasksToCopy.length + tasksToCut.length > 1){
+						pasteSibling.value += "s";
+						pasteChild.value += "ren";
+					}
+
+					const menuItems = [
+							{
+									type: "menuItem",
+									id: "crud",
+									icon: "dxi dxi-pencil",
+									value: "Create/Update/Delete",
+									items: [
+											{
+													icon: "dxi dxi-chevron-up",
+													type: "menuItem",
+													id: "add_sibling_above",
+													value: "Add sibling above",
+											},
+											{
+													icon: "dxi dxi-chevron-down",
+													type: "menuItem",
+													id: "add_sibling_below",
+													value: "Add sibling below",
+											},
+											{
+													icon: "dxi dxi-format-vertical-align-top",
+													type: "menuItem",
+													id: "add_subtask_top",
+													value: "Add subtask at the top",
+											},
+											{
+													icon: "dxi dxi-format-vertical-align-bottom",
+													type: "menuItem",
+													id: "add_subtask_bottom",
+													value: "Add subtask at the bottom",
+											},
+											{
+													icon: "dxi dxi-pencil",
+													type: "menuItem",
+													id: "edit",
+													value: "Edit task",
+											},
+											{
+													icon: "dxi dxi-delete-forever",
+													type: "menuItem",
+													id: "delete",
+													value: "Delete Task",
+											},
+									]
+							},
+
+							{
+									type: "menuItem",
+									id: "copy_paste",
+									icon: "dxi dxi-file-outline",
+									value: "Copy/Paste",
+									items: [
+											{
+													icon: "dxi dxi-file-excel",
+													type: "menuItem",
+													id: "cut",
+													value: "Cut",
+											},
+											{
+													icon: "dxi dxi-file-import",
+													type: "menuItem",
+													id: "copy",
+													value: "Copy",
+											},
+											pasteSibling,
+											pasteChild,
+											cancelCopyCut,
+
+									]
+							},
+
+							{
+									type: "menuItem",
+									icon: "dxi dxi-format-align-center",
+									id: "change_level",
+									value: "Change tree level",
+									items: [
+											{
+													icon: "dxi dxi-format-align-right",
+													type: "menuItem",
+													id: "indent",
+													value: "Indent Task",
+											},
+											{
+													icon: "dxi dxi-format-align-left",
+													type: "menuItem",
+													id: "outdent",
+													value: "Outdent task",
+											},
+
+									]
+							},
+							{
+									type: "menuItem",
+									id: "change_type",
+									value: "Change task type",
+									icon: "dxi dxi-filter-variant",
+									items: [
+											{
+													icon: "dxi dxi-minus",
+													type: "menuItem",
+													id: "type_task",
+													value: "Task type",
+											},
+											{
+													icon: "dxi dxi-filter-variant",
+													type: "menuItem",
+													id: "type_project",
+													value: "Project type",
+											},
+											{
+													icon: "dxi dxi-format-color-fill",
+													type: "menuItem",
+													id: "type_milestone",
+													value: "Milestone type",
+											},
+									]
+							},
+							{
+									type: "menuItem",
+									id: "hide",
+									icon: "dxi dxi dxi-eye",
+									value: "Change visibility",
+									items: [
+											{
+													icon: "dxi dxi-format-vertical-align-top",
+													type: "menuItem",
+													id: "rollup",
+													value: "Rollup",
+											},
+											hideBar,
+											{
+													icon: "dxi dxi-eye-off",
+													type: "menuItem",
+													id: "hide_row",
+													value: "Hide task row",
+											},
+											showAllHidden,
+									]
+							},
+
+							{
+									icon: "dxi dxi-checkbox-marked-circle",
+									type: "menuItem",
+									id: "complete",
+									value: "Mark as complete",
+							},
+
+					];
+
+					if (config.isSplitTask) {
+							menuItems.push({
+									type: "menuItem",
+									id: "unsplit",
+									icon: "dxi dxi-table-row-remove",
+									value: "Unsplit task",
+							})
+					}
+
+					if (config.hasSplitParent) {
+							menuItems.push({
+									type: "menuItem",
+									id: "unsplit_parent",
+									icon: "dxi dxi-table-row-remove",
+									value: "Unsplit parent",
+							})
+					}
+
+
+					if (config.isTaskBar && !config.isParentTask) {
+							menuItems.push({
+									type: "menuItem",
+									id: "split",
+									icon: "dxi dxi-table-row",
+									value: "Split task",
+							})
+					}
+
+					return menuItems;
+			}
+			else {
+					const menuItems = [];
+					if (tasksToCopy.length + tasksToCut.length > 1){
+						menuItems.push(cancelCopyCut);
+					}
+					if (Object.keys(hiddenTasks).length){
+						menuItems.push(showAllHidden);
+					}
+					return menuItems;
+			}
+	}
+
+
+	gantt.config.open_split_tasks = true;
+	gantt.config.round_dnd_dates = false;
+
+	// Prevent task shrink after drag if their duration is 0
+	gantt.attachEvent("onTaskDrag", function(id, mode, task, original){
+			task.duration = task.duration || 1
+	});
+
+
+	gantt.init("gantt_here");
+	gantt.parse(demo_tasks);
+
+
+	gantt.message({
+		text: "This example uses DHTMLX Suite's Context menu which can be used under GPLv2 license or has to be obtained separately. <br><br> You can do this or use a third-party context-menu widget instead.",
+		expire: 1000 * 30
+	});
+</script>
+</body>

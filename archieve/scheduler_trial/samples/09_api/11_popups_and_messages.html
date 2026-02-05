@@ -1,0 +1,198 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Different types of popups and modal boxes</title>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+	<style type="text/css" >
+		html, body {
+			margin: 0px;
+			padding: 0px;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		#scheduler_here{
+			width:100%; 
+			height:calc(100vh - 40px);
+		}
+		.scheduler_control{
+			background: #ededed;
+			text-align: center;
+			height: 40px;
+		}
+
+		.scheduler_control input[type=button],
+		.scheduler_control input[type=file],
+		.scheduler_control input[type=checkbox],
+		.scheduler_control button{
+			font: 500 14px Arial;
+			border: 1px solid #D9D9D9;
+			border-radius: 2px;
+			background: #fff;
+			padding: 4px 12px;
+			margin: 0 5px;
+			color: rgba(0,0,0,0.7);
+			line-height: 20px;
+		}
+
+		.scheduler_control input[type=button]:hover,
+		.scheduler_control button:hover{
+			border: 1px solid #B3B3B3;
+			color: rgba(0,0,0,0.8);
+			cursor: pointer;
+		}
+
+		.scheduler_control input[type=button]:active,
+		.scheduler_control button:active{
+			background: #F7F7F7;
+		}
+
+		.scheduler_control input[type=button]:focus,
+		.scheduler_control button:focus{
+		outline: none !important;
+		}
+
+		.scheduler_control{
+			padding: 10px 0 12px;
+		}
+
+		.scheduler_control input[type=radio],
+		.scheduler_control input[type=checkbox]{
+			display:none;
+		}
+
+		.scheduler_control label{
+			padding: 0 6px;
+			color: rgba(0,0,0,0.54);
+			font: 14px Roboto;
+			line-height: 20px;
+			letter-spacing: 0.2px;
+		}
+		
+		.copied_event div {
+			color: white !important;
+			background-color: #f08080 !important;
+		}
+	</style>
+
+	<script charset="utf-8">
+		window.addEventListener("DOMContentLoaded", function(){
+		function showAlert(){
+			scheduler.alert({
+				title:"Alert",
+				text:"This is a simple alert",
+				ok:"Ok"
+			});
+		}
+		function showConfirm(){
+			scheduler.confirm({
+				title:"Confirm",
+				text:"This is a simple confirm",
+				ok:"Ok",
+				cancel:"Cancel",
+				callback: function(result){
+					if(result){
+						scheduler.message("You clicked Ok");
+					}else{
+						scheduler.message("You clicked Cancel");
+					}
+				}
+			});
+		}
+		function showCustomModal(){
+			scheduler.modalbox({
+				title: "Custom modal",
+				text: "<div style='padding:10px;'>This is a simple modal box</div>"+
+					"<div style='padding:10px;'> Can put any HTML in there</div>"+
+					"<div style='padding:10px;'> The form will be closed after clicking any button below</div>",
+				buttons: [
+					{ label:"Yes",   css:"scheduler_ok_button ",   value:"yes" },
+					{ label:"No", css:"cancel_btn", value:"no" },
+					{ label:"Maybe", css:"delete_btn", value:"maybe" }
+				],
+				callback: function(result){
+					switch(result){
+						case "yes":
+							scheduler.message("You clicked YES");
+							break;
+						case "no":
+							scheduler.message("You clicked NO");
+							break;
+						case "maybe":
+							scheduler.message("You clicked MAYBE");
+							break;
+					}
+				}
+			});
+		}
+		
+		function showMessage(type) {
+			var text = "";
+			var state = scheduler.getState();
+			var formatDate = scheduler.date.date_to_str("%d %F %Y");
+			var eventsCount = scheduler.getEvents(state.min_date, state.max_date).length;
+			var version = scheduler.version;
+
+			text += "<b>" + formatDate(state.min_date) + " - " + formatDate(new Date(state.max_date - 1))  + "</b><br>";
+			text += "Events count: " + eventsCount + "<br>";
+			text += "Scheduler version: " + version;
+
+			scheduler.message({type:type, text:text, expire: 10000});
+
+		}
+		
+		
+
+			scheduler.init('scheduler_here', new Date(2022, 6, 15), "week");
+			scheduler.parse([
+				{id: 1, text: "Event 1", start_date: "2022-07-15 09:00", end_date: "2022-07-15 10:00"},
+				{id: 2, text: "Event 2", start_date: "2022-07-15 10:00", end_date: "2022-07-15 11:00"}
+			]);
+			
+			scheduler.message({text:"Click on the buttons to explore Scheduler message types", expire:-1, type:"error"});
+			
+			scheduler.event(document.querySelector("[name='message-info']"), "click", function(){
+				showMessage('info');
+			});
+			scheduler.event(document.querySelector("[name='message-warning']"), "click", function(){
+				showMessage('warning');
+			});
+			scheduler.event(document.querySelector("[name='message-error']"), "click", function(){
+				showMessage('error');
+			});
+			
+			scheduler.event(document.querySelector("[name='alert']"), "click", showAlert);
+			scheduler.event(document.querySelector("[name='confirm']"), "click", showConfirm);
+			scheduler.event(document.querySelector("[name='custom']"), "click", showCustomModal);
+		});
+	</script>
+</head>
+<div class="buttons scheduler_control">
+	<label>Notices:</label>
+	<input type="button" name="message-info" value="Info"/>
+	<input type="button" name="message-warning" value="Warning"/>
+	<input type="button" name="message-error" value="Error"/>
+	|
+	<label>Modals:</label>
+	<input type="button" name="alert" value="Alert"/>
+	<input type="button" name="confirm" value="Confirm"/>
+	<input type="button" name="custom" value="Custom Modalbox"/>
+</div>
+<body>
+<div id="scheduler_here" class="dhx_cal_container">
+	<div class="dhx_cal_navline">
+		<div class="dhx_cal_prev_button"></div>
+		<div class="dhx_cal_next_button"></div>
+		<div class="dhx_cal_today_button"></div>
+		<div class="dhx_cal_date"></div>
+		<div class="dhx_cal_tab" data-tab="day"></div>
+		<div class="dhx_cal_tab" data-tab="week"></div>
+		<div class="dhx_cal_tab" data-tab="month"></div>
+	</div>
+	<div class="dhx_cal_header">
+	</div>
+	<div class="dhx_cal_data">
+	</div>
+</div>
+</body>

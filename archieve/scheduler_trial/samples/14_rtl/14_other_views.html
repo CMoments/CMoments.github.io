@@ -1,0 +1,89 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Other views</title>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+	<style type="text/css" >
+		html, body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			overflow: hidden;
+		}
+	</style>
+	<script charset="utf-8">
+		window.addEventListener("DOMContentLoaded", function(){
+			scheduler.plugins({
+				agenda_view: true,	
+				week_agenda: true,	
+				grid_view: true,	
+				tooltip: true	
+			});
+			scheduler.config.rtl = true;
+
+			scheduler.date.agenda_start = function(date){
+				return scheduler.date.month_start(new Date(date)); 
+			};
+			scheduler.date.add_agenda = function(date, inc){
+				return scheduler.date.add(date, inc, "month"); 
+			};
+			scheduler.attachEvent("onTemplatesReady", function(){
+				scheduler.templates.agenda_date = scheduler.templates.month_date;
+			});
+
+			scheduler.createGridView({
+				fields:[
+					{id:"id"},
+					{id:"text"},
+					{id:"date"}
+				],
+				select:false,
+				paging:true
+			});
+
+			scheduler.templates.week_agenda_event_text = function (start_date, end_date, event, date, position) {
+				switch (position) {
+					case "middle":
+						return "-- " + event.text;
+					case "end":
+						return "End: " + scheduler.templates.event_date(start_date) + " " + event.text;
+					case "start":
+						return "Start: " + scheduler.templates.event_date(start_date) + " " + event.text;
+					default:
+						return scheduler.templates.event_date(start_date) + " " + event.text;
+				}
+			};
+			scheduler.locale.labels.week_agenda_tab = "Week A.";
+
+			scheduler.config.lightbox.sections=[	
+				{ name:"description", height:50, map_to:"text", type:"textarea", focus:true },
+				{ name:"location", height:43, map_to:"event_location", type:"textarea"  },
+				{ name:"time", height:72, type:"time", map_to:"auto"}	
+			];
+
+			scheduler.init('scheduler_here', new Date(2023, 0, 10), "agenda");
+			scheduler.load("../common/events.json");
+		});
+	</script>
+</head>
+<body>
+<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+	<div class="dhx_cal_navline">
+		<div class="dhx_cal_prev_button"></div>
+		<div class="dhx_cal_next_button"></div>
+		<div class="dhx_cal_today_button"></div>
+		<div class="dhx_cal_date"></div>
+		<div class="dhx_cal_tab" data-tab="day"></div>
+		<div class="dhx_cal_tab" data-tab="week"></div>
+		<div class="dhx_cal_tab" data-tab="agenda"></div>
+		<div class="dhx_cal_tab" data-tab="week_agenda"></div>
+		<div class="dhx_cal_tab" data-tab="grid"></div>
+		<div class="dhx_cal_tab" data-tab="month"></div>
+	</div>
+	<div class="dhx_cal_header">
+	</div>
+	<div class="dhx_cal_data">
+	</div>
+</div>
+</body>

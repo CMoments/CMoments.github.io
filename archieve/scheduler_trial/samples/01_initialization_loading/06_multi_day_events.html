@@ -1,0 +1,70 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Multi-day events</title>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="../common/controls_styles.css?v=7.2.11">
+	
+	<style>
+		html, body{
+			margin:0px;
+			padding:0px;
+			height:100%;
+			overflow:hidden;
+		}	
+	</style>
+
+	<script>
+		function updateView(){
+			scheduler.config.multi_day = this.checked;
+			scheduler.updateView();
+			updateIcon(this);
+		}
+
+		function updateIcon(el){
+			el.parentElement.classList.toggle("checked_label");
+
+			var iconEl = el.parentElement.querySelector("i"),
+				checked = "check_box",
+				unchecked = "check_box_outline_blank",
+				className = "icon_color";
+
+			iconEl.textContent = iconEl.textContent==checked?unchecked:checked;
+			iconEl.classList.toggle(className);
+		}
+
+		window.addEventListener("DOMContentLoaded", function(){
+			scheduler.config.multi_day = true;
+			scheduler.xy.margin_top = 40;
+			scheduler.init('scheduler_here',new Date(2022,11,19),"week");
+			scheduler.load("../common/events.json");
+			
+			scheduler.event(document.querySelector("#mod1"), "change", updateView);
+		});
+	</script>
+</head>
+<body>
+	<div class="sch_control">
+		<label for="mod1" class="checked_label">
+			<input type="checkbox" class="sch_radio" id="mod1" checked>
+			<i class="material-icons icon_color">check_box</i>Show multiday events
+		</label>
+	</div>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+	</div>
+</body>

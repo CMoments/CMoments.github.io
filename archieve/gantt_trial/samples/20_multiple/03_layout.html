@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Gantts in dhtmlxLayout cells (dhtmlxSuite v8.x)</title>
+	<script src="https://cdn.dhtmlx.com/suite/8.3/suite.js?v=9.1.1"></script>
+	<script src="../../codebase/dhtmlxgantt.js?v=9.1.1"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css?v=9.1.1">
+
+
+	<link rel="stylesheet" href="https://cdn.dhtmlx.com/suite/8.3/suite.css?v=9.1.1">
+
+	<style>
+		html, body {
+			margin: 0px;
+			padding: 0px;
+			height: 100%;
+		}
+	</style>
+
+	<script>
+		window.addEventListener("DOMContentLoaded", function(){
+			let layout = new dhx.Layout("layout", {
+				css: "dhx_layout-cell--bordered",
+				rows: [
+					{
+						padding: 0,
+						id: "gantt1",
+						height: "50%",
+						header: "Gantt 1",
+						html: `<div id="gantt_here" style="width:100%; height:100%;"></div>`,
+						resizable: true
+					},
+					{
+						padding: 0,
+						id: "gantt2",
+						header: "Gantt 2",
+						html: `<div id="gantt_here2" style="width:100%; height:100%;"></div>`,
+						height: "50%",
+						resizable: true
+					}
+				]
+			});
+
+			gantt.i18n.setLocale("de");
+			gantt.init("gantt_here");
+			gantt.parse({
+				data: [
+					{ id: 1, text: "Project #1", start_date: "01-04-2024", duration: 18,
+						progress: 0.4, open: true
+					},
+					{ id: 2, text: "Task #1", start_date: "02-04-2024", duration: 8,
+						progress: 0.6, parent: 1
+					},
+					{ id: 3, text: "Task #2", start_date: "11-04-2024", duration: 8,
+						progress: 0.6, parent: 1
+					}
+				],
+				links: [
+					{id: 1, source: 1, target: 2, type: "1"}
+				]
+			});
+
+			const gantt2 = Gantt.getGanttInstance();
+			gantt2.i18n.setLocale("kr");
+			gantt2.init("gantt_here2");
+			gantt2.parse({
+				data: [
+					{ id: 1, text: "Project #2", start_date: "01-04-2024", duration: 18,
+						progress: 0.4, open: true
+					},
+					{ id: 3, text: "Task #3", start_date: "02-04-2024", duration: 1,
+						progress: 0.6, parent: 1
+					},
+					{ id: 4, text: "Task #4", start_date: "03-04-2024", duration: 1,
+						progress: 0.6, parent: 1
+					}
+				],
+				links: [
+					{id: 3, source: 3, target: 4, type: "0"}
+				]
+			});
+
+			gantt.message({
+					text:"This example uses DHTMLX Suite's Layout which can be used under GPLv2 license or has to be obtained separately. <br><br> You can do this or use a third-party datepicker widget instead.",
+					expire:1000*30
+			});
+		});
+	</script>
+</head>
+
+
+<body>
+
+</body>

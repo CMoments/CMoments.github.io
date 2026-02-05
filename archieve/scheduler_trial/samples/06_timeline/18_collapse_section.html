@@ -1,0 +1,163 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Collapse timeline rows</title>
+
+	<script src='../../codebase/dhtmlxscheduler.js?v=7.2.11' charset="utf-8"></script>
+	<link rel='stylesheet' type='text/css' href='../../codebase/dhtmlxscheduler.css?v=7.2.11'>
+	
+	<style type="text/css" >
+		html, body{
+			margin:0;
+			padding:0;
+			height:100%;
+			overflow:hidden;
+		}
+
+		.timeline-section-chevron{
+			position:relative;
+			display:block;
+			height:24px;
+			width: 24px;
+			margin-top: 12px;
+		}
+		.timeline-section-chevron::before,
+		.timeline-section-chevron::after{
+			position:absolute;
+			display:block;
+			content:"";
+			border:12px solid transparent;
+		}
+		
+		.timeline-section-chevron::before{
+			top:0;
+			border-top-color:#008ad4;
+		}
+		.timeline-section-chevron:hover::before{
+			top:0;
+			border-top-color:#0673ad;
+		}
+		.timeline-section-chevron::after{
+			top:-4px;
+			border-top-color:#fff;
+		}
+		.dhx_cal_event_line {
+			opacity: 0.8;
+		}
+	</style>
+
+	<script charset="utf-8">
+
+		scheduler.plugins({
+			timeline: true
+		});
+		window.addEventListener("DOMContentLoaded", function(){
+
+			scheduler.locale.labels.timeline_tab = "Timeline";
+			scheduler.locale.labels.section_custom="Section";
+			scheduler.config.details_on_create=true;
+			scheduler.config.details_on_dblclick=true;
+
+			//===============
+			//Configuration
+			//===============
+
+			scheduler.serverList("rooms", [
+				{key: 1, label: "Room 1", height: 120},
+				{key: 2, label: "Room 2", height: 120},
+				{key: 3, label: "Room 3", height: 120},
+				{key: 4, label: "Room 4", height: 120}
+			]);
+
+			scheduler.createTimelineView({
+				name:	"timeline",
+				x_unit:	"minute",
+				x_date:	"%H:%i",
+				x_step:	30,
+				x_size: 24,
+				x_start: 16,
+				x_length:	48,
+				y_unit:	scheduler.serverList("rooms"),
+				y_property:	"room_id",
+				render:"bar",
+				dx: 200,
+				scrollable: true,
+				getEventTop: function(event){
+					var section = scheduler.serverList("rooms").find(function(section){
+						return section.key == event.room_id;
+					});
+					if(!section || section.collapsed){
+						return 2;
+					}else{
+						return scheduler.ext.timeline.getEventTop.call(this, event);
+					}
+				},
+				columns: [
+					{ name: "control", css:"timeline-section-collapse", template: function(section) { 
+						return `<i class="timeline-section-chevron"></i>`;}, width: 40},
+					{ name: "label", template: function(section) { return section.label;}}
+					
+				]
+			});
+			scheduler.attachEvent("onYScaleClick", function (index, section, e){
+				if(scheduler.utils.dom.closest(e.target, ".timeline-section-collapse")){
+					section.collapsed = !section.collapsed;
+					if(section.collapsed){
+						section.height = 25;
+					}else{
+						section.height = 120;
+					}
+					scheduler.setCurrentView();
+					return false;
+				}
+				//any custom logic here
+			});
+			//===============
+			//Data loading
+			//===============
+			scheduler.config.lightbox.sections=[
+				{name:"description", height:50, map_to:"text", type:"textarea" , focus:true},
+				{name:"room", height:30, type:"select", options:scheduler.serverList("rooms"), map_to:"room_id" },
+				{name:"time", height:72, type:"time", map_to:"auto"}
+			];
+
+			scheduler.init('scheduler_here',new Date(2022,5,30),"timeline");
+			scheduler.parse([
+				{ start_date: "2022-06-30 09:00", end_date: "2022-06-30 12:00", text:"Task A-12458", room_id:1, specialist_id: 1},
+				{ start_date: "2022-06-30 10:00", end_date: "2022-06-30 16:00", text:"Task A-89411", room_id:1, specialist_id: 2},
+				{ start_date: "2022-06-30 10:00", end_date: "2022-06-30 14:00", text:"Task A-64168", room_id:1, specialist_id: 3},
+				{ start_date: "2022-06-30 16:00", end_date: "2022-06-30 17:00", text:"Task A-46598", room_id:1, specialist_id: 4},
+
+				{ start_date: "2022-06-30 12:00", end_date: "2022-06-30 20:00", text:"Task B-48865", room_id:2, specialist_id: 1},
+				{ start_date: "2022-06-30 14:00", end_date: "2022-06-30 16:00", text:"Task B-44864", room_id:2, specialist_id: 2},
+				{ start_date: "2022-06-30 16:30", end_date: "2022-06-30 18:00", text:"Task B-46558", room_id:2, specialist_id: 3},
+				{ start_date: "2022-06-30 18:30", end_date: "2022-06-30 20:00", text:"Task B-45564", room_id:2, specialist_id: 4},
+
+				{ start_date: "2022-06-30 08:00", end_date: "2022-06-30 12:00", text:"Task C-32421", room_id:3, specialist_id: 1},
+				{ start_date: "2022-06-30 14:30", end_date: "2022-06-30 16:45", text:"Task C-14244", room_id:3, specialist_id: 2},
+
+				{ start_date: "2022-06-30 09:20", end_date: "2022-06-30 12:20", text:"Task D-52688", room_id:4, specialist_id: 1},
+				{ start_date: "2022-06-30 11:40", end_date: "2022-06-30 16:30", text:"Task D-46588", room_id:4, specialist_id: 2},
+				{ start_date: "2022-06-30 12:00", end_date: "2022-06-30 18:00", text:"Task D-12458", room_id:4, specialist_id: 3}
+			]);
+		});
+	</script>
+</head>
+<body>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="timeline"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>		
+	</div>
+</body>

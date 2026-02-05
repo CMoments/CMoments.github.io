@@ -1,0 +1,187 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Export to PDF with custom styles</title>
+</head>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+	<link rel="stylesheet" href="../common/controls_styles.css?v=7.2.11">
+
+<style type="text/css" >
+	html, body{
+		margin:0px;
+		padding:0px;
+		height:100%;
+	}
+
+	body{
+		display: flex;
+		flex-direction: column;
+	}
+
+	.controls {
+		padding-bottom: 28px;
+	}
+
+	.controls,
+	.controls_row {
+		display: flex;
+	}
+
+	.controls_options {
+		flex-basis: 500px;
+		padding-bottom: 14px;
+	}
+
+	.controls_buttons {
+		padding-top: 8px;
+		text-align: left;
+	}
+
+	.controls input, .controls select{
+		padding:5px 20px;
+		margin: 7px 15px 0 0;
+		width:180px;
+	}
+	.controls label{
+		width:184px;
+		text-align: right;
+		padding: 4px 20px 0 0;
+		line-height: 32px;
+		display: block;
+	}
+	.tier1{
+		background: red;
+		color:white;
+	}
+	.tier2{
+		background: orange;
+		color:white;
+	}
+	.tier3{
+		background: green;
+		color:white;
+	}
+	.dhx_scheduler_month .dhx_marked_timespan{
+		display:block;
+	}
+	.holiday {
+		background-color: #fadcd3;
+		text-align: center;
+		font-size: 24px;
+		opacity: 0.8;
+		color: #e2b8ac;
+	}
+</style>
+
+<script charset="utf-8">
+	window.addEventListener("DOMContentLoaded", function(){
+
+		scheduler.plugins({
+			limit: true,
+			year_view: true,
+			agenda_view: true,
+			export_api: true
+		});
+
+		var i = 0;
+		scheduler.templates.event_class = function(){
+			i++;
+			return "tier" + ((i%3)+1);
+		};
+
+		scheduler.addMarkedTimespan({
+			start_date: new Date(2022, 5, 4),
+			end_date: new Date(2022, 5, 6),
+			css: "holiday",
+			html: "Holiday"
+		});
+
+		scheduler.init('scheduler_here',new Date(2022,5,30),"month");
+		scheduler.load("../common/events.json");
+
+		function exportScheduler(type){
+			var format = document.getElementById("format").value;
+			var orient = document.getElementById("orient").value;
+			var zoom = document.getElementById("zoom").value;
+			if (type == "pdf")
+				scheduler.exportToPDF({
+					format:format,
+					orientation:orient,
+					header:"<link rel='stylesheet' href='https://docs.dhtmlx.com/scheduler/samples/common/custom.css?v=7.2.11' type='text/css' title='no title' charset='utf-8'>",
+					zoom:zoom
+				});
+			else
+				scheduler.exportToPNG({
+					format:format,
+					orientation:orient,
+					header:"<link rel='stylesheet' href='https://docs.dhtmlx.com/scheduler/samples/common/custom.css?v=7.2.11' type='text/css' title='no title' charset='utf-8'>",
+					zoom:zoom
+				});
+		}
+		
+		scheduler.event(document.querySelector(".controls [name='pdf']"), "click", function(){exportScheduler("pdf");});
+		scheduler.event(document.querySelector(".controls [name='png']"), "click", function(){exportScheduler("png");});
+		
+	});
+</script>
+
+
+<body>
+	<div class='controls'>
+		<div class="controls_options">
+			<div class="controls_row">
+				<label for="format">Format</label>
+				<select id="format">
+					<option>A5</option>
+					<option selected="true">A4</option>
+					<option>A3</option>
+					<option>A2</option>
+					<option>A1</option>
+					<option>A0</option>
+				</select>
+			</div>
+			<div class="controls_row">
+				<label for="orient">Orientation</label>
+				<select id="orient">
+					<option>portrait</option>
+					<option>landscape</option>
+				</select>
+			</div>
+			<div class="controls_row">
+				<label for="zoom">Zoom</label>
+				<select id="zoom">
+					<option>0.5</option>
+					<option>0.75</option>
+					<option selected="true">1</option>
+					<option>1.5</option>
+					<option>2</option>
+				</select>
+			</div>
+		</div>
+		<div class="controls_buttons">
+			<input type="button" value="Export to PDF" name="pdf">
+			<input type="button" value="Export to PNG" name="png">
+		</div>
+	</div>
+
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+
+			<div class="dhx_cal_tab" data-tab="year"></div>
+			<div class="dhx_cal_tab" data-tab="agenda"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>		
+	</div>
+</body>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hiding grid columns</title>
+	<script src="https://cdn.dhtmlx.com/suite/8.3/suite.js?v=9.1.1"></script>
+	<script src="../../codebase/dhtmlxgantt.js?v=9.1.1"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css?v=9.1.1">
+	<link rel="stylesheet" href="https://cdn.dhtmlx.com/suite/8.3/suite.css?v=9.1.1">
+
+</head>
+<body>
+<div id="gantt_here" style="width: 100%; height: 600px;"></div>
+<script>
+
+	gantt.config.columns = [
+		{ name: "text", tree: true, width: 150, resize: true },
+		{ name: "start_date", align: "center", width: 120, resize: true },
+		{ name: "end_date", align: "center", label: "End Time", width: 120, resize: true },
+		{ name: "duration", align: "center", width: 70, resize: true },
+		{ name: "add", width: 44, resize: true, hide: true }
+	];
+
+	let contextMenu = new dhx.ContextMenu(null, { css: "dhx_widget--bg_gray" });
+
+	gantt.attachEvent("onContextMenu", function (taskId, linkId, event) {
+		const target = (event.target || event.srcElement);
+		const columnName = target.getAttribute("data-column-id");
+
+		contextMenu.data.removeAll()
+		contextMenu.data.parse(generateMenuItems(columnName));
+
+		contextMenu.showAt(event.target, "bottom");
+
+		return false;
+	});
+
+
+	contextMenu.events.on("click", function (id, e) {
+		const menuItem = contextMenu.data.getItem(id);
+		const column = gantt.getGridColumn(menuItem.name);
+		column.hide = !column.hide;
+
+		menuItem.icon = detectIconType(column.hide)
+		contextMenu.paint()
+		gantt.render();
+	});
+
+	contextMenu.events.on("beforeHide", function (id, event) {
+		return id === "main" || event.type === "mouseleave";
+	});
+
+
+	function generateMenuItems(columnName) {
+		const menuItems = [];
+		if (columnName) {
+			const column = gantt.getGridColumn(columnName);
+			menuItems.push(
+				{ type: "menuItem", id: "main", name: column.name, value: "Hide " + getColumnLabel(column) },
+				{ type: "separator" }
+			);
+		}
+
+		const columnItems = [];
+
+		gantt.config.columns.forEach(function (column) {
+			columnItems.push({ type: "menuItem", id: column.name, name: column.name, value: getColumnLabel(column), icon: detectIconType(column.hide) })
+		})
+
+		menuItems.push({
+			id: "show_columns",
+			type: "menuItem",
+			value: "Show columns:",
+			items: columnItems
+		})
+
+		return menuItems;
+	}
+
+	function getColumnLabel(column) {
+		return column.label || gantt.locale.labels["column_" + column.name] || column.name;
+	}
+
+	function detectIconType(value) {
+		if (value) {
+			return "dxi dxi-checkbox-blank-outline";
+		}
+		else {
+			return "dxi dxi-checkbox-marked";
+		}
+	};
+
+	gantt.init("gantt_here");
+
+	gantt.parse({
+		data: [
+			{ id: 1, text: "Project #2", start_date: "01-04-2023", duration: 18, progress: 0.4, open: true },
+			{ id: 2, text: "Task #1", start_date: "02-04-2023", duration: 8, progress: 0.6, parent: 1 },
+			{ id: 3, text: "Task #2", start_date: "11-04-2023", duration: 8, progress: 0.6, parent: 1 }
+		],
+		links: [
+			{id: 1, source: 1, target: 2, type: "1"},
+			{id: 2, source: 2, target: 3, type: "0"}
+		]
+	});
+
+	gantt.message("Right click on a header of the Grid");
+	
+	gantt.message({
+	    text:"This example uses DHTMLX Suite's Menu component which can be used under GPLv2 license or has to be obtained separately. <br><br> You can do this or use a third-party context-menu widget instead.",
+	    expire:1000*30
+	});
+
+</script>
+</body>
+</html>

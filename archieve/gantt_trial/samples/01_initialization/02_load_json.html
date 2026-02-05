@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Load data from JSON file</title>
+	<script src="../../codebase/dhtmlxgantt.js?v=9.1.1"></script>
+	<script src="../common/webserver_warning.js?v=9.1.1"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css?v=9.1.1">
+	<style>
+		html, body {
+			padding: 0px;
+			margin: 0px;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="gantt_here" style='width:100%; height:100%;'></div>
+	<script>
+
+		gantt.attachEvent("onAjaxError", function(request){
+			if (!request.status || !request.response){
+				gantt.message({
+					text: webserverWarningText,
+					expire: -1
+				})
+			}
+			return true;
+		});
+
+		gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
+		gantt.init("gantt_here");
+		gantt.load("../common/data.json", "json");
+	</script>
+</body>

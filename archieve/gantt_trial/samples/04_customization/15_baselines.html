@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Display baselines</title>
+
+	<script src="../../codebase/dhtmlxgantt.js?v=9.1.1"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css?v=9.1.1">
+	<link rel="stylesheet" href="../common/controls_styles.css?v=9.1.1">
+	<script src="../common/data_baselines.js?v=9.1.1"></script>
+	<style>
+		html, body {
+			height: 100%;
+			padding: 0;
+			margin: 0;
+			overflow: hidden;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="gantt_control">
+		<label title="Change how the baselines will be rendered">Baselines displayed on:</label>
+		<select class='reorder_mode gantt_input_styled' onchange=changeBaselineRender(this.value)>
+			<option value="">Off</option>
+			<option value="taskRow">Same row</option>
+			<option value="separateRow" selected>Separate row</option>
+			<option value="individualRow">Individual rows</option>
+		</select>
+		<label title="Change the height of a task bar">Change task bar height:</label>
+		<input type=number class="gantt_input_styled" value="20" oninput="changeBarHeight(this.value)" onwheel="changeBarHeight(this.value)">
+	</div>
+
+	<div id="gantt_here" style='width:100%; height:calc(100vh - 52px);'></div>
+<script>
+	gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
+
+	gantt.config.lightbox.milestone_sections = gantt.config.lightbox.sections = [
+		{ name: "description", height: 38, map_to: "text", type: "textarea", focus: true },
+		{ name: "time", type: "duration", map_to: "auto" },
+		{ name: "baselines", height: 100, type: "baselines", map_to: "baselines" },
+	];
+
+	gantt.config.resize_rows = true;
+	gantt.config.row_height = 30;
+	gantt.config.min_task_grid_row_height = 10;
+	gantt.config.open_split_tasks = true;
+
+	gantt.config.baselines.render_mode = "separateRow";
+
+	function changeBaselineRender(value){
+		gantt.config.baselines.render_mode = value;
+		gantt.batchUpdate(function () {
+			gantt.eachTask(function(task){
+				// function to recalculate row height
+				gantt.adjustTaskHeightForBaselines(task)
+			});
+		});
+	}
+
+	function changeBarHeight(value){
+		var id = gantt.getSelectedId();
+		if (!id){
+				gantt.message("Select a task!")
+				return;
+		}
+		var task = gantt.getTask(id);
+		task.bar_height = +value;
+		gantt.adjustTaskHeightForBaselines(task);
+		gantt.render();
+	}
+
+	gantt.templates.task_class = function (start, end, task) {
+		if (task.planned_end) {
+			var classes = ['has-baseline'];
+			if (end.getTime() > task.planned_end.getTime()) {
+				classes.push('overdue');
+			}
+			return classes.join(' ');
+		}
+	};
+
+	gantt.templates.rightside_text = function (start, end, task) {
+		if (task.planned_end) {
+			if (end.getTime() > task.planned_end.getTime()) {
+				var overdue = Math.ceil(Math.abs((end.getTime() - task.planned_end.getTime()) / (24 * 60 * 60 * 1000)));
+				var text = "<b>Overdue: " + overdue + " days</b>";
+				return text;
+			}
+		}
+	};
+
+	gantt.init("gantt_here");
+	gantt.parse(taskData);
+
+</script>
+</body>

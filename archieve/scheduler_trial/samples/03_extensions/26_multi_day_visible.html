@@ -1,0 +1,96 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Displaying multi-day events in the regular way</title>
+</head>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+
+	
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+	<link rel="stylesheet" href="../common/controls_styles.css?v=7.2.11">
+	
+<style type="text/css" >
+	html, body{
+		margin:0px;
+		padding:0px;
+		height:100%;
+		overflow:hidden;
+	}	
+</style>
+
+<script charset="utf-8">
+	window.addEventListener("DOMContentLoaded", function(){
+		scheduler.plugins({
+			all_timed: true
+		});
+		scheduler.xy.margin_top = 30;
+
+		scheduler.config.all_timed = "short"; // only events < 24 hours will be displayed as usual ones
+		scheduler.config.multi_day = true; // rest of multiday events would be displayed at the top
+
+		scheduler.config.first_hour = 2;
+		scheduler.config.last_hour = 20;
+		scheduler.config.limit_time_select = true;
+		scheduler.init('scheduler_here',new Date(2022,6,1),"week");
+
+		scheduler.parse([
+			{ start_date:"2022-7-1 5:00", end_date:"2022-7-2 4:00", text:"< 24 hours"},
+			{ start_date:"2022-7-1 6:00", end_date:"2022-7-1 8:00", text:"Timed 1"},
+			{ start_date:"2022-7-2 6:00", end_date:"2022-7-2 8:00", text:"Timed 2"},
+			{ start_date:"2022-7-2 6:00", end_date:"2023-7-2 8:00", text:"Very long event"}
+		]);
+
+
+		// helper inputs
+		var html = function(id) {
+			return document.getElementById(id);
+		};
+
+		var all_timed_select = html('all_timed');
+		var multi_day_select = html('multi_day');
+
+		var button = html('apply');
+		button.onclick = function() {
+			var multi_day_value = multi_day_select.value;
+			var all_timed_value = all_timed_select.value;
+			scheduler.config.multi_day = (multi_day_value == "true");
+			scheduler.config.all_timed = (all_timed_value == "short")?all_timed_value:(all_timed_value == "true");
+			scheduler.setCurrentView();
+		};
+	});
+</script>
+
+<body>
+	<div class="sch_control">
+		<label for="all_timed">All timed:</label>
+		<select name="all_timed" id="all_timed">
+			<option value=true>On</option>
+			<option value="short" selected="selected">&lt; 24 Hours</option>
+			<option value=false>Off</option>
+		</select>
+
+		<label for="multi_day">Multiday:</label>
+		<select name="multi_day" id="multi_day">
+			<option value="true" selected="selected">On</option>
+			<option value="false">Off</option>
+		</select>
+		
+		<input type="button" id="apply" value="Apply"/>
+	</div>
+
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>		
+	</div>
+</body>

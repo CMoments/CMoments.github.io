@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Claude Code是一个基于大语言模型（LLM）的智能体，属于AI助手产品形态。它不是单纯的微调模型、协议或开发框架，而是通过对大模型的工程化封装和任务指令优化，面向编程场景提供自然语言到代码的智能生成与辅助能力。(在终端命令行中使用) 安装ClaudeCode 之后就是安装ClaudeCode，这个在官网下载也是需要翻墙的。这里可以使用国内镜像完成安装： 一般使用npm包管理器安装： npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tools⚒️：Claude-code">
+<meta property="og:url" content="http://example.com/2026/01/01/Claude-code/index.html">
+<meta property="og:site_name" content="CISCN 2026">
+<meta property="og:description" content="Claude Code是一个基于大语言模型（LLM）的智能体，属于AI助手产品形态。它不是单纯的微调模型、协议或开发框架，而是通过对大模型的工程化封装和任务指令优化，面向编程场景提供自然语言到代码的智能生成与辅助能力。(在终端命令行中使用) 安装ClaudeCode 之后就是安装ClaudeCode，这个在官网下载也是需要翻墙的。这里可以使用国内镜像完成安装： 一般使用npm包管理器安装： npm">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/16.png">
+<meta property="og:image" content="http://example.com/images/17.png">
+<meta property="og:image" content="http://example.com/images/11.png">
+<meta property="og:image" content="http://example.com/images/14.png">
+<meta property="og:image" content="http://example.com/images/12.png">
+<meta property="og:image" content="http://example.com/images/13.png">
+<meta property="og:image" content="http://example.com/images/15.png">
+<meta property="og:image" content="http://example.com/images/19.png">
+<meta property="og:image" content="http://example.com/images/20.png">
+<meta property="og:image" content="http://example.com/images/18.png">
+<meta property="article:published_time" content="2026-01-01T03:15:17.000Z">
+<meta property="article:modified_time" content="2026-02-05T01:28:23.262Z">
+<meta property="article:author" content="还没起名字组">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/16.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Tools⚒️：Claude-code</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     --><!--
+       --><li><a href="/Todo-list/">Todo-list</a></li><!--
+     --><!--
+       --><li><a href="/Timetable/">Timetable</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2026/01/22/Event%F0%9F%93%9A%EF%BC%9A%E9%80%89%E9%A2%98%E8%AE%A8%E8%AE%BA-(260123)/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2025/12/09/OpenSSL-provider/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/01/01/Claude-code/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/01/01/Claude-code/&text=Tools⚒️：Claude-code"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/01/01/Claude-code/&title=Tools⚒️：Claude-code"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/01/01/Claude-code/&is_video=false&description=Tools⚒️：Claude-code"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tools⚒️：Claude-code&body=Check out this article: http://example.com/2026/01/01/Claude-code/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/01/01/Claude-code/&title=Tools⚒️：Claude-code"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/01/01/Claude-code/&title=Tools⚒️：Claude-code"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/01/01/Claude-code/&title=Tools⚒️：Claude-code"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/01/01/Claude-code/&title=Tools⚒️：Claude-code"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/01/01/Claude-code/&name=Tools⚒️：Claude-code&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/01/01/Claude-code/&t=Tools⚒️：Claude-code"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">安装ClaudeCode</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">1.替换Claude后端模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ClaudeCode-on-Windows%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">ClaudeCode on Windows配置方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">CC-Switch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">Further Exploration on Model Backend Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BD%AC%E6%8E%A5%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B0%B1%E6%98%AF%E4%BF%AE%E6%94%B9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">4.1.</span> <span class="toc-text">使用转接服务的方式就是修改环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DeepSeek%EF%BC%9A"><span class="toc-number">4.2.</span> <span class="toc-text">DeepSeek：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qwen"><span class="toc-number">4.3.</span> <span class="toc-text">Qwen:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chatgpt-5-2-%E8%BD%AC%E6%8E%A5"><span class="toc-number">4.4.</span> <span class="toc-text">Chatgpt-5.2(转接)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">2.设置环境变量，开代理连接</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Tools⚒️：Claude-code
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">还没起名字组</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-01-01T03:15:17.000Z" class="dt-published" itemprop="datePublished">2026-01-01</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Claude Code是一个基于大语言模型（LLM）的智能体，属于AI助手产品形态。它不是单纯的微调模型、协议或开发框架，而是通过对大模型的工程化封装和任务指令优化，面向编程场景提供自然语言到代码的智能生成与辅助能力。(在终端命令行中使用)</p>
+<h1>安装ClaudeCode</h1>
+<p>之后就是安装ClaudeCode，这个在官网下载也是需要翻墙的。这里可以使用国内镜像完成安装：<br>
+一般使用npm包管理器安装：</p>
+<pre><code class="language-bash">npm install -g @anthropic-ai/claude-code --registry=https://registry.npmmirror.com
+</code></pre>
+<p>如果电脑没有npm，可以在powershell里边安装：<br>
+<a target="_blank" rel="noopener" href="https://github.com/Ruanweiqiao/claude-code-windows-setup">更多资料参考</a></p>
+<pre><code class="language-bash">irm https://claude.ai/install.ps1 | iex
+</code></pre>
+<img src="/images/16.png" alt="" width="960" height="540" style="max-width: 100%; height: auto; display: block;" />
+<p>安装好后，任意终端运行命令：<code>Claude</code>即可在当前目录下运行Claude代码编辑智能体。</p>
+<img src="/images/17.png" alt="" width="960" height="540" style="max-width: 100%; height: auto; display: block;" />
+<p>但是想在国内用 Claude 模型与智能体并不容易，你至少需要：</p>
+<p>① 能翻墙<br>
+② 有外币信用卡或外区 Apple ID</p>
+<p>为了解决这个问题，这里提出两个解决方法：</p>
+<h1>1.替换Claude后端模型</h1>
+<p>一般情况下，Claude Code默认搭配的是Anthropic公司的 Claude Opus 4.5，编程能力当前最强的大模型。用户无法自行替换为其他大模型。但是也有一些工具能够帮助我们实现模型请求的代理，将ClaudeCode向其自有模型发起的请求包欺骗至我们所指定的大模型提供商。</p>
+<h3 id="ClaudeCode-on-Windows配置方法">ClaudeCode on Windows配置方法</h3>
+<p>下载一个Github项目：CC-Switch，接管本地的模型请求代理，下边已经找好了Windows 10+可用的msi安装包：</p>
+<h1>CC-Switch</h1>
+<p>(下载链接)[<a target="_blank" rel="noopener" href="https://github.com/farion1231/cc-switch/releases/download/v3.10.3/CC-Switch-v3.10.3-Windows.msi">https://github.com/farion1231/cc-switch/releases/download/v3.10.3/CC-Switch-v3.10.3-Windows.msi</a>]</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 10px; align-items: start;">
+	<img src="/images/11.png" alt="" width="640" height="360" style="width: 100%; height: auto; display: block;" />
+	<img src="/images/14.png" alt="" width="640" height="360" style="width: 100%; height: auto; display: block;" />
+	<img src="/images/12.png" alt="" width="640" height="360" style="width: 100%; height: auto; display: block;" />
+	<img src="/images/13.png" alt="" width="640" height="360" style="width: 100%; height: auto; display: block;" />
+	<img src="/images/15.png" alt="" width="640" height="360" style="width: 100%; height: auto; display: block;" />
+	<img src="/images/19.png" alt="" width="640" height="360" style="width: 100%; height: auto; display: block;" />
+</div>
+<h1>Further Exploration on Model Backend Configuration</h1>
+<p>类似一个网站的前后端架构，我们与大模型交互的所有应用（Web对话界面，Copilot聊天窗，命令行中的ClaudeCode）都是一个前端。<br>
+前端通过向大模型后端发起请求(API请求)获得大模型的回复响应。<br>
+由于一些大模型提供商不方便访问(eg: OpenAI)，于是出现了一系列API转接服务提供商。<br>
+通过转接服务提供商，你不仅能够绕过访问地域限制，也可以调用各个大模型提供商的大模型产品(deepseek,openai,doubao等)。你可以让Claude支持不同的模型后端：</p>
+<img src="/images/20.png" alt="" width="640" height="320" style="max-width: 100%; height: auto; display: block;" />
+<h3 id="使用转接服务的方式就是修改环境变量">使用转接服务的方式就是修改环境变量</h3>
+<p>eg:</p>
+<ul>
+<li>BASE_URL=“”</li>
+<li>API_KEY=“”</li>
+</ul>
+<p>在我们的场景中，cc-switch相当于科学上网用的Clash，而API_Key和BASE_URL相当于你向Clash导入的订阅链接（由VPN提供商提供的配置文件链接）。</p>
+<p>推荐一个我们在用的API转接提供商：云雾API <a target="_blank" rel="noopener" href="https://yunwu.ai">https://yunwu.ai</a><br>
+所以你可以使用一个API_KEY去调用几乎市面上所有的大模型，体验对比使用效果，或者Benchmark各个大模型的性能表现。<br>
+MODEL HUB是提供商用于展示其支持服务的界面。<br>
+云雾API MODEL HUB： <a target="_blank" rel="noopener" href="https://yunwu.ai/console/playground">https://yunwu.ai/console/playground</a><br>
+<img src="/images/18.png" alt="" width="960" height="540" style="max-width: 100%; height: auto; display: block;" /></p>
+<p>你也可以选择直接使用模型供应商提供的API，需要在网站注册并充值，获取API：<br>
+注意，填写模型名就是该模型公布的唯一模型ID（在提供商网页中翻到）</p>
+<p>我这里提供一个DeepSeek的API供使用：sk-bea2f61ad6cd44b9a8dbb24850d71b99</p>
+<p>eg：</p>
+<h3 id="DeepSeek：">DeepSeek：</h3>
+<p>官网链接：<a target="_blank" rel="noopener" href="https://platform.deepseek.com">https://platform.deepseek.com</a><br>
+请求地址：<a target="_blank" rel="noopener" href="https://api.deepseek.com/anthropic">https://api.deepseek.com/anthropic</a><br>
+模型名：DeepSeek-V3.2</p>
+<h3 id="Qwen">Qwen:</h3>
+<p>官网链接：<a target="_blank" rel="noopener" href="https://bailian.console.aliyun.com">https://bailian.console.aliyun.com</a><br>
+请求地址：<a target="_blank" rel="noopener" href="https://dashscope.aliyuncs.com/apps/anthropic">https://dashscope.aliyuncs.com/apps/anthropic</a><br>
+模型名：qwen3-max</p>
+<h3 id="Chatgpt-5-2-转接">Chatgpt-5.2(转接)</h3>
+<p>官网链接：<a target="_blank" rel="noopener" href="https://chatgpt.com">https://chatgpt.com</a><br>
+请求地址：<a target="_blank" rel="noopener" href="https://yunwu.ai">https://yunwu.ai</a><br>
+模型名：gpt-5.2</p>
+<h1>2.设置环境变量，开代理连接</h1>
+<pre><code>setx http_proxy http://127.0.0.1:7890
+setx https_proxy http://127.0.0.1:7890
+setx HTTP_PROXY http://127.0.0.1:7890
+setx HTTPS_PROXY http://127.0.0.1:7890
+</code></pre>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Archives</a></li>
+        
+          <li><a href="/Todo-list/">Todo-list</a></li>
+        
+          <li><a href="/Timetable/">Timetable</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">安装ClaudeCode</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">1.替换Claude后端模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ClaudeCode-on-Windows%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">ClaudeCode on Windows配置方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">CC-Switch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">Further Exploration on Model Backend Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BD%AC%E6%8E%A5%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B0%B1%E6%98%AF%E4%BF%AE%E6%94%B9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">4.1.</span> <span class="toc-text">使用转接服务的方式就是修改环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DeepSeek%EF%BC%9A"><span class="toc-number">4.2.</span> <span class="toc-text">DeepSeek：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qwen"><span class="toc-number">4.3.</span> <span class="toc-text">Qwen:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chatgpt-5-2-%E8%BD%AC%E6%8E%A5"><span class="toc-number">4.4.</span> <span class="toc-text">Chatgpt-5.2(转接)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">2.设置环境变量，开代理连接</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/01/01/Claude-code/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/01/01/Claude-code/&text=Tools⚒️：Claude-code"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/01/01/Claude-code/&title=Tools⚒️：Claude-code"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/01/01/Claude-code/&is_video=false&description=Tools⚒️：Claude-code"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tools⚒️：Claude-code&body=Check out this article: http://example.com/2026/01/01/Claude-code/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/01/01/Claude-code/&title=Tools⚒️：Claude-code"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/01/01/Claude-code/&title=Tools⚒️：Claude-code"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/01/01/Claude-code/&title=Tools⚒️：Claude-code"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/01/01/Claude-code/&title=Tools⚒️：Claude-code"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/01/01/Claude-code/&name=Tools⚒️：Claude-code&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/01/01/Claude-code/&t=Tools⚒️：Claude-code"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    1984-2026
+    还没起名字组
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     --><!--
+       --><li><a href="/Todo-list/">Todo-list</a></li><!--
+     --><!--
+       --><li><a href="/Timetable/">Timetable</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'CMoments/CMoments.github.io';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

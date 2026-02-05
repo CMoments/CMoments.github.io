@@ -1,0 +1,139 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Map view</title>
+	<!-- map adapters API -->
+	<script src="//maps.google.com/maps/api/js?key=AIzaSyAmBpYILZc2Ktp2Qw8rRBX_ur7_qOGiJEk"></script>
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js?v=7.2.11"
+	integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+	crossorigin=""></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css?v=7.2.11"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js?v=7.2.11"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css?v=7.2.11" rel="stylesheet">
+
+    <script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+	
+	<style type="text/css" >
+		html, body{
+			margin:0px;
+			padding:0px;
+			height:100%;
+			overflow:hidden;
+		}
+        .controls {
+            flex: 0 0;
+            display: flex;
+            justify-content: center;
+			padding: 12px 4px; 
+            background: var(--dhx-scheduler-container-background);
+            color: var(--dhx-scheduler-container-color);
+            font-size: var(--dhx-scheduler-font-size);
+            font-family: var(--dhx-scheduler-font-family);
+        }
+
+        .map_provider_toggle{
+            background:  var(--dhx-scheduler-base-colors-primary);
+            border-radius: var(--dhx-scheduler-border-radius);
+            border: 1px solid var(--dhx-scheduler-base-colors-primary);
+            gap: 1px;
+            display:flex;
+            overflow:hidden;
+        }
+        .map_provider_toggle input {
+            display: none;
+        }
+
+        .map_provider_toggle label{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            color: var(--dhx-scheduler-base-colors-primary);
+            background: white;
+            padding: 4px 8px 6px;
+            min-width: 80px;
+			cursor:pointer;
+        }
+
+        .map_provider_toggle label:hover{
+            background: var(--dhx-scheduler-base-colors-primary-hover);
+            color: white;
+        }
+
+        .map_provider_toggle input[type="radio"]:checked + label{
+            color: white;
+            background: var(--dhx-scheduler-base-colors-primary);
+        }
+        </style>
+
+	<script charset="utf-8">
+		window.addEventListener("DOMContentLoaded", function(){
+			scheduler.plugins({
+				map_view: true
+			});
+			scheduler.config.prevent_cache = true;
+			scheduler.locale.labels.map_tab = "Map";
+			scheduler.locale.labels.section_location = "Location";
+			scheduler.xy.map_date_width = 180; // date column width
+			scheduler.xy.map_description_width = 400; // description column width
+			scheduler.config.map_start = new Date(2019, 3, 1);
+			scheduler.config.map_end = new Date(2025, 9, 1);
+			scheduler.config.map_settings.accessToken = "pk.eyJ1IjoiYWwtZS04MTIiLCJhIjoiY2xzeGh5Y2s4MDM2YTJqbzNsbzNlMzRwciJ9.sDNoj9-d6_h-twEtvgqupQ";
+			scheduler.config.map_initial_zoom = 8;
+			scheduler.config.lightbox.sections=[	
+				{ name:"description", height:50, map_to:"text", type:"textarea", focus:true },
+				{ name:"location", height:43, map_to:"event_location", type:"textarea"  },
+				{ name:"time", height:72, type:"time", map_to:"auto"}	
+			];
+
+			scheduler.init('scheduler_here', new Date(2019,5,1), "map");
+			const mapEvents = [
+				{ "id": 278, "start_date": "2024-07-22 12:10:00", "end_date": "2024-07-22 12:15:00", "text": "Sudan", "event_location": "Janub Kurdufan, Sudan", "lat": 11.199019, "lng": 29.417933 },
+				{ "id": 285, "start_date": "2024-08-01 02:40:00", "end_date": "2024-08-01 15:05:00", "text": "Ships", "event_location": "Australia", "lat": -29.532804, "lng": 145.491470 },
+				{ "id": 286, "start_date": "2024-09-15 00:00:00", "end_date": "2024-09-15 00:05:00", "text": "Argentina", "event_location": "Argentina", "lat": -38.416096, "lng": -63.616673 },
+				{ "id": 90, "start_date": "2024-09-16 00:00:00", "end_date": "2024-09-16 00:05:00", "text": "Berlin", "event_location": "Berlin", "lat": 52.523403, "lng": 13.411400 },
+				{ "id": 268, "start_date": "2024-07-22 11:35:00", "end_date": "2024-07-22 11:40:00", "text": "India", "event_location": "Brazil", "lat": -14.235004, "lng": -51.925282 }
+			];
+			scheduler.parse(mapEvents);
+            function changeMapType(value){
+                scheduler.config.map_view_provider = value;
+                scheduler.setCurrentView();
+            }
+            document.querySelector(".map_provider_toggle").addEventListener("change", function (e) {
+                changeMapType(e.target.value);
+            });
+		});
+	</script>
+	
+</head>
+
+<body >
+	<div class="controls">
+		<div class="map_provider_toggle">
+			<input type="radio" id="googleMapProvider" value="googleMap" name="mapProvider" checked>
+			<label for="googleMapProvider">Google Maps</label>
+			<input type="radio" id="osmProvider" value="openStreetMaps" name="mapProvider">
+			<label for="osmProvider">OpenStreetMaps</label>
+			<input type="radio" id="mapboxProvider" value="mapbox" name="mapProvider">
+			<label for="mapboxProvider">Mapbox</label>
+		</div>
+	</div>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:calc(100vh - 56px);'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="map"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>		
+	</div>
+</body>

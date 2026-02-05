@@ -1,0 +1,95 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Mini calendar with the recurring events</title>
+
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css"  title="no title"
+	      charset="utf-8">
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<style type="text/css" >
+		html, body {
+			margin: 0px;
+			padding: 0px;
+			height: 100%;
+			overflow: hidden;
+		}
+	</style>
+
+	<script charset="utf-8">
+
+		window.addEventListener("DOMContentLoaded", function(){
+			scheduler.plugins({
+				recurring_legacy: true,
+				minical: true
+			});
+
+			scheduler.config.multi_day = true;
+			scheduler.config.event_duration = 35;
+			scheduler.config.occurrence_timestamp_in_utc = true;
+			scheduler.config.include_end_by = true;
+			scheduler.config.repeat_precise = true;
+			scheduler.config.repeat_date = "%d-%m-%Y";
+
+			scheduler.attachEvent("onLightbox", function(){
+				var lightbox_form = scheduler.getLightbox(); // this will generate lightbox form
+				var inputs = lightbox_form.getElementsByTagName('input');
+				var date_of_end = null;
+				for (var i=0; i<inputs.length; i++) {
+					if (inputs[i].name == "date_of_end") {
+						date_of_end = inputs[i];
+						break;
+					}
+				}
+
+				var repeat_end_date_format = scheduler.date.date_to_str(scheduler.config.repeat_date);
+				var show_minical = function(){
+					if (scheduler.isCalendarVisible())
+						scheduler.destroyCalendar();
+					else {
+						scheduler.renderCalendar({
+							position:date_of_end,
+							date: scheduler.getState().date,
+							navigation:true,
+							handler:function(date,calendar) {
+								date_of_end.value = repeat_end_date_format(date);
+								scheduler.destroyCalendar();
+							}
+						});
+					}
+				};
+				date_of_end.onclick = show_minical;
+			});
+
+			scheduler.config.lightbox.sections = [
+				{ name:"description", height:50, map_to:"text", type:"textarea" , focus:true },
+				{ name:"recurring", type:"recurring", map_to:"rec_type", button:"recurring" },
+				{ name:"time", height:72, type:"calendar_time", map_to:"auto" }
+			];
+
+			scheduler.init('scheduler_here', new Date(2022, 0, 10), "week");
+
+			scheduler.load("../common/events.json", function() {
+				scheduler.showLightbox(2);
+			});
+
+		});
+
+	</script>
+</head>
+<body>
+<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+	<div class="dhx_cal_navline">
+		<div class="dhx_cal_prev_button"></div>
+		<div class="dhx_cal_next_button"></div>
+		<div class="dhx_cal_today_button"></div>
+		<div class="dhx_cal_date"></div>
+		<div class="dhx_cal_tab" data-tab="day"></div>
+		<div class="dhx_cal_tab" data-tab="week"></div>
+		<div class="dhx_cal_tab" data-tab="month"></div>
+	</div>
+	<div class="dhx_cal_header">
+	</div>
+	<div class="dhx_cal_data">
+	</div>
+</div>
+</body>

@@ -1,0 +1,42 @@
+.project-end {
+	background-color: #0ca30a;
+}
+.dhx_title{
+	--dhx-scheduler-event-title-font-size: 14px;
+	padding:3px 4px 8px;
+	flex-shrink: 0;
+	max-height: 22px;
+}
+
+
+.templates-blue{
+	--dhx-scheduler-event-background: #006266;
+}
+.templates-green{
+	--dhx-scheduler-event-background: 	#009432;
+}
+.templates-yellow{
+	--dhx-scheduler-event-background: #FFC312;
+}
+.templates-purple{
+	--dhx-scheduler-event-background: #ED4C67;
+}
+
+.disabled-day {
+
+	background-color: #f0f0f055;
+	background-image: repeating-linear-gradient(45deg,
+			#eee 10px,
+			#eee 12px,
+			transparent 12px,
+			transparent 20px);
+}
+
+[data-scheduler-theme="dark"] .disabled-day {
+	background-color: #33333355;
+	background-image: repeating-linear-gradient(45deg,
+			#444 10px,
+			#444 12px,
+			transparent 12px,
+			transparent 20px);
+}

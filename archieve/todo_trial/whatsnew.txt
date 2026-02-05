@@ -1,0 +1,196 @@
+##Version 1.3.1 (April 3, 2025)
+
+### Fixes
+
+- The build does not include the *todo.es.d.ts* and *todo.d.ts* files of imported libraries
+
+# Version 1.3.0 (February 27, 2025)
+
+### New functionality
+
+- Ability to undo and redo actions
+- Ability to customize Menus
+
+### Fixes
+
+- Tasks of a new project are not displayed after switch to another project
+- Calendar popup for due date does not close on click outside
+
+# Version 1.2.12 (November 15, 2024)
+
+### Fixes
+
+- Menus do not hide on an outer click
+
+# Version 1.2.10 (September 19, 2024)
+
+### Fixes
+
+- RestDataProvider API. Incorrect processing of temp IDs stored in arrays before sending to the server
+
+# Version 1.2.9 (August 26, 2024)
+
+### Fixes
+
+- Script error when sorting an empty project
+- Submenus don't work on touch devices
+- Incorrect types for the api object
+
+# Version 1.2.8 (February 29, 2024)
+
+### Fixes
+
+- Broken build on npm server
+
+# Version 1.2.7 (February 6, 2024)
+
+### Fixes
+
+- Problem with pressing Enter when renaming a project
+- Problem with pressing Enter when searching for projects
+- Overriding wx styles when using with complex widgets. Refer to the [Stylization](guides/stylization.md) guide for details
+
+# Version 1.2.5 (December 7, 2023)
+
+### Fixes
+
+- The script error occurs when calling the unused menu item
+
+# Version 1.2.4 (December 7, 2023)
+
+### Fixes
+
+- Moving items between new projects doesn't work
+
+# Version 1.2.3 (September 13, 2023)
+
+### Updates
+
+- An ability to import component as ES module
+
+# Version 1.2.1 (August 28, 2023)
+
+### Fixes
+- Move a datepicker to the top level
+- When opening the calendar in a task, the task text displays above the calendar
+- When opening a context menu, it has wrong positioning
+
+# Version 1.2 (May 16, 2023)
+
+### New functionality
+
+- You can prioritize your tasks using context menu or the corresponding API
+- You can sort tasks by priorities
+- Multiuser backend that allows you to track changes of other users in a real time 
+- Displaying To Do List tasks in a Table view. Integration with the JavaScript DataGrid component
+
+### New API
+
+- The **priorities** property allows you to apply an initial priority to the tasks
+
+### Updates
+
+- The **tasks** property was extended by the ***priority*** parameter. This parameter allows users to specify an initial priority
+- The **taskShape** property was extended by the ***priority*** parameter. This parameter allows user to manage the priority appearance of the card
+- The extended list of localized options
+
+### Fixes
+
+- Setting users without **users[n].avatar** property invokes an error
+
+# Version 1.1 (October 10, 2022)
+
+### Breaking changes
+
+The new release introduces some changes to the "taskShape" property. Check the Migration article to keep in step with the latest version.
+
+### New functionality
+
+- Drag-n-drop:
+    - the ability to configure or disable the functionality
+    - new events: "start-drag", "drag", "end-drag"
+- Multi-select:
+    - the ability to select and manage multiple tasks using keyboard shortcuts
+    - the ability to manage multiple tasks via menu
+    - the ability to select and manage multiple tasks via API:
+        - new "selected" property
+        - new "join" parameter for the methods: "selectTask()", "copyTask()"
+        - new "join" parameter for the events: "select-task", "copy-task"
+        - new method: "eachSelected()"
+        - updated method: "getSelection()"
+    - the ability to unselect all tasks via the "unselectTask()" method
+- To Do List with hidden completed tasks
+- Showing/hiding completed tasks:
+    - via Toolbar menu
+    - via API:
+        - new methods: "hideCompletedTasks()", "showCompletedTasks()"
+        - new events: "hide-completed-tasks", "show-completed-tasks"
+        - new hideCompleted parameter for the methods: "hasChildren()", "getChildrenIds()"
+- Task sorting:
+    - via Toolbar menu
+    - via API:
+        - new method: "setSort()"
+        - new event: "set-sort"
+        - extended list of parameters of the "tasks" property
+- New events for managing the menu: "open-menu" and "close-menu"
+
+### Updates
+
+- Extended list of locale options
+
+# Version 1.0.1 (July 5, 2022)
+
+### Fixes
+
+- Significantly improved work of API
+
+
+# Version 1.0 (June 20, 2022)
+
+### Initial functionality
+
+- The ability to load data for tasks, projects, users, tags, activeProject
+- The ability to work with projects in the following way:
+    - via API:
+        - change the active project
+        - add new projects
+        - update projects
+        - delete projects
+    - via UI:
+        - switch between projects
+        - add, rename, or delete projects
+        - search for the necessary projects
+- The ability to work with tasks in the following ways:
+    - via API:
+        - add new tasks
+        - update tasks
+        - delete tasks
+        - move tasks
+        - copy and paste tasks
+        - check and uncheck tasks
+        - collapse and expand tasks
+        - select and unselect tasks
+        - change the indent level of tasks
+        - assign and unassign users
+        - filter tasks
+    - via UI:
+        - add, copy and paste, select, move, indent/unindent, delete tasks
+        - search for tasks (by symbols or hashtags)
+        - edit tasks:
+            - edit the content of a task by double-click on it: enter text, numbers, hashtags, dates
+            - assign/unassign users
+            - set due date
+- The ability to configure tasks appearance and behavior:
+    - counter of completed subtasks
+    - date format
+    - due date validation
+    - mode of marking tasks complete
+- The ability to configure and customize Toolbar
+- Keyboard navigation
+- Read-only mode
+- Localization
+- Backend integration (Go and Node)
+- Integration with other DHTMLX widgets
+- Cross browser compatibility
+
+The full What's new list is given at https://docs.dhtmlx.com/todolist/whats_new/#version-10

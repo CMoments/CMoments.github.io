@@ -1,0 +1,92 @@
+<!doctype html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Integration with dhtmlxMenu (Suite v5.1)</title>
+
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" title="no title"
+		charset="utf-8">
+
+	<script src="//cdn.dhtmlx.com/edge/dhtmlx.js?v=7.2.11"></script>
+	<link rel="stylesheet" href="//cdn.dhtmlx.com/edge/dhtmlx.css?v=7.2.11" type="text/css">
+
+	<style>
+		html,
+		body {
+			margin: 0px;
+			padding: 0px;
+			height: 100%;
+			overflow: hidden;
+		}
+	</style>
+
+	<script>
+		window.addEventListener('DOMContentLoaded', function (event) {
+			scheduler.config.multi_day = true;
+			scheduler.config.first_hour = 8;
+			scheduler.config.limit_time_select = true;
+
+			scheduler.init('scheduler_here', new Date(2022, 7, 10), "week");
+			scheduler.load("../common/events.json");
+
+			var menu = new dhtmlXMenuObject();
+			menu.setIconsPath("./data/imgs/");
+			menu.renderAsContextMenu();
+			menu.loadStruct("./data/dhxmenu.xml?e=" + new Date().getTime());
+
+			scheduler.attachEvent("onContextMenu", function (event_id, native_event_object) {
+				if (event_id) {
+					var posx = 0;
+					var posy = 0;
+					if (native_event_object.pageX || native_event_object.pageY) {
+						posx = native_event_object.pageX;
+						posy = native_event_object.pageY;
+					} else if (native_event_object.clientX || native_event_object.clientY) {
+						posx = native_event_object.clientX + document.body.scrollLeft + document
+							.documentElement
+							.scrollLeft;
+						posy = native_event_object.clientY + document.body.scrollTop + document
+							.documentElement
+							.scrollTop;
+					}
+					menu.showContextMenu(posx, posy);
+					return false; // prevent default action and propagation
+				}
+				return true;
+			});
+
+			scheduler.message({
+				text: "Right-click on event to see the menu",
+				expire: -1
+			});
+
+			scheduler.message({
+				text: "This example uses dhtmlxSuite v5.1",
+				expire: 1000 * 30
+			});
+			scheduler.message({
+				text: "This example uses dhtmlxMenu which can be used under GPLv2 license or has to be obtained separately. <br><br> You can do this or use a third-party drop down menu widget instead.",
+				expire: 1000 * 30
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+	</div>
+</body>

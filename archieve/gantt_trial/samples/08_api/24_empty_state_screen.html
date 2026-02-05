@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>Show empty state screen</title>
+<script src="../../codebase/dhtmlxgantt.js?v=9.1.1"></script>
+<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css?v=9.1.1">
+<link rel="stylesheet" href="../common/controls_styles.css?v=7.1.7">
+
+<style>
+  html,
+  body {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+  }
+</style>
+
+</head>
+
+<body>
+
+<div class="gantt_control" >
+  <input type=button value="Toggle grid" onclick="toggleGrid()">
+</div>
+
+<div id="gantt_here" style="width: 100%; height: 90%;position: relative;"></div>
+
+  <script>
+
+
+  function toggleGrid(){
+    gantt.config.show_grid = !gantt.config.show_grid;
+    gantt.render();
+  }
+
+  gantt.config.show_empty_state = true;
+
+  gantt.config.start_date = new Date(2025, 04, 01);
+  gantt.config.end_date = new Date(2025, 05, 01);
+  gantt.init("gantt_here");
+
+  gantt.attachEvent("onLightboxSave", function(id, task, is_new){
+    let repaint = false;
+    if (+task.start_date <= +gantt.config.start_date){
+      gantt.config.start_date = gantt.date.add(task.start_date, -1, "day");
+      repaint = true;
+    }
+    if (+gantt.config.end_date <= +task.end_date){
+      gantt.config.end_date = gantt.date.add(task.end_date, 1, "day");
+      repaint = true;
+    }
+    if (repaint){
+      gantt.render();
+    }
+
+    return true;
+  })
+
+
+</script>
+</body>

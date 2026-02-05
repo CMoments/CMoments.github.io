@@ -1,0 +1,81 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Dark skin</title>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+	<script src="//maps.google.com/maps/api/js?key=AIzaSyAmBpYILZc2Ktp2Qw8rRBX_ur7_qOGiJEk"></script>
+	<style>
+		html, body{
+			margin:0px;
+			padding:0px;
+			height:100%;
+			overflow:hidden;
+		}
+
+		.violet{
+			--dhx-scheduler-event-background: linear-gradient(180deg, #D071EF 0%, #EE71D5 100%);
+		}
+		.green{
+			--dhx-scheduler-event-background: linear-gradient(180deg, #12D979 0%, #1ECDEB 100%);
+		}
+		.yellow{
+			--dhx-scheduler-event-background: linear-gradient(180deg, #FFB725 0%, #FFBB25 31.25%, #FAEA27 100%);
+		}
+	</style>
+
+	<script>
+		window.addEventListener("DOMContentLoaded", function(){
+			scheduler.plugins({
+				quick_info: true
+			});
+
+            scheduler.skin = "dark";
+
+			scheduler.config.cascade_event_display = true;
+			scheduler.config.details_on_create = true;
+			scheduler.config.details_on_dblclick = true;
+
+			scheduler.templates.event_class = function(start, end, event){
+				return event.classname || "";
+			};
+
+			scheduler.init('scheduler_here',new Date(2024,3,20),"week");
+			scheduler.parse([
+				{ id:1, classname:"blue", start_date: "2024-04-15 02:00", end_date: "2024-04-15 10:20", text:"Product Strategy Hike" },
+				{ id:2, classname:"blue", start_date: "2024-04-15 12:00", end_date: "2024-04-15 16:00", text:"Agile Meditation and Release" },
+				{ id:3, classname:"violet", start_date: "2024-04-16 06:00", end_date: "2024-04-16 11:00", text:"Tranquil Tea Time" },
+				{ id:4, classname:"green", start_date: "2024-04-16 11:30", end_date: "2024-04-16 19:00", text:"Sprint Review and Retreat" },
+				{ id:5, classname:"violet", start_date: "2024-04-17 01:00", end_date: "2024-04-17 03:00", text:"Kayaking Workshop" },
+				{ id:6, classname:"yellow", start_date: "2024-04-17 06:00", end_date: "2024-04-17 08:00", text:"Stakeholder Sunset Yoga Session" },
+				{ id:7, classname:"green", start_date: "2024-04-17 07:00", end_date: "2024-04-17 12:00", text:"Roadmap Alignment Walk" },
+				{ id:8, classname:"violet", start_date: "2024-04-17 13:00", end_date: "2024-04-17 18:00", text:"Mindful Team Building" },
+				{ id:9, classname:"blue", start_date: "2024-04-18 01:00", end_date: "2024-04-18 18:00", text:"Cross-Functional Expedition" },
+				{ id:10, classname:"yellow", start_date: "2024-04-18 14:00", end_date: "2024-04-18 20:00", text:"User Feedback Picnic" },
+				{ id:11, classname:"blue", start_date: "2024-04-19 03:00", end_date: "2024-04-19 08:00", text:"Demo and Showcase" },
+				{ id:12, classname:"yellow", start_date: "2024-04-19 11:00", end_date: "2024-04-19 17:00", text:"Quality Assurance Spa Day" },
+				{ id:13, classname:"violet", start_date: "2024-04-20 01:00", end_date: "2024-04-20 03:00", text:"Motion Cycling Adventure" },
+				{ id:14, classname:"blue", start_date: "2024-04-20 10:00", end_date: "2024-04-20 16:00", text:"Competitor Analysis Beach Day" },
+				{ id:15, classname:"blue", start_date: "2024-04-21 02:00", end_date: "2024-04-21 06:00", text:"Creativity Painting Retreat" }
+			]);
+		});
+	</script>
+</head>
+<body>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+	</div>
+</div>

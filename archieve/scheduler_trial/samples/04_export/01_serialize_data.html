@@ -1,0 +1,87 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Serialize scheduler events</title>
+</head>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+	<link rel="stylesheet" href="../common/controls_styles.css?v=7.2.11">
+	
+<style type="text/css" >
+	html, body{
+		margin:0px;
+		padding:0px;
+		height:100%;
+		overflow:hidden;
+	}	
+	.dhx_cal_navline input{
+		width:80px;
+		position:absolute;
+		top:1px;
+		font-family:Tahoma;
+		font-weight:8pt;
+	}
+</style>
+
+
+<script charset="utf-8">
+	window.addEventListener("DOMContentLoaded", function(){
+		scheduler.plugins({
+			serialize: true
+		});
+		scheduler.config.prevent_cache = true;
+		scheduler.xy.margin_top=30;
+		
+		scheduler.init('scheduler_here',new Date(2023,0,20),"month");
+		scheduler.load("../common/events.json");
+	
+		
+		scheduler.event(document.querySelector(".sch_control [name='xml']"), "click", toXML);
+		scheduler.event(document.querySelector(".sch_control [name='json']"), "click", toJSON);
+		scheduler.event(document.querySelector(".sch_control [name='ical']"), "click", toICal);
+
+	
+		function toXML(){
+			return show(scheduler.toXML());
+		}
+		function toJSON(){
+			return show(scheduler.toJSON());
+		}
+		function toICal(){
+			return show(scheduler.toICal());
+		}
+		function show(content) {
+			scheduler.alert({
+				text: '<textarea style="max-height:300px" rows="30" cols="90" style="border:none;" data-role="none">'+content+'</textarea>',
+				type: "alert",
+				width: '700px',
+				height:'400px'
+			});
+		}
+	
+	});
+
+</script>
+
+<body>
+	<div class="sch_control">
+		<input type="button" name="xml" value="To XML"/>
+		<input type="button" name="json" value="To JSON"/>
+		<input type="button" name="ical" value="To iCal"/>
+	</div>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>		
+	</div>
+</body>

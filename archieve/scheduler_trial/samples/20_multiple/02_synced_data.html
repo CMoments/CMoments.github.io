@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Multiple schedulers with shared data source</title>
+</head>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" media="screen" title="no title" charset="utf-8">
+
+	<script src="//cdn.dhtmlx.com/site/dhtmlx.js?v=7.2.11"></script>
+	
+<style type="text/css" media="screen">
+	html, body{
+		margin:0px;
+		padding:0px;
+	}	
+</style>
+
+<script charset="utf-8">
+	window.addEventListener("DOMContentLoaded", function(){
+		var data = new dhtmlXDataStore({
+			url:"../common/events.json",
+			scheme:{
+				$init:function(obj){
+					if (typeof obj.start_date == "string"){
+						obj.start_date = scheduler.templates.parse_date(obj.start_date);
+						obj.end_date = scheduler.templates.parse_date(obj.end_date);
+					}
+				}
+			}
+		});
+
+		scheduler.config.multi_day = true;
+		scheduler.config.first_hour = 10;
+		scheduler.init('scheduler_here',new Date(2022,11,18),"week");
+		scheduler.sync(data, { copy:true });
+		
+
+
+		var scheduler2 = Scheduler.getSchedulerInstance();
+		scheduler2.config.multi_day = false;
+		scheduler2.init('scheduler_here_too',new Date(2022,11,18),"month");
+		scheduler2.sync(data, { copy:true });
+		
+	});
+</script>
+
+<body>
+	<div id="scheduler_here" class="dhx_cal_container" style='width:800px; height:600px;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+	</div>
+	<br>
+	<div id="scheduler_here_too" class="dhx_cal_container" style='width:800px; height:600px;'>
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+	</div>	
+</body>

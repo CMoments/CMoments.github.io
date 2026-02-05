@@ -1,0 +1,89 @@
+<!doctype html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Mini calendar outside the scheduler</title>
+	<script src='../../codebase/dhtmlxscheduler.js?v=7.2.11' charset="utf-8"></script>
+	<link rel='STYLESHEET' type='text/css' href='../../codebase/dhtmlxscheduler.css?v=7.2.11'>
+
+	<style type="text/css">
+		html,
+		body {
+			margin: 0px;
+			padding: 0px;
+			height: 100%;
+			overflow: hidden;
+		}
+
+
+		main {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			gap: 1px;
+			background: var(--dhx-scheduler-base-colors-border);
+		}
+
+		.sidebar-column {
+			flex: 0;
+			width: 250px;
+		}
+
+		#scheduler_here{
+			width:100%;
+			height:100%;
+		}
+
+		.dhx_calendar_click {
+			/* background-color: #C2D5FC !important; */
+		}
+	</style>
+
+	<script charset="utf-8">
+		window.addEventListener("DOMContentLoaded", function () {
+			scheduler.plugins({
+				minical: true
+			});
+
+			scheduler.config.multi_day = true;
+
+			scheduler.init('scheduler_here', new Date(2022, 9, 11), "week");
+			scheduler.load("../common/events.json");
+
+			var calendar = scheduler.renderCalendar({
+				container: "cal_here",
+				navigation: true,
+				handler: function (date) {
+					scheduler.setCurrentView(date, scheduler.getState().mode);
+				}
+			});
+			scheduler.linkCalendar(calendar);
+
+			scheduler.setCurrentView();
+		});
+	</script>
+</head>
+
+
+<body>
+	<main>
+		<aside class="sidebar-column">
+			<div id="cal_here"></div>
+		</aside>
+		<div id="scheduler_here" class="dhx_cal_container">
+			<div class="dhx_cal_navline">
+				<div class="dhx_cal_prev_button"></div>
+				<div class="dhx_cal_next_button"></div>
+				<div class="dhx_cal_today_button"></div>
+				<div class="dhx_cal_date"></div>
+				<div class="dhx_cal_tab" data-tab="day"></div>
+				<div class="dhx_cal_tab" data-tab="week"></div>
+				<div class="dhx_cal_tab" data-tab="month"></div>
+			</div>
+			<div class="dhx_cal_header">
+			</div>
+			<div class="dhx_cal_data">
+			</div>
+		</div>
+	</main>
+</body>

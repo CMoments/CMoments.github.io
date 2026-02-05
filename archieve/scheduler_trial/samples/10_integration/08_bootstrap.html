@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Bootstrap layout</title>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" charset="utf-8">
+
+	<script src="//code.jquery.com/jquery-1.11.1.min.js?v=7.2.11" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css?v=7.2.11">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css?v=7.2.11">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js?v=7.2.11"></script>
+
+	<style>
+		html, body{ height:100%; padding:0px; margin:0px; }
+		.well {
+			text-align: right;
+		}
+		.container-fluid #scheduler_here {
+			height: 700px;
+			width: 100%;
+			border: 1px solid #cecece;
+		}
+		#scheduler_here {
+			border-radius: 4px;
+		}
+	</style>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="navbar navbar-inverse">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">dhtmlxScheduler</a>
+		</div>
+	</div>
+
+	<div class="dhx_cal_container panel" id="scheduler_here">
+		<div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button"></div>
+			<div class="dhx_cal_next_button"></div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+
+			<div class="dhx_cal_tab" data-tab="day"></div>
+			<div class="dhx_cal_tab" data-tab="week"></div>
+			<div class="dhx_cal_tab" data-tab="month"></div>
+			<div class="dhx_cal_tab" data-tab="year"></div>
+		</div>
+		<div class="dhx_cal_header"></div>
+		<div class="dhx_cal_data"></div>
+	</div>
+
+	<div class="well">
+		<div>
+			<a class="logo" title="DHTMLX - JavaScript Web App Framework &amp; UI Widgets" href="//dhtmlx.com/docs/products/dhtmlxScheduler/">&copy; DHTMLX</a>
+		</div>
+	</div>
+
+</div>
+
+<script>
+	scheduler.plugins({
+		year_view: true
+	});
+	scheduler.config.first_hour = 8;
+	scheduler.config.limit_time_select = true;
+
+
+	scheduler.init('scheduler_here',new Date(2022,5,30),"week");
+	scheduler.parse([
+		{ start_date: "2022-06-30 09:00", end_date: "2022-06-30 12:00", text:"Task A-12458", section_id:1},
+		{ start_date: "2022-06-30 10:00", end_date: "2022-06-30 16:00", text:"Task A-89411", section_id:1},
+		{ start_date: "2022-06-30 10:00", end_date: "2022-06-30 14:00", text:"Task A-64168", section_id:1},
+		{ start_date: "2022-06-30 16:00", end_date: "2022-06-30 17:00", text:"Task A-46598", section_id:1},
+
+		{ start_date: "2022-06-30 12:00", end_date: "2022-06-30 20:00", text:"Task B-48865", section_id:2},
+		{ start_date: "2022-06-30 14:00", end_date: "2022-06-30 16:00", text:"Task B-44864", section_id:2},
+		{ start_date: "2022-06-30 16:30", end_date: "2022-06-30 18:00", text:"Task B-46558", section_id:2},
+		{ start_date: "2022-06-30 18:30", end_date: "2022-06-30 20:00", text:"Task B-45564", section_id:2},
+
+		{ start_date: "2022-06-30 08:00", end_date: "2022-06-30 12:00", text:"Task C-32421", section_id:3},
+		{ start_date: "2022-06-30 14:30", end_date: "2022-06-30 16:45", text:"Task C-14244", section_id:3},
+
+		{ start_date: "2022-06-30 09:20", end_date: "2022-06-30 12:20", text:"Task D-52688", section_id:4},
+		{ start_date: "2022-06-30 11:40", end_date: "2022-06-30 16:30", text:"Task D-46588", section_id:4},
+		{ start_date: "2022-06-30 12:00", end_date: "2022-06-30 18:00", text:"Task D-12458", section_id:4}
+	]);
+
+</script>
+</body>

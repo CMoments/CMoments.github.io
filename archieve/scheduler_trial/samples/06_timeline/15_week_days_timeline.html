@@ -1,0 +1,81 @@
+<!doctype html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Full week in Timeline row</title>
+
+	<script src='../../codebase/dhtmlxscheduler.js?v=7.2.11' charset="utf-8"></script>
+
+	<link rel='stylesheet' type='text/css' href='../../codebase/dhtmlxscheduler.css?v=7.2.11'>
+
+	<style type="text/css" >
+		html, body{
+			margin:0;
+			padding:0;
+			height:100%;
+			overflow:hidden;
+		}
+	</style>
+
+	<script charset="utf-8">
+		window.addEventListener("DOMContentLoaded", function(){
+			scheduler.plugins({
+				timeline: true,
+				daytimeline: true
+			});
+			scheduler.locale.labels.timeline_tab = "Timeline";
+			scheduler.locale.labels.section_custom="Section";
+			scheduler.config.details_on_create=true;
+			scheduler.config.details_on_dblclick=true;
+
+			//===============
+			//Configuration
+			//===============
+
+
+			scheduler.createTimelineView({
+				name:	"timeline",
+				x_unit:	"minute",
+				x_date:	"%H:%i",
+				x_step:	30,
+				x_size: 24,
+				x_start: 16,
+				x_length:	48,
+
+				render:"days",
+				days:7
+			});
+
+			var dateToStr = scheduler.date.date_to_str("%j %F, %l");
+			scheduler.templates["timeline_scale_label"] = function(section_id, section_label, section_options){
+				return dateToStr(section_label);
+			};
+
+			scheduler.init('scheduler_here',new Date(2022,5,30),"timeline");
+			scheduler.parse([
+				{ "id": "2", "start_date": "2022-06-30 12:00", "end_date": "2022-06-30 14:00", "text": "Section A test"},
+				{ "id": "3", "start_date": "2022-07-03 10:00", "end_date": "2022-07-06 11:00", "text": "Section B test"},
+				{ "id": "4", "start_date": "2022-06-30 16:00", "end_date": "2022-06-30 18:00", "text": "Section C test"},
+				{ "id": "5", "start_date": "2022-06-30 10:00", "end_date": "2022-06-30 15:00", "text": "Section D test"},
+				{ "id": "6", "start_date": "2022-06-29 12:00", "end_date": "2022-06-29 14:00", "text": "day before test"},
+				{ "id": "7", "start_date": "2022-07-01 12:00", "end_date": "2022-07-01 14:00", "text": "day after test"}]);
+		});
+	</script>
+</head>
+<body>
+<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+	<div class="dhx_cal_navline">
+		<div class="dhx_cal_prev_button"></div>
+		<div class="dhx_cal_next_button"></div>
+		<div class="dhx_cal_today_button"></div>
+		<div class="dhx_cal_date"></div>
+		<div class="dhx_cal_tab" data-tab="day"></div>
+		<div class="dhx_cal_tab" data-tab="week"></div>
+		<div class="dhx_cal_tab" data-tab="timeline"></div>
+		<div class="dhx_cal_tab" data-tab="month"></div>
+	</div>
+	<div class="dhx_cal_header">
+	</div>
+	<div class="dhx_cal_data">
+	</div>
+</div>
+</body>

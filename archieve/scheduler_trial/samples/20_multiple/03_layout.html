@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Using dhtmlxLayout with multiple Shedulers</title>
+</head>
+	<script src="../../codebase/dhtmlxscheduler.js?v=7.2.11" charset="utf-8"></script>
+	<link rel="stylesheet" href="../../codebase/dhtmlxscheduler.css?v=7.2.11" type="text/css" media="screen" title="no title" charset="utf-8">
+
+	<script src="//cdn.dhtmlx.com/site/dhtmlx.js?v=7.2.11"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.dhtmlx.com/site/dhtmlx.css?v=7.2.11">
+
+<style type="text/css" media="screen">
+	html, body{
+		margin:0px;
+		padding:0px; height:100%;
+	}	
+</style>
+
+<script charset="utf-8">
+	window.addEventListener("DOMContentLoaded", function(){
+
+		var dhxLayout = new dhtmlXLayoutObject(document.body, "2U");
+
+		scheduler.config.multi_day = true;
+		dhxLayout.cells("a").attachScheduler(new Date(2022,5,30), "week", null, scheduler);
+		scheduler.load("./data/units.json");
+		
+
+
+		var scheduler2 = Scheduler.getSchedulerInstance();
+		scheduler2.config.multi_day = false;
+		dhxLayout.cells("b").attachScheduler(new Date(2022,5,30), "month", null, scheduler2);
+		scheduler2.load("./data/units.json");
+		
+	});
+</script>
+
+<body>
+
+</body>

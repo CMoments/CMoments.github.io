@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Change skin dynamically</title>
+	<script src="../../codebase/dhtmlxgantt.js?v=9.1.1"></script>
+	<link id="skin" rel="stylesheet" href="../../codebase/dhtmlxgantt.css?v=9.1.1">
+	<link rel="stylesheet" href="../common/controls_styles.css?v=9.1.1">
+	<script src="https://cdn.dhtmlx.com/suite/pro/8.3/suite.js?v=9.1.1"></script>
+	<link rel="stylesheet" href="https://cdn.dhtmlx.com/suite/pro/8.3/suite.css?v=9.1.1" type="text/css" charset="utf-8">
+
+	<script src="../common/testdata.js?v=9.1.1"></script>
+	<style>
+		html,
+		body {
+			height: 100%;
+			padding: 0px;
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		html,
+		body {
+			margin: 0px;
+			padding: 0px;
+			height: 100%;
+			overflow: hidden;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		body {
+			display: flex;
+		}
+
+		.controls {
+			flex-basis: 340px;
+			background: #f1f1f1;
+			overflow: auto;
+		}
+
+		.controls select {
+			height: 32px;
+			padding: 4px 8px;
+			box-sizing: border-box;
+			width: 100%;
+			font-size: 16px;
+		}
+
+		.theme-variables {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.theme-variables__var>label {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		#style_modal {
+			left: 5% !important;
+			top: 5% !important;
+			width: 90%;
+			height: 90%;
+		}
+
+		#style_modal .gantt_popup_text,
+		#style_modal code {
+			display: block;
+			overflow: auto !important;
+			max-height: 75%;
+			background: LightGray;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class='controls'>
+	</div>
+	<div id="gantt_here" style='width:100%; height:100%'></div>
+
+
+	<script>
+		gantt.plugins({
+			quick_info: true
+		});
+		gantt.init("gantt_here");
+		gantt.parse({
+			"tasks": [
+				{ "id": 11, "text": "Project #1", "type": "project", "progress": 0.6, "open": true },
+
+				{ "id": 12, "text": "Task #1", "start_date": "03-04-2023", "duration": "5", "parent": "11", "progress": 1, "open": true },
+				{ "id": 13, "text": "Task #2", "start_date": "03-04-2023", "type": "project", "parent": "11", "progress": 0.5, "open": true },
+				{ "id": 14, "text": "Task #3", "start_date": "02-04-2023", "duration": "6", "parent": "11", "progress": 0.8, "open": true },
+				{ "id": 15, "text": "Task #4", "type": "project", "parent": "11", "progress": 0.2, "open": true },
+				{ "id": 16, "text": "Final milestone", "start_date": "15-04-2023", "type": "milestone", "parent": "11", "progress": 0, "open": true },
+
+				{ "id": 17, "text": "Task #2.1", "start_date": "03-04-2023", "duration": "2", "parent": "13", "progress": 1, "open": true },
+				{ "id": 18, "text": "Task #2.2", "start_date": "06-04-2023", "duration": "3", "parent": "13", "progress": 0.8, "open": true },
+				{ "id": 19, "text": "Task #2.3", "start_date": "10-04-2023", "duration": "4", "parent": "13", "progress": 0.2, "open": true },
+				{ "id": 20, "text": "Task #2.4", "start_date": "10-04-2023", "duration": "4", "parent": "13", "progress": 0, "open": true },
+				{ "id": 21, "text": "Task #4.1", "start_date": "03-04-2023", "duration": "4", "parent": "15", "progress": 0.5, "open": true },
+				{ "id": 22, "text": "Task #4.2", "start_date": "03-04-2023", "duration": "4", "parent": "15", "progress": 0.1, "open": true },
+				{ "id": 23, "text": "Mediate milestone", "start_date": "14-04-2023", "type": "milestone", "parent": "15", "progress": 0, "open": true }
+			],
+			"links": [
+				{ "id": "10", "source": "11", "target": "12", "type": "1" },
+				{ "id": "11", "source": "11", "target": "13", "type": "1" },
+				{ "id": "12", "source": "11", "target": "14", "type": "1" },
+				{ "id": "13", "source": "11", "target": "15", "type": "1" },
+				{ "id": "14", "source": "23", "target": "16", "type": "0" },
+				{ "id": "15", "source": "13", "target": "17", "type": "1" },
+				{ "id": "16", "source": "17", "target": "18", "type": "0" },
+				{ "id": "17", "source": "18", "target": "19", "type": "0" },
+				{ "id": "18", "source": "19", "target": "20", "type": "0" },
+				{ "id": "19", "source": "15", "target": "21", "type": "2" },
+				{ "id": "20", "source": "15", "target": "22", "type": "2" },
+				{ "id": "21", "source": "15", "target": "23", "type": "0" }
+			]
+		});
+
+
+		/* theme selector panel */
+		const form = new dhx.Form(document.querySelector(".controls"), {
+			css: "dhx_widget--bg_white dhx_widget--bordered",
+			padding: 20,
+			rows: [
+				{
+					type: "fieldset",
+					label: "Select Theme",
+					rows: [
+						{
+							type: "select",
+							label: "Theme",
+							options: [
+								{ value: "terrace", content: "Terrace" },
+								{ value: "dark", content: "Dark" },
+								{ value: "material", content: "Material" },
+								{ value: "contrast-white", content: "Contrast-White" },
+								{ value: "contrast-black", content: "Contrast-Black" },
+								{ value: "broadway", content: "Broadway" },
+								{ value: "meadow", content: "Meadow" },
+								{ value: "skyblue", content: "Skyblue" },
+
+							],
+							value: "terrace",
+							name: "theme"
+						},
+						{
+							type: "select",
+							label: "Locale",
+							options: [
+								{ value: "en", content: "en" },
+								{ value: "ar", content: "ar" },
+								{ value: "be", content: "be" },
+								{ value: "ca", content: "ca" },
+								{ value: "cn", content: "cn" },
+								{ value: "cs", content: "cs" },
+								{ value: "da", content: "da" },
+								{ value: "de", content: "de" },
+								{ value: "el", content: "el" },
+								{ value: "es", content: "es" },
+								{ value: "fi", content: "fi" },
+								{ value: "fr", content: "fr" },
+								{ value: "he", content: "he" },
+								{ value: "hu", content: "hu" },
+								{ value: "id", content: "id" },
+								{ value: "it", content: "it" },
+								{ value: "jp", content: "jp" },
+								{ value: "nb", content: "nb" },
+								{ value: "nl", content: "nl" },
+								{ value: "no", content: "no" },
+								{ value: "pl", content: "pl" },
+								{ value: "pt", content: "pt" },
+								{ value: "ro", content: "ro" },
+								{ value: "ru", content: "ru" },
+								{ value: "si", content: "si" },
+								{ value: "sk", content: "sk" },
+								{ value: "sv", content: "sv" },
+								{ value: "tr", content: "tr" },
+								{ value: "ua", content: "ua" }
+							],
+							value: "en",
+							name: "locale"
+						}
+					]
+				},
+				{
+					type: "fieldset",
+					label: "Customize Theme",
+					rows: [
+
+
+						{
+							type: "colorpicker",
+							label: "Primary Color",
+							name: "--dhx-gantt-base-colors-primary"
+						},
+						{
+							type: "colorpicker",
+							label: "Task Background Color",
+							name: "--dhx-gantt-task-background"
+						},
+						{
+							type: "colorpicker",
+							label: "Project Background Color",
+							name: "--dhx-gantt-project-background"
+						},
+						{
+							type: "colorpicker",
+							label: "Milestone Background Color",
+							name: "--dhx-gantt-milestone-background"
+						},
+						{
+							type: "colorpicker",
+							label: "Task Text Color",
+							name: "--dhx-gantt-task-color"
+						},
+						{
+							type: "colorpicker",
+							label: "Link Color",
+							name: "--dhx-gantt-link-background"
+						},
+						{
+							type: "colorpicker",
+							label: "Background Color",
+							name: "--dhx-gantt-container-background"
+						},
+						{
+							type: "colorpicker",
+							label: "Text Color",
+							name: "--dhx-gantt-container-color"
+						},
+						{
+							type: "colorpicker",
+							label: "Header Text Color",
+							name: "--dhx-gantt-scale-color"
+						},
+
+						{
+							type: "colorpicker",
+							label: "Border Color",
+							name: "--dhx-gantt-base-colors-border"
+						},
+						{
+							type: "input",
+							label: "Font Size",
+							name: "--dhx-gantt-font-size"
+						},
+						{
+							type: "input",
+							label: "Border Radius",
+							name: "--dhx-gantt-border-radius"
+						},
+						{
+							name: "save_skin",
+							type: "button",
+							text: "Save skin",
+							size: "medium",
+							view: "flat",
+							color: "primary"
+						}
+					]
+				}
+
+			]
+		});
+
+		form.events.on("change", function (name, value) {
+
+			if (name === "theme") {
+				gantt.setSkin(value);
+				onThemeChange();
+			} else if (name === "locale") {
+				gantt.i18n.setLocale(value);
+				gantt.render();
+			} else {
+				onVariableChange();
+			}
+		});
+
+		form.events.on("click", function (name, e) {
+			if (name === "save_skin") {
+				const skin = readThemeVariables()
+				let vars = [];
+				for (el in skin) {
+					vars.push(`  ${el}:${skin[el]};\n`)
+				}
+				const caption = "/* custom Gantt skin */";
+				const styles = `${caption} \n:root {\n${vars.join("")}}`;
+				const code = `<pre><code>${styles}</code></pre>`
+				const styleModal = gantt.modalbox({
+					css: "save_modal",
+					title: "Add these styles to your project",
+					text: code,
+					buttons: ["Close", "Download CSS", "Copy"],
+					callback: function (button) {
+						if (button == "1") {
+							const text = styles;
+							const filename = "ganttSkin.css?v=9.1.1";
+							const element = document.createElement('a');
+							element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+							element.setAttribute('download', filename);
+							element.style.display = 'none';
+							document.body.appendChild(element);
+							element.click();
+							document.body.removeChild(element);
+						}
+						if (button == "2") {
+							const element = document.createElement('textarea');
+							element.innerHTML = styles;
+							document.body.appendChild(element);
+
+							element.select()
+							document.execCommand('copy');
+							document.body.removeChild(element);
+						}
+					}
+				});
+				styleModal.id = "style_modal"
+			}
+		});
+
+		let ignoreChange = false;
+		onThemeChange();
+
+		function onThemeChange() {
+			ignoreChange = true;
+			applyFormValues(null);
+			form.forEach((input) => {
+				const allowedType = ["fieldset", "button"].indexOf(input.config.type) === -1;
+				const allowedName = ["theme", "locale"].indexOf(input.config.name) === -1;
+				if (allowedType && allowedName) {
+					input.clear();
+				}
+			});
+			fillInputs(readThemeVariables());// fill form variables
+			ignoreChange = false;
+		}
+
+		function onVariableChange() {
+			if (ignoreChange) return;
+			applyFormValues(readFormValues());
+		}
+
+		function getCustomizableVariables() {
+			const cssVars = [
+				"--dhx-gantt-base-colors-primary",
+				"--dhx-gantt-task-background",
+				"--dhx-gantt-project-background",
+				"--dhx-gantt-milestone-background",
+				"--dhx-gantt-task-color",
+				"--dhx-gantt-link-background",
+				"--dhx-gantt-container-background",
+				"--dhx-gantt-container-color",
+				"--dhx-gantt-scale-color",
+				"--dhx-gantt-base-colors-border",
+				"--dhx-gantt-font-size",
+				"--dhx-gantt-border-radius"
+	
+			];
+
+			return cssVars.reduce((value, property) => {
+				value[property] = '';
+				return value;
+			}, {});
+		}
+
+		function readThemeVariables() {
+			const style = getComputedStyle(document.documentElement);
+
+			const vars = getCustomizableVariables();
+			for (const property in vars) {
+				vars[property] = style.getPropertyValue(property);
+			}
+			return vars;
+		}
+
+		function fillInputs(themeVars) {
+			form.setValue(themeVars);
+		}
+
+		function readFormValues() {
+			return form.getValue();
+		}
+
+		function applyFormValues(values) {
+			let styleElement = document.querySelector("#css-vars");
+			if (!styleElement) {
+				styleElement = document.createElement("style");
+				styleElement.id = "css-vars";
+				document.querySelector("head").appendChild(styleElement);
+			}
+
+			if (!values) {
+				styleElement.innerHTML = "";
+			} else {
+				const rules = [];
+				for (const i in values) {
+					if (!values[i]) continue;
+					rules.push(`${i}: ${values[i]} !important;`);
+				}
+				styleElement.innerHTML = `:root { ${rules.join("\n")}  }`;
+			}
+		}
+	</script>
+</body>
