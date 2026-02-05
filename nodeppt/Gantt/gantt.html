@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+  <html lang="zh-CN">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>项目甘特图</title>
+
+      <!-- 引入甘特图样式 -->
+      <link rel="stylesheet" href="./dhtmlxgantt.css">
+      <style>
+          /* 自定义样式 */
+          html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          }
+
+          .gantt-container {
+              width: 100%;
+              height: 800px;
+              margin: 20px auto;
+              border: 1px solid #e1e4e8;
+              border-radius: 6px;
+              overflow: hidden;
+          }
+
+          .page-header {
+              padding: 20px;
+              background: #f6f8fa;
+              border-bottom: 1px solid #e1e4e8;
+          }
+
+          .page-header h1 {
+              margin: 0;
+              color: #24292e;
+          }
+
+          .page-header p {
+              margin: 10px 0 0;
+              color: #586069;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="page-header">
+          <h1>📅 项目进度甘特图</h1>
+          <p>实时显示项目任务进度和依赖关系</p>
+      </div>
+
+      <div id="gantt_here" class="gantt-container"></div>
+
+      <!-- 引入甘特图脚本 -->
+      <script src="./dhtmlxgantt.js"></script>
+      <script>
+          // 配置甘特图
+          gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
+
+          // 可选：设置皮肤
+          // gantt.setSkin("meadow"); // 草地风格
+          // gantt.setSkin("skyblue"); // 天空蓝风格
+          // gantt.setSkin("material"); // Material风格
+
+          // 初始化甘特图
+          gantt.init("gantt_here");
+
+          // 重要：将 YOUR_SERVER_URL 替换为你的后端服务器地址
+          const backendUrl = "http://47.108.189.123:3001";
+
+          // 从远程后端加载数据
+          gantt.load(`${backendUrl}/gantt/backend/data`);
+
+          // 创建数据处理器，自动处理CRUD操作
+          var dp = gantt.createDataProcessor({
+              url: `${backendUrl}/gantt/backend/data`,
+              mode: "REST",
+              onError: function(event) {
+                  console.error("API错误:", event);
+                  alert("操作失败，请检查网络连接或服务器状态");
+              }
+          });
+
+          // 可选：添加自定义事件处理
+          gantt.attachEvent("onAfterTaskAdd", function(id, item) {
+              console.log("任务已添加:", id, item);
+          });
+
+          gantt.attachEvent("onAfterTaskUpdate", function(id, item) {
+              console.log("任务已更新:", id, item);
+          });
+      </script>
+  </body>
+  </html>

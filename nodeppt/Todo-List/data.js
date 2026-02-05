@@ -29,7 +29,7 @@ function getData() {
         {
             "id": "4",
             "project": "introduction",
-            "text": "Toolbar功能：\n 请在上边栏Toolbar中选择对应学习周的项目。",
+            "text": "Toolbar功能：\n 请在上边栏Toolbar中选择对应学习周的项目=> Learning Week1\u{1F929}",
         },
         {
             "id": "5",
