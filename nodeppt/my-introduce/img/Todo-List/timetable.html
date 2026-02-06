@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>How to Start with DHTMLX To Do List</title>
+        <script type="text/javascript" src="./dist/todo.js"></script>  
+        <link rel="stylesheet" href="./dist/todo.css">
+		<style>
+			html, body {
+				margin: 0;
+				overflow: hidden;
+				height: 100%;
+				background: #fff;
+			}
+		</style>
+		
+		<script src="./data.js"></script>
+    </head>
+    <body>
+		<div id="toolbar"></div>
+		<div id="root"></div>
+        <script>
+				const { ToDo, Toolbar } = todo;
+				const { tasks, users, projects, priorities} = getData();
+				const list = new ToDo("#root",{
+					tasks,
+					users,
+					projects,
+					priorities,
+					// activeProject: "introduction",
+					// readonly: true
+				});
+				var id = 14;
+				list.updateTask({
+					id,
+					task: {priority: 1}
+				})
+				list.collapseTask({ 
+				    id: id,
+				});
+				var id = 15;
+				list.updateTask({
+					id,
+					task: {priority: 2}
+				})
+				list.collapseTask({ 
+				    id: id,
+				});
+				// list.updateTask({
+				// 	15,
+				// 	task: {priority: 2}
+				// })
+				const toolbar = new Toolbar("#toolbar",{
+					api: list.api,
+					// items: ["search"]
+				});
+        </script>
+    </body>
+</html>
