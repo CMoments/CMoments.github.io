@@ -138,9 +138,9 @@ function getData() {
     // data for projects
     const projects = [
 		{ "id": "introduction", "label": "Introduction to CISCN-2026 teamwork proactive" },
-        { "id": "Learning Week1", "label": "Learning Week1\u{1F929}: Agentic AI and Agent Skills Introduction" },
-        { "id": "Learning Week2", "label": "Learning Week2\u{1F914}: " },
-		{ "id": "Learning Week3", "label": "Learning Week3\u{1F914}: " },
+        { "id": "Learning Week1", "label": "Learning Week1\u{1F914}: Agentic AI and Agent Skills Introduction" },
+        { "id": "Learning Week2", "label": "Learning Week2\u{1F929}: SKill and Agent, MCP and Subagent." },
+		{ "id": "Learning Week3", "label": "Learning Week3\u{1F914}: Exploring Prebuilt Skills." },
         // more project objects
 		// { "id": "widgets", "label": "Our widgets" },
     ];
