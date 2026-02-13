@@ -27,6 +27,33 @@
 有任何安装或学习问题，随时 @ 我或发群里一起解决～
 
 
+@所有人 👨‍💻【小组任务提醒】Learning Week2 开始啦！
+
+各位组员好！下周我们正式进入 Learning Week2：SKill and Agent, MCP and Subagent. 的学习阶段，请大家提前做好准备，跟上进度哦～
+
+📌 本周重点任务：
+1️⃣ 安装 ClaudeCode 官方发布的 Skill
+请大家参照教材《Claude-code.md》完成 ClaudeCode 的安装与环境配置。如果遇到网络问题，可以使用国内镜像或按教程配置代理，确保能在本地终端正常启动使用。  
+👉 安装指南：https://cmoments.github.io/2026/01/01/Claude-code/
+👉 参考B站视频：https://www.bilibili.com/video/BV1cGigBQE6n/?spm_id_from=333.337.search-card.all.click
+
+
+2️⃣ 下周学习内容更新
+本周将学习：
+- Agent Skills L2
+学习内容已更新至我们的协作平台，请大家登录查看：
+🔗 官网地址：https://cmoments.github.io/Todo-list/
+
+👥 同步会议
+为方便大家交流进展与问题，我们安排了一次简短的周会：
+📅 时间：2026/02/13 17:00 - 17:30
+🎯 主题：Learning Week2: SKill and Agent, MCP and Subagent
+📍 会议链接：https://meeting.tencent.com/dm/3h0mOPIzjDAJ
+📞 会议号：440-676-135
+
+请大家尽量准时参加，如有问题可提前在群里提出。
+💪 我们一起加油，为下学期的竞赛打好基础！  
+有任何安装或学习问题，随时 @ 我或发群里一起解决～
 
 🧨2026 OceanBase 社区嘉年华正在直播中！🧨
 
