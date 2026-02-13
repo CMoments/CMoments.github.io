@@ -110,14 +110,28 @@ function getData() {
 			"assigned": [ "user_2", "user_1", "user_3", "user_4"],
 			"due_date": "2026-02-13T00:00:00.000Z",
 		},
+		{
+			"id": "15",
+			"project": "Learning Week2",
+			"text": "Agent Skills\u{1F4F9} \n https://www.bilibili.com/video/BV1qv6eBZErD?spm_id_from=333.788.videopod.episodes&vd_source=b1e7090f559cd11184bba2cec638592d&p=4",
+			"assigned": [ "user_2", "user_1", "user_3", "user_4"],
+			"due_date": "2026-02-20T00:00:00.000Z",		
+		},
+		{
+			"id": "16",
+			"project": "Learning Week2",
+			"text": "Agent Skills\u{1F4F9} \n https://www.bilibili.com/video/BV1qv6eBZErD?spm_id_from=333.788.videopod.episodes&vd_source=b1e7090f559cd11184bba2cec638592d&p=5",
+			"assigned": [ "user_2", "user_1", "user_3", "user_4"],
+			"due_date": "2026-02-20T00:00:00.000Z",		
+		}
     ];
 
     // data for users
 	const users = [
-		{ "id": "user_3", "label": "Shi suhuan", "avatar": "../avatar_21.jpg" },
-        { "id": "user_1", "label": "Dong haixuan", "avatar": "../avatar_02.jpg" },
-        { "id": "user_2", "label": "Zhang yuehan", "avatar": "../avatar_05.jpg" },
-		{ "id": "user_4", "label": "Liu fuxuan", "avatar": "../avatar_21.jpg" },
+		{ "id": "user_3", "label": "Shi suhuan", "avatar": "./Shi.jpg" },
+        { "id": "user_1", "label": "Dong haixuan", "avatar": "./Dong.jpg" },
+        { "id": "user_2", "label": "Zhang yuehan", "avatar": "./Zhang.jpg" },
+		{ "id": "user_4", "label": "Liu fuxuan", "avatar": "./Liu.jpg" },
         // more user objects
     ];
 
