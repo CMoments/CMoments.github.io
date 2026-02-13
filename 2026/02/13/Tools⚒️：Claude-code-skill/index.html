@@ -6,17 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="官方文档：https:&#x2F;&#x2F;code.claude.com&#x2F;docs&#x2F;zh-CN&#x2F;skills 更多Claude Skill： https:&#x2F;&#x2F;github.com&#x2F;ComposioHQ&#x2F;awesome-claude-skills https:&#x2F;&#x2F;github.com&#x2F;affaan-m&#x2F;everything-claude-code">
+    <meta name="description" content="官方文档：https:&#x2F;&#x2F;code.claude.com&#x2F;docs&#x2F;zh-CN&#x2F;skills Claude Skill Claude 官方开发了Skill的标准，并开源了16个官方默认使用的Skill。 这个应该是预装装好的，但是我在电脑没有找到，需要手动安装下来。这里记录的是如何下载安装并进行测试使用。 Claude Skill官方仓库Skill  git clone https:&#x2F;&#x2F;githu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tools⚒️：Claude-code-skill">
 <meta property="og:url" content="http://example.com/2026/02/13/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AClaude-code-skill/index.html">
 <meta property="og:site_name" content="CISCN 2026">
-<meta property="og:description" content="官方文档：https:&#x2F;&#x2F;code.claude.com&#x2F;docs&#x2F;zh-CN&#x2F;skills 更多Claude Skill： https:&#x2F;&#x2F;github.com&#x2F;ComposioHQ&#x2F;awesome-claude-skills https:&#x2F;&#x2F;github.com&#x2F;affaan-m&#x2F;everything-claude-code">
+<meta property="og:description" content="官方文档：https:&#x2F;&#x2F;code.claude.com&#x2F;docs&#x2F;zh-CN&#x2F;skills Claude Skill Claude 官方开发了Skill的标准，并开源了16个官方默认使用的Skill。 这个应该是预装装好的，但是我在电脑没有找到，需要手动安装下来。这里记录的是如何下载安装并进行测试使用。 Claude Skill官方仓库Skill  git clone https:&#x2F;&#x2F;githu">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/2026-0213-1.png">
+<meta property="og:image" content="http://example.com/images/2026-0213-1.png">
 <meta property="article:published_time" content="2026-02-13T07:07:00.000Z">
-<meta property="article:modified_time" content="2026-02-13T07:09:12.094Z">
+<meta property="article:modified_time" content="2026-02-13T07:40:54.917Z">
 <meta property="article:author" content="还没起名字组">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/2026-0213-1.png">
     
     
       
@@ -123,6 +126,10 @@
     </div>
     
     
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Claude Skill</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Step1:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Step2:</span></a></li></ol>
+      </div>
+    
   </span>
 </div>
 
@@ -161,6 +168,40 @@
 
   <div class="content e-content" itemprop="articleBody">
     <p>官方文档：<a target="_blank" rel="noopener" href="https://code.claude.com/docs/zh-CN/skills">https://code.claude.com/docs/zh-CN/skills</a></p>
+<h1>Claude Skill</h1>
+<p>Claude 官方开发了Skill的标准，并开源了16个官方默认使用的Skill。<br>
+这个应该是预装装好的，但是我在电脑没有找到，需要手动安装下来。这里记录的是如何下载安装并进行测试使用。<br>
+<a target="_blank" rel="noopener" href="https://github.com/anthropics/skills"><strong>Claude Skill官方仓库Skill</strong></a><br>
+<code><br>
+git clone <a target="_blank" rel="noopener" href="https://github.com/anthropics/skills">https://github.com/anthropics/skills</a><br>
+</code><br>
+skills-main/<br>
+├── .claude-plugin/<br>
+│   └── marketplace.json                          # Claude插件市场配置文件<br>
+├── .gitignore                                    # Git版本控制忽略文件<br>
+├── <a target="_blank" rel="noopener" href="http://README.md">README.md</a>                                     # 仓库主要说明文档<br>
+├── agent_skills_spec.md                          # 代理技能规范文档<br>
+├── THIRD_PARTY_NOTICES.md                       # 第三方许可证声明文件<br>
+├── document-skills/                              # 📄 文档处理技能包（专有）<br>
+├── algorithmic-art/                              # 🎨 算法艺术生成技能<br>
+├── artifacts-builder/                            # 🔧 HTML工件构建技能<br>
+├── brand-guidelines/                             # 🏢 品牌规范应用技能<br>
+├── canvas-design/                                # 🖼️ 画布设计技能<br>
+├── internal-comms/                              # 📧 内部沟通写作技能<br>
+├── mcp-builder/                                 # 🌐 MCP服务器构建技能<br>
+├── skill-creator/                               # 📚 技能创建指南技能<br>
+├── slack-gif-creator/                           # 🎬 Slack GIF创建技能<br>
+├── template-skill/                              # 📋 基础技能模板<br>
+├── theme-factory/                               # 🎨 主题工厂技能<br>
+└── webapp-testing/                              # 🧪 Web应用测试技能</p>
+<h1>Step1:</h1>
+<p>克隆仓库后，输入<code>explorer .</code>即可在当前终端的工作目录下打开文件管理器，找到对应文件夹。<br>
+<img src="/images/2026-0213-1.png" width="960" height="540" alt=""></p>
+<h1>Step2:</h1>
+<p>找到Claude的安装目录，默认在：C:\Users\ASUS.claude<br>
+直接把skills文件夹原封不动地拖进这个目录，即可完成安装。</p>
+<p>Claude成功识别检查方式：<br>
+<img src="/images/2026-0213-1.png" width="960" height="540" alt=""></p>
 <p>更多Claude Skill：<br>
 <a target="_blank" rel="noopener" href="https://github.com/ComposioHQ/awesome-claude-skills">https://github.com/ComposioHQ/awesome-claude-skills</a><br>
 <a target="_blank" rel="noopener" href="https://github.com/affaan-m/everything-claude-code">https://github.com/affaan-m/everything-claude-code</a></p>
@@ -196,6 +237,10 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Claude Skill</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Step1:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Step2:</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
@@ -216,6 +261,8 @@
 
     <div id="actions-footer">
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>

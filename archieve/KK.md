@@ -34,12 +34,16 @@
 📌 本周重点任务：
 1️⃣ 安装 ClaudeCode 官方发布的 Skill
 请大家参照教材《Claude-code.md》完成 ClaudeCode 的安装与环境配置。如果遇到网络问题，可以使用国内镜像或按教程配置代理，确保能在本地终端正常启动使用。  
-👉 安装指南：https://cmoments.github.io/2026/01/01/Claude-code/
+👉 安装指南：https://cmoments.github.io/2026/02/13/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AClaude-code-skill/
 👉 参考B站视频：https://www.bilibili.com/video/BV1cGigBQE6n/?spm_id_from=333.337.search-card.all.click
 
+2️⃣ (可选)尝试使用OpenCode以及深入学习Agentic AI
+开源版的ClaudeCode，用法基本一样，但无需代理和翻墙。
+👉 参考B站视频：https://www.bilibili.com/video/BV1HoF6ziEUE/?spm_id_from=333.337.search-card.all.click
+👉 参考B站视频：https://www.bilibili.com/video/BV1DfrdByE2H?spm_id_from=333.788.videopod.episodes&vd_source=b1e7090f559cd11184bba2cec638592d&
 
-2️⃣ 下周学习内容更新
-本周将学习：
+3️⃣ 下周学习内容更新
+下周将学习：
 - Agent Skills L2
 学习内容已更新至我们的协作平台，请大家登录查看：
 🔗 官网地址：https://cmoments.github.io/Todo-list/
