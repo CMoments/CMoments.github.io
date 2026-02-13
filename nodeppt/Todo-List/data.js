@@ -128,10 +128,10 @@ function getData() {
 
     // data for users
 	const users = [
-		{ "id": "user_3", "label": "Shi suhuan", "avatar": "./Shi.jpg" },
-        { "id": "user_1", "label": "Dong haixuan", "avatar": "./Dong.jpg" },
-        { "id": "user_2", "label": "Zhang yuehan", "avatar": "./Zhang.jpg" },
-		{ "id": "user_4", "label": "Liu fuxuan", "avatar": "./Liu.jpg" },
+		{ "id": "user_3", "label": "Shi suhuan", "avatar": "./Shi.png" },
+        { "id": "user_1", "label": "Dong haixuan", "avatar": "./Dong.png" },
+        { "id": "user_2", "label": "Zhang yuehan", "avatar": "./Zhang.png" },
+		{ "id": "user_4", "label": "Liu fuxuan", "avatar": "./Liu.png" },
         // more user objects
     ];
 
