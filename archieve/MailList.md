@@ -1,6 +1,6 @@
 
 **主题：本周B站视频课课件 & 小组学习计划通知**  
-CISCN2026-Week1
+CISCN2026-Week2
 **收件人：**  
 施苏桓 2744439286@qq.com  
 张越涵 2693250457@qq.com  
@@ -20,7 +20,7 @@ CISCN2026-Week1
 加油！🎉  
 
 **附件：**  
-- AgentSkill(0206).zip
+- AgentSkill(0213).zip
 
 ---  
 **发送人：**  
