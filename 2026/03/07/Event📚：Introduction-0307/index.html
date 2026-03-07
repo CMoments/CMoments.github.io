@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="摘要 本文档记录了关于量子计算编译器开发的团队会议纪要。主要目标是针对硅半导体量子硬件，开发一套高效的编译算法，将量子电路（以 Qiskit 形式表示）映射到具有特定拓扑结构的硬件上。会议明确了开发任务的核心在于处理硬件约束、优化执行顺序（Scheduling）、比特路由（Routing）及映射（Mapping），最终通过量化指标如电路保真度、执行时间和移动次数来评估算法性能，并计划通过优化这些关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Event📚：Introduction-(0307)">
+<meta property="og:url" content="http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/index.html">
+<meta property="og:site_name" content="Quantum Error Correction on Silicon Semiconductor">
+<meta property="og:description" content="摘要 本文档记录了关于量子计算编译器开发的团队会议纪要。主要目标是针对硅半导体量子硬件，开发一套高效的编译算法，将量子电路（以 Qiskit 形式表示）映射到具有特定拓扑结构的硬件上。会议明确了开发任务的核心在于处理硬件约束、优化执行顺序（Scheduling）、比特路由（Routing）及映射（Mapping），最终通过量化指标如电路保真度、执行时间和移动次数来评估算法性能，并计划通过优化这些关">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-07T08:37:54.000Z">
+<meta property="article:modified_time" content="2026-03-07T08:39:35.427Z">
+<meta property="article:author" content="$">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Event📚：Introduction-(0307)</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     --><!--
+       --><li><a href="/Todo-list/">Todo-list</a></li><!--
+     --><!--
+       --><li><a href="/Timetable/">Timetable</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&text=Event📚：Introduction-(0307)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&title=Event📚：Introduction-(0307)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&is_video=false&description=Event📚：Introduction-(0307)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Event📚：Introduction-(0307)&body=Check out this article: http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&title=Event📚：Introduction-(0307)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&title=Event📚：Introduction-(0307)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&title=Event📚：Introduction-(0307)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&title=Event📚：Introduction-(0307)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&name=Event📚：Introduction-(0307)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&t=Event📚：Introduction-(0307)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E7%82%B9"><span class="toc-number">1.1.</span> <span class="toc-text">重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">1.2.</span> <span class="toc-text">思考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AF%E8%AF%AD%E8%A7%A3%E9%87%8A"><span class="toc-number">1.3.</span> <span class="toc-text">术语解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E7%AB%A0%E8%8A%82%E6%80%BB%E7%BB%93-%EF%BD%9C-%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%BC%96%E8%AF%91%E5%99%A8%E6%A0%B8%E5%BF%83%E8%A7%A3%E6%9E%90%EF%BC%9A%E4%BB%8E%E7%94%B5%E8%B7%AF%E7%BC%96%E8%AF%91%E5%88%B0%E5%8D%8A%E5%AF%BC%E4%BD%93%E7%A1%AC%E4%BB%B6%E6%98%A0%E5%B0%84%E7%9A%84%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97"><span class="toc-number">2.</span> <span class="toc-text">视频章节总结 ｜ 量子计算编译器核心解析：从电路编译到半导体硬件映射的实战指南</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E9%87%8F%E5%AD%90%E7%94%B5%E8%B7%AF%E7%BC%96%E8%AF%91%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">⚙️ 量子电路编译的核心原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%AC-%E7%A1%85%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%B9%B3%E5%8F%B0%E7%9A%84%E7%89%B9%E6%80%A7%E4%B8%8E%E7%BA%A6%E6%9D%9F"><span class="toc-number">2.2.</span> <span class="toc-text">🔬 硅半导体平台的特性与约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8A-%E7%BC%96%E8%AF%91%E5%99%A8%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="toc-number">2.3.</span> <span class="toc-text">📊 编译器架构与性能评估指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%80-%E7%A7%91%E7%A0%94%E5%8D%8F%E4%BD%9C%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E8%B7%B5%E8%B7%AF%E7%BA%BF"><span class="toc-number">2.4.</span> <span class="toc-text">🚀 科研协作与代码实践路线</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Event📚：Introduction-(0307)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">$</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-03-07T08:37:54.000Z" class="dt-published" itemprop="datePublished">2026-03-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="摘要">摘要</h2>
+<p>本文档记录了关于量子计算编译器开发的团队会议纪要。主要目标是针对硅半导体量子硬件，开发一套高效的编译算法，将量子电路（以 Qiskit 形式表示）映射到具有特定拓扑结构的硬件上。会议明确了开发任务的核心在于处理硬件约束、优化执行顺序（Scheduling）、比特路由（Routing）及映射（Mapping），最终通过量化指标如电路保真度、执行时间和移动次数来评估算法性能，并计划通过优化这些关键环节以支持量子纠错（QEC）码的实现。</p>
+<h3 id="重点">重点</h3>
+<ul>
+<li>量子电路优化需要将大的矩阵逻辑拆分为原生门，并根据硬件的物理拓扑约束进行映射，以最小化门操作的额外代价 [00:15]。</li>
+<li>在硅半导体量子处理器中，由于拓扑限制，比特间的相互作用需要通过受控的电压隧道机制来实现物理位置的移动，这需要在编译过程中精确建模 [03:45]。</li>
+<li>编译器的核心功能是接收 Qiskit 格式的量子纠错代码，通过设计特定的调度与路由算法，实现对电路执行顺序的自动化控制 [07:15]。</li>
+<li>研究团队致力于提升量子电路的关键性能指标，包括量子比特的移动次数、电路整体执行时间以及系统最终的保真度 [05:40]。</li>
+<li>项目组将基于现有的基础编译代码框架进行扩展，并结合大模型工具（如 GPT）辅助理解复杂代码逻辑，以期在 4 月 15 日的截止日期前完成论文投稿。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://bibigpt.co/search?q=%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97">#量子计算</a> <a target="_blank" rel="noopener" href="https://bibigpt.co/search?q=%E7%BC%96%E8%AF%91%E5%99%A8%E8%AE%BE%E8%AE%A1">#编译器设计</a> <a target="_blank" rel="noopener" href="https://bibigpt.co/search?q=%E7%A1%85%E5%8D%8A%E5%AF%BC%E4%BD%93">#硅半导体</a> <a target="_blank" rel="noopener" href="https://bibigpt.co/search?q=%E9%87%8F%E5%AD%90%E7%BA%A0%E9%94%99">#量子纠错</a> <a target="_blank" rel="noopener" href="https://bibigpt.co/search?q=Qiskit">#Qiskit</a></p>
+<h3 id="思考">思考</h3>
+<ol>
+<li><strong><a href="">为什么在硅半导体量子芯片中需要专门设计比特移动（Routing）算法？</a></strong></li>
+</ol>
+<ul>
+<li>因为硅半导体芯片中的量子比特需要通过改变特定线路电压来改变物理位置，从而与相邻比特进行交互；若硬件拓扑不支持直接的 CNOT 门操作，就必须通过额外的交换（Swap）和移动操作来满足约束，因此需要算法来优化这些移动路径以减少额外代价。</li>
+</ul>
+<ol start="2">
+<li><strong><a href="">团队开发编译器的最终评价标准是什么？</a></strong></li>
+</ol>
+<ul>
+<li>主要评价标准包括：电路在硬件上的执行总时间、量子比特的物理移动次数，以及系统输出的最终保真度；通过对比不同调度策略在这些指标上的表现，从而指导硬件操作方案的优化。</li>
+</ul>
+<h3 id="术语解释">术语解释</h3>
+<ul>
+<li><strong>映射 (Mapping)</strong>: 将逻辑量子门电路转化为对应硬件物理比特及操作序列的过程，需考虑硬件的连通性约束。</li>
+<li><strong>调度 (Scheduling)</strong>: 确定电路中各个量子门执行的先后顺序，是优化电路执行时间及降低噪声积累的关键步骤。</li>
+<li><strong>路由 (Routing)</strong>: 在受限的物理硬件拓扑中，通过插入交换门或移动操作，使目标量子比特能够进行逻辑交互的过程。</li>
+<li><strong>量子纠错 (QEC)</strong>: 利用量子编码技术保护量子信息免受噪声干扰，是实现大规模、高可靠性量子计算的核心技术。</li>
+<li><strong>保真度 (Fidelity)</strong>: 量子计算中用于衡量量子态或逻辑门操作准确性的度量指标，保真度越高，计算结果越接近理想值。</li>
+</ul>
+<hr>
+<h2 id="视频章节总结-｜-量子计算编译器核心解析：从电路编译到半导体硬件映射的实战指南">视频章节总结 ｜ 量子计算编译器核心解析：从电路编译到半导体硬件映射的实战指南</h2>
+<p>本视频深入探讨了量子计算领域中电路编译器的设计与实现，重点关注如何将优化后的量子电路映射到具体的硬件拓扑结构上。演讲者陈峰详细阐述了针对硅半导体量子芯片的编译器架构，包括电路的Mapping、Routing和Scheduling过程。通过分析量子电路与硬件约束的匹配关系，目标在于最小化电路执行的额外代价（如交换门操作），并提升量子纠错（QEC）码的保真度与效率。视频不仅分享了底层的技术架构和算法思路，还提供了实际的学术参考资料和代码实践建议，旨在指导团队快速上手相关科研任务，为后续论文撰写和实验对比奠定基础。</p>
+<h3 id="⚙️-量子电路编译的核心原理">⚙️ 量子电路编译的核心原理</h3>
+<p>本章节介绍了量子编译器在电路映射中的基础角色。首先将大规模量子矩阵拆分为原生门，并进行初步优化处理。核心目标是在给定的硬件约束条件下，通过合理的Mapping和Scheduling操作，使电路的执行代价最小化。通过分析超导拓扑的实例，解释了在不同比特间执行CNOT门时，如何通过插入交换门来解决连接受限的问题，从而得出最优的硬件执行顺序。</p>
+<h3 id="🔬-硅半导体平台的特性与约束">🔬 硅半导体平台的特性与约束</h3>
+<p>针对半导体量子芯片，详细分析了其n乘n矩阵结构的硬件限制与运行机制。解释了比特在物理空间中的移动如何通过控制电压产生隧道效应来实现，并强调了必须参考硬件规范手册进行设计。指出了如果不严格遵守硬件约束，最终输出的编译结果将导致错误。通过此部分内容，明确了团队需要根据硬件的具体物理特性来设计编译器算法。</p>
+<h3 id="📊-编译器架构与性能评估指标">📊 编译器架构与性能评估指标</h3>
+<p>阐述了编译器处理量子电路的完整流程，即接收Qiskit形式的量子电路，经过编译器、调度器处理，最终生成硬件可执行的方案。视频重点强调了评估编译性能的关键指标，包括逻辑门的移动次数、电路执行总时间和系统保真度。同时明确了现有项目已处理好拆门逻辑，后续重点在于将这些门映射至特定硬件拓扑，并对不同实验方案的效果进行对比。</p>
+<h3 id="🚀-科研协作与代码实践路线">🚀 科研协作与代码实践路线</h3>
+<p>本章节主要讨论了后续科研任务的执行路径与资源共享。演讲者承诺将提供核心代码库和相关的学术论文，引导团队成员在既有基础上开发新分支，实现针对QEC性质的定制化优化。建议利用AI工具辅助理解现有代码逻辑，并计划在4月15日前完成相关研究论文的撰写与投稿。最后确认了技术栈主要基于Qiskit，明确了下一步的具体分工与协作流程。</p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Archives</a></li>
+        
+          <li><a href="/Todo-list/">Todo-list</a></li>
+        
+          <li><a href="/Timetable/">Timetable</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E7%82%B9"><span class="toc-number">1.1.</span> <span class="toc-text">重点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">1.2.</span> <span class="toc-text">思考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AF%E8%AF%AD%E8%A7%A3%E9%87%8A"><span class="toc-number">1.3.</span> <span class="toc-text">术语解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E7%AB%A0%E8%8A%82%E6%80%BB%E7%BB%93-%EF%BD%9C-%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%BC%96%E8%AF%91%E5%99%A8%E6%A0%B8%E5%BF%83%E8%A7%A3%E6%9E%90%EF%BC%9A%E4%BB%8E%E7%94%B5%E8%B7%AF%E7%BC%96%E8%AF%91%E5%88%B0%E5%8D%8A%E5%AF%BC%E4%BD%93%E7%A1%AC%E4%BB%B6%E6%98%A0%E5%B0%84%E7%9A%84%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97"><span class="toc-number">2.</span> <span class="toc-text">视频章节总结 ｜ 量子计算编译器核心解析：从电路编译到半导体硬件映射的实战指南</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E9%87%8F%E5%AD%90%E7%94%B5%E8%B7%AF%E7%BC%96%E8%AF%91%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">⚙️ 量子电路编译的核心原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%AC-%E7%A1%85%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%B9%B3%E5%8F%B0%E7%9A%84%E7%89%B9%E6%80%A7%E4%B8%8E%E7%BA%A6%E6%9D%9F"><span class="toc-number">2.2.</span> <span class="toc-text">🔬 硅半导体平台的特性与约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8A-%E7%BC%96%E8%AF%91%E5%99%A8%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="toc-number">2.3.</span> <span class="toc-text">📊 编译器架构与性能评估指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%80-%E7%A7%91%E7%A0%94%E5%8D%8F%E4%BD%9C%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E8%B7%B5%E8%B7%AF%E7%BA%BF"><span class="toc-number">2.4.</span> <span class="toc-text">🚀 科研协作与代码实践路线</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&text=Event📚：Introduction-(0307)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&title=Event📚：Introduction-(0307)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&is_video=false&description=Event📚：Introduction-(0307)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Event📚：Introduction-(0307)&body=Check out this article: http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&title=Event📚：Introduction-(0307)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&title=Event📚：Introduction-(0307)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&title=Event📚：Introduction-(0307)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&title=Event📚：Introduction-(0307)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&name=Event📚：Introduction-(0307)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/03/07/Event%F0%9F%93%9A%EF%BC%9AIntroduction-0307/&t=Event📚：Introduction-(0307)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    1984-2026
+    $
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     --><!--
+       --><li><a href="/Todo-list/">Todo-list</a></li><!--
+     --><!--
+       --><li><a href="/Timetable/">Timetable</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'CMoments/CMoments.github.io';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>
