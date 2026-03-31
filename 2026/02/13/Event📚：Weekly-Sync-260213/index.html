@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="🎯Claude使用Skill的原理 扫描 找到所有SKILL.md find ~&#x2F;.claude&#x2F;skills&#x2F; -name “SKILL.md” → ~&#x2F;.claude&#x2F;skills&#x2F;blog-update-analyzer&#x2F;SKILL.md 读取 读取 SKILL.md → 了解功能和步骤 必要时 → 读取 reference&#x2F; 中的详细文档 执行 用户指令 → 识别技能 → 按步骤执行">
+    <meta name="description" content="🎯Claude使用Skill的原理 找到所有SKILL.md find ~&#x2F;.claude&#x2F;skills&#x2F; -name “SKILL.md” → ~&#x2F;.claude&#x2F;skills&#x2F;blog-update-analyzer&#x2F;SKILL.md 扫描-&gt;读取 SKILL.md → 了解功能和步骤 必要时 → 读取 reference&#x2F; 中的详细文档 -&gt;执行 用户指令 → 识别技能 →">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Event📚：Weekly-Sync-(260213)">
 <meta property="og:url" content="http://example.com/2026/02/13/Event%F0%9F%93%9A%EF%BC%9AWeekly-Sync-260213/index.html">
 <meta property="og:site_name" content="CISCN 2026">
-<meta property="og:description" content="🎯Claude使用Skill的原理 扫描 找到所有SKILL.md find ~&#x2F;.claude&#x2F;skills&#x2F; -name “SKILL.md” → ~&#x2F;.claude&#x2F;skills&#x2F;blog-update-analyzer&#x2F;SKILL.md 读取 读取 SKILL.md → 了解功能和步骤 必要时 → 读取 reference&#x2F; 中的详细文档 执行 用户指令 → 识别技能 → 按步骤执行">
+<meta property="og:description" content="🎯Claude使用Skill的原理 找到所有SKILL.md find ~&#x2F;.claude&#x2F;skills&#x2F; -name “SKILL.md” → ~&#x2F;.claude&#x2F;skills&#x2F;blog-update-analyzer&#x2F;SKILL.md 扫描-&gt;读取 SKILL.md → 了解功能和步骤 必要时 → 读取 reference&#x2F; 中的详细文档 -&gt;执行 用户指令 → 识别技能 →">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-02-13T02:16:57.000Z">
-<meta property="article:modified_time" content="2026-02-13T10:41:24.116Z">
+<meta property="article:modified_time" content="2026-02-28T01:14:12.931Z">
 <meta property="article:author" content="还没起名字组">
 <meta name="twitter:card" content="summary">
     
@@ -94,7 +94,7 @@
         <li><a class="icon" aria-label="Previous post" href="/2026/02/13/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AClaude-code-skill/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2026/02/06/News%F0%9F%A4%A9%EF%BC%9AAgent%E8%83%BD%E5%8A%9B%E8%BE%B9%E7%95%8C%E4%B8%8E%E5%AE%89%E5%85%A8%E6%8C%91%E6%88%98/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2026/02/05/Event%F0%9F%93%9A%EF%BC%9AWeekly-Sync-260206/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -166,27 +166,17 @@
   <div class="content e-content" itemprop="articleBody">
     <iframe src="../../../../nodeppt/Weekly-Sync/weekly-sync2.html" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame"></iframe>
 <h1>🎯Claude使用Skill的原理</h1>
-<p>扫描</p>
 <h1><a target="_blank" rel="noopener" href="http://xn--SKILL-6o6ho37geoaw15a.md">找到所有SKILL.md</a></h1>
 <p>find ~/.claude/skills/ -name “<a target="_blank" rel="noopener" href="http://SKILL.md">SKILL.md</a>”</p>
 <h1>→ ~/.claude/skills/blog-update-analyzer/SKILL.md</h1>
-<p>读取</p>
-<p>读取 <a target="_blank" rel="noopener" href="http://SKILL.md">SKILL.md</a> → 了解功能和步骤<br>
-必要时 → 读取 reference/ 中的详细文档</p>
-<p>执行</p>
+<p>扫描-&gt;读取 <a target="_blank" rel="noopener" href="http://SKILL.md">SKILL.md</a> → 了解功能和步骤<br>
+必要时 → 读取 reference/ 中的详细文档<br>
+-&gt;执行</p>
 <p>用户指令 → 识别技能 → 按步骤执行 → 调用scripts/ → 生成报告</p>
-<hr>
 <p>💡 总结</p>
 <p>✅ <a target="_blank" rel="noopener" href="http://SKILL.md">SKILL.md</a> - 定义&quot;是什么&quot;和&quot;怎么做&quot;<br>
 ✅ scripts/ - 提供&quot;工具&quot;<br>
 ✅ reference/ - 提供&quot;细节&quot;</p>
-<p>现在这个技能完全符合官方标准，可以：</p>
-<ul>
-<li>在任何项目中被识别</li>
-<li>与其他官方技能共存</li>
-<li>易于共享和维护</li>
-</ul>
-<p>下次你想创建新技能时，记得使用这个标准格式！🎉</p>
 
   </div>
 </article>

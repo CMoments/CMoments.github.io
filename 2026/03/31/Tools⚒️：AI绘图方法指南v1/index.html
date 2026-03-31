@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="AI 绘图方法指南v1  使用 Nano Banana Pro（Google AI Studio &#x2F; Google Flow）生成高质量架构图   一、核心 Prompt 模板（可直接复制丢给AI） 1.1 Prompt 模板1 123456789101112131415161718# Role你是一位 CVPR&#x2F;NeurIPS 顶刊的视觉架构师。你的核心能力是将抽象的论文逻辑转化为具体的、结构化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tools⚒️：AI绘图方法指南v1">
+<meta property="og:url" content="http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/index.html">
+<meta property="og:site_name" content="CISCN 2026">
+<meta property="og:description" content="AI 绘图方法指南v1  使用 Nano Banana Pro（Google AI Studio &#x2F; Google Flow）生成高质量架构图   一、核心 Prompt 模板（可直接复制丢给AI） 1.1 Prompt 模板1 123456789101112131415161718# Role你是一位 CVPR&#x2F;NeurIPS 顶刊的视觉架构师。你的核心能力是将抽象的论文逻辑转化为具体的、结构化">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/Users/suesze/Desktop/%E6%88%AA%E5%B1%8F2026-03-27%2014.09.12.png">
+<meta property="article:published_time" content="2026-03-31T03:15:47.000Z">
+<meta property="article:modified_time" content="2026-03-31T03:17:14.190Z">
+<meta property="article:author" content="还没起名字组">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/Users/suesze/Desktop/%E6%88%AA%E5%B1%8F2026-03-27%2014.09.12.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Tools⚒️：AI绘图方法指南v1</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     --><!--
+       --><li><a href="/Todo-list/">Todo-list</a></li><!--
+     --><!--
+       --><li><a href="/Timetable/">Timetable</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2026/03/31/Reference%F0%9F%93%93%EF%BC%9A%E5%BE%80%E5%B1%8A%E6%8A%A5%E5%91%8A%E4%B9%A6%E4%B8%8EPPT/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/03/27/Paper%F0%9F%8F%9B%EF%BC%9AShamir/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&text=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&title=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&is_video=false&description=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tools⚒️：AI绘图方法指南v1&body=Check out this article: http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&title=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&title=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&title=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&title=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&name=Tools⚒️：AI绘图方法指南v1&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&t=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">AI 绘图方法指南v1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A0%B8%E5%BF%83-Prompt-%E6%A8%A1%E6%9D%BF%EF%BC%88%E5%8F%AF%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6%E4%B8%A2%E7%BB%99AI%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">一、核心 Prompt 模板（可直接复制丢给AI）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Prompt-%E6%A8%A1%E6%9D%BF1"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 Prompt 模板1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-The-Golden-Schema"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 输出格式(The Golden Schema)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E9%A3%8E%E6%A0%BC%E5%8F%82%E8%80%83%E4%B8%8E%E6%89%A7%E8%A1%8C%E6%8C%87%E4%BB%A4%EF%BC%88%E8%BF%99%E9%87%8C123%E4%B8%89%E7%82%B9%E5%86%8D%E5%8A%A0%E4%B8%8A1-2%E7%9A%84%E8%BE%93%E5%87%BA%E5%B0%B1%E6%98%AF%E4%B8%A2%E7%BB%99nano-banana%E7%9A%84prompt%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 风格参考与执行指令（这里123三点再加上1.2的输出就是丢给nano banana的prompt）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.2.</span> <span class="toc-text">二、使用平台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Google-AI-Studio"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 Google AI Studio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Google-Flow"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 Google Flow</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%99%85%E6%95%88%E6%9E%9C%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">三、实际效果示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">四、使用步骤总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90"><span class="toc-number">1.5.</span> <span class="toc-text">五、参考资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.6.</span> <span class="toc-text">六、注意事项</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Tools⚒️：AI绘图方法指南v1
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">还没起名字组</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-03-31T03:15:47.000Z" class="dt-published" itemprop="datePublished">2026-03-31</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1>AI 绘图方法指南v1</h1>
+<blockquote>
+<p>使用 Nano Banana Pro（Google AI Studio / Google Flow）生成高质量架构图</p>
+</blockquote>
+<hr>
+<h2 id="一、核心-Prompt-模板（可直接复制丢给AI）">一、核心 Prompt 模板（可直接复制丢给AI）</h2>
+<h3 id="1-1-Prompt-模板1">1.1 Prompt 模板1</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># Role</span><br><span class="line">你是一位 CVPR/NeurIPS 顶刊的视觉架构师。你的核心能力是将抽象的论文逻辑转化为具体的、结构化的、几何级的视觉指令。</span><br><span class="line"></span><br><span class="line"># Objective</span><br><span class="line">阅读我提供的论文内容，输出一份 [VISUAL SCHEMA]。这份 Schema 将被直接发送给 AI 绘图模型，因此必须使用强硬的物理描述。</span><br><span class="line"></span><br><span class="line"># Phase 1: Layout Strategy Selector (关键步骤：布局决策)</span><br><span class="line">在生成 Schema 之前，请先分析论文逻辑，从以下布局原型中选择最合适的一个（或组合）：</span><br><span class="line">1. Linear Pipeline: 左→右流向 (适合 Data Processing, Encoding-Decoding)。</span><br><span class="line">2. Cyclic/Iterative: 中心包含循环箭头 (适合 Optimization, RL, Feedback Loops)。</span><br><span class="line">3. Hierarchical Stack: 上→下或下→上堆叠 (适合 Multiscale features, Tree structures)。</span><br><span class="line">4. Parallel/Dual-Stream: 上下平行的双流结构 (适合 Multi-modal fusion, Contrastive Learning)。</span><br><span class="line">5. Central Hub: 一个核心模块连接四周组件 (适合 Agent-Environment, Knowledge Graphs)。</span><br><span class="line"></span><br><span class="line"># Phase 2: Schema Generation Rules</span><br><span class="line">1. Dynamic Zoning: 根据选择的布局，定义 2-5 个物理区域 (Zones)。不要局限于 3 个。</span><br><span class="line">2. Internal Visualization: 必须定义每个区域内部的&quot;物体&quot; (Icons, Grids, Trees)，禁止使用抽象概念。</span><br><span class="line">3. Explicit Connections: 如果是循环过程，必须明确描述 &quot;Curved arrow looping back from Zone X to Zone Y&quot;。</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-输出格式-The-Golden-Schema">1.2 输出格式(The Golden Schema)</h3>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">---BEGIN PROMPT---</span><br><span class="line"></span><br><span class="line">[Style &amp; Meta-Instructions]</span><br><span class="line">High-fidelity scientific schematic, technical vector illustration, clean white background, distinct boundaries, academic textbook style. High resolution 4k, strictly 2D flat design with subtle isometric elements.</span><br><span class="line"></span><br><span class="line">[LAYOUT CONFIGURATION]</span><br><span class="line"><span class="bullet">*</span> <span class="strong">**Selected Layout**</span>: [例如：Cyclic Iterative Process with 3 Nodes]</span><br><span class="line"><span class="bullet">*</span> <span class="strong">**Composition Logic**</span>: [例如：A central triangular feedback loop surrounded by input/output panels]</span><br><span class="line"><span class="bullet">*</span> <span class="strong">**Color Palette**</span>: Professional Pastel (Azure Blue, Slate Grey, Coral Orange, Mint Green).</span><br><span class="line"></span><br><span class="line">[ZONE 1: LOCATION - LABEL]</span><br><span class="line"><span class="bullet">*</span> <span class="strong">**Container**</span>: [形状描述, e.g., Top-Left Panel]</span><br><span class="line"><span class="bullet">*</span> <span class="strong">**Visual Structure**</span>: [具体描述, e.g., A stack of documents]</span><br><span class="line"><span class="bullet">*</span> <span class="strong">**Key Text Labels**</span>: &quot;[Text 1]&quot;</span><br><span class="line"></span><br><span class="line">[ZONE 2: LOCATION - LABEL]</span><br><span class="line"><span class="bullet">*</span> <span class="strong">**Container**</span>: [形状描述, e.g., Central Circular Engine]</span><br><span class="line"><span class="bullet">*</span> <span class="strong">**Visual Structure**</span>: [具体描述, e.g., A clockwise loop connecting 3 internal modules: A (Gear), B (Graph), C (Filter)]</span><br><span class="line"><span class="bullet">*</span> <span class="strong">**Key Text Labels**</span>: &quot;[Text 2]&quot;, &quot;[Text 3]&quot;</span><br><span class="line"></span><br><span class="line">[ZONE 3: LOCATION - LABEL]</span><br><span class="line">... (Add Zone 4/5 if necessary based on layout)</span><br><span class="line"></span><br><span class="line">[CONNECTIONS]</span><br><span class="line"><span class="bullet">1.</span> [描述连接线, e.g., A curved dotted arrow looping from Zone 2 back to Zone 1 labeled &quot;Feedback&quot;]</span><br><span class="line"><span class="bullet">2.</span> [描述连接线, e.g., A wide flow arrow from Zone 2 to Zone 3]</span><br><span class="line"></span><br><span class="line">---END PROMPT---</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-风格参考与执行指令（这里123三点再加上1-2的输出就是丢给nano-banana的prompt）">1.3 风格参考与执行指令（这里123三点再加上1.2的输出就是丢给nano banana的prompt）</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. Art Style (Visio/Illustrator Aesthetic):</span><br><span class="line">   Generate a professional academic architecture diagram suitable for a top-tier computer science paper (CVPR/NeurIPS).</span><br><span class="line">   * Visuals: Flat vector graphics, distinct geometric shapes, clean thin outlines, and soft pastel fills (Azure Blue, Slate Grey, Coral Orange).</span><br><span class="line">   * Layout: Strictly follow the spatial arrangement defined below.</span><br><span class="line">   * Vibe: Technical, precise, clean white background. NOT hand-drawn, NOT photorealistic, NOT 3D render, NO shadows/shading.</span><br><span class="line"></span><br><span class="line">2. CRITICAL TEXT CONSTRAINTS (Read Carefully):</span><br><span class="line">   * DO NOT render meta-labels: Do not write words like &quot;ZONE 1&quot;, &quot;LAYOUT CONFIGURATION&quot;, &quot;Input&quot;, &quot;Output&quot;, or &quot;Container&quot; inside the image. These are structural instructions for YOU, not text for the image.</span><br><span class="line">   * ONLY render &quot;Key Text Labels&quot;: Only text inside double quotes (e.g., &quot;[Text]&quot;) listed under &quot;Key Text Labels&quot; should appear in the diagram.</span><br><span class="line">   * Font: Use a clean, bold Sans-Serif font (like Roboto or Helvetica) for all labels.</span><br><span class="line"></span><br><span class="line">3. Visual Schema Execution:</span><br><span class="line">   Translate the following structural blueprint into the final image:</span><br><span class="line">   [在此处直接粘贴 Step 1 生成的 ---BEGIN PROMPT--- ... ---END PROMPT--- 内容]</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="二、使用平台">二、使用平台</h2>
+<h3 id="2-1-Google-AI-Studio">2.1 Google AI Studio</h3>
+<ul>
+<li><strong>网址</strong>: <a target="_blank" rel="noopener" href="https://aistudio.google.com/">https://aistudio.google.com/</a></li>
+<li><strong>特点</strong>:
+<ul>
+<li>需要充值绑定付费 API 密钥</li>
+<li>支持 Gemini 系列模型（包括 Nano Banana Pro）</li>
+<li>提供代码执行、函数调用等高级功能</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-Google-Flow">2.2 Google Flow</h3>
+<ul>
+<li><strong>网址</strong>: <a target="_blank" rel="noopener" href="https://labs.google/fx/zh/tools/flow">https://labs.google/fx/zh/tools/flow</a></li>
+<li><strong>特点</strong>:
+<ul>
+<li>可免费试用</li>
+<li>支持同时生成多张图片</li>
+<li><strong>内置编辑功能</strong>：选择心仪图片后可立即手工剪裁、绘制</li>
+<li>适合快速迭代和局部调整</li>
+</ul>
+</li>
+</ul>
+<p><strong>工作流程建议</strong>：</p>
+<ol>
+<li>在 Google AI Studio 使用完整 Prompt 生成初版架构图</li>
+<li>如需要调整，可导出到 Google Flow 进行快速编辑</li>
+<li>利用 Flow 的多图生成功能对比不同版本</li>
+</ol>
+<hr>
+<h2 id="三、实际效果示例">三、实际效果示例</h2>
+<p>下图展示了使用flow lab生成的架构图效果：左侧是剪裁、绘制功能键。</p>
+<img src="/Users/suesze/Desktop/截屏2026-03-27 14.09.12.png" alt="Architecture Diagram Example" style="zoom:33%;" />
+<hr>
+<h2 id="四、使用步骤总结">四、使用步骤总结</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────────────────────────────────────┐</span><br><span class="line">│  Step 1: 分析论文内容，选择合适的布局类型                      │</span><br><span class="line">│         （Linear / Cyclic / Hierarchical / Parallel / Hub）  │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  Step 2: 填充 Golden Schema 模板，定义 Zone 和 Connection     │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  Step 3: 组合完整 Prompt（Style + Schema）                    │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  Step 4: 在 Google AI Studio 提交生成                         │</span><br><span class="line">├─────────────────────────────────────────────────────────────┤</span><br><span class="line">│  Step 5: 如需调整，导入 Google Flow 进行编辑优化               │</span><br><span class="line">└─────────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="五、参考资源">五、参考资源</h2>
+<ol>
+<li><strong>Prompt 模板详解</strong>: <a target="_blank" rel="noopener" href="https://adg.csdn.net/694de3c25b9f5f31781adbef.html">https://adg.csdn.net/694de3c25b9f5f31781adbef.html</a></li>
+<li><strong>Nano Banana使用渠道</strong>: <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1991087732412401230">https://zhuanlan.zhihu.com/p/1991087732412401230</a></li>
+<li><strong>Google Flow 工具</strong>: <a target="_blank" rel="noopener" href="https://labs.google/fx/zh/tools/flow">https://labs.google/fx/zh/tools/flow</a></li>
+</ol>
+<hr>
+<h2 id="六、注意事项">六、注意事项</h2>
+<ol>
+<li><strong>避免元标签</strong>: 确保最终图片中不出现 “ZONE 1”、“Input”、“Output” 等结构指令词汇</li>
+<li><strong>仅保留 Key Text Labels</strong>: 图片中只显示双括号内的文本（如 “[HMAC-SHA256]”）</li>
+<li><strong>物理描述</strong>: 使用具体的视觉描述，避免抽象概念</li>
+</ol>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Archives</a></li>
+        
+          <li><a href="/Todo-list/">Todo-list</a></li>
+        
+          <li><a href="/Timetable/">Timetable</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">AI 绘图方法指南v1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A0%B8%E5%BF%83-Prompt-%E6%A8%A1%E6%9D%BF%EF%BC%88%E5%8F%AF%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6%E4%B8%A2%E7%BB%99AI%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">一、核心 Prompt 模板（可直接复制丢给AI）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Prompt-%E6%A8%A1%E6%9D%BF1"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 Prompt 模板1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-The-Golden-Schema"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 输出格式(The Golden Schema)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E9%A3%8E%E6%A0%BC%E5%8F%82%E8%80%83%E4%B8%8E%E6%89%A7%E8%A1%8C%E6%8C%87%E4%BB%A4%EF%BC%88%E8%BF%99%E9%87%8C123%E4%B8%89%E7%82%B9%E5%86%8D%E5%8A%A0%E4%B8%8A1-2%E7%9A%84%E8%BE%93%E5%87%BA%E5%B0%B1%E6%98%AF%E4%B8%A2%E7%BB%99nano-banana%E7%9A%84prompt%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 风格参考与执行指令（这里123三点再加上1.2的输出就是丢给nano banana的prompt）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.2.</span> <span class="toc-text">二、使用平台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Google-AI-Studio"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 Google AI Studio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Google-Flow"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 Google Flow</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%99%85%E6%95%88%E6%9E%9C%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">三、实际效果示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">四、使用步骤总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90"><span class="toc-number">1.5.</span> <span class="toc-text">五、参考资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.6.</span> <span class="toc-text">六、注意事项</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&text=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&title=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&is_video=false&description=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tools⚒️：AI绘图方法指南v1&body=Check out this article: http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&title=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&title=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&title=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&title=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&name=Tools⚒️：AI绘图方法指南v1&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/03/31/Tools%E2%9A%92%EF%B8%8F%EF%BC%9AAI%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%8C%87%E5%8D%97v1/&t=Tools⚒️：AI绘图方法指南v1"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    1984-2026
+    还没起名字组
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     --><!--
+       --><li><a href="/Todo-list/">Todo-list</a></li><!--
+     --><!--
+       --><li><a href="/Timetable/">Timetable</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'CMoments/CMoments.github.io';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>
