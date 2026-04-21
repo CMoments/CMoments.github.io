@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="JavaScript的设计原点 你有没有想过，当你在浏览器里打开一个网页，看到的一切，本质上都是文件。  文字是 .html 文件 样式是 .css 文件 逻辑是 .js 文件 图片是 .jpg &#x2F; .png 文件  浏览器要做的，就是在几秒内，同时下载几十上百个这样的文件，然后按照 HTML 的指令，把它们渲染成你看到的页面。 这个场景，在计算机领域有一个专门的名字：高并发 I&#x2F;O（High C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网安创新实践2️⃣：JavaScript语言基础">
+<meta property="og:url" content="http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="CISCN 2026">
+<meta property="og:description" content="JavaScript的设计原点 你有没有想过，当你在浏览器里打开一个网页，看到的一切，本质上都是文件。  文字是 .html 文件 样式是 .css 文件 逻辑是 .js 文件 图片是 .jpg &#x2F; .png 文件  浏览器要做的，就是在几秒内，同时下载几十上百个这样的文件，然后按照 HTML 的指令，把它们渲染成你看到的页面。 这个场景，在计算机领域有一个专门的名字：高并发 I&#x2F;O（High C">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/2026-4-21.png">
+<meta property="article:published_time" content="2026-03-16T11:31:09.000Z">
+<meta property="article:modified_time" content="2026-04-21T03:54:48.802Z">
+<meta property="article:author" content="还没起名字组">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/2026-4-21.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>网安创新实践2️⃣：JavaScript语言基础</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     --><!--
+       --><li><a href="/Todo-list/">Todo-list</a></li><!--
+     --><!--
+       --><li><a href="/Timetable/">Timetable</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2026/04/09/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B51%EF%B8%8F%E2%83%A3%EF%BC%9A%E5%AF%BC%E5%AD%A6%E9%98%B6%E6%AE%B5-Vibe%20Coding/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/03/10/Reference%F0%9F%93%93%EF%BC%9A%E5%BE%80%E5%B1%8A%E6%8A%A5%E5%91%8A%E4%B9%A6%E4%B8%8EPPT/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&text=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&is_video=false&description=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网安创新实践2️⃣：JavaScript语言基础&body=Check out this article: http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&name=网安创新实践2️⃣：JavaScript语言基础&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&t=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">JavaScript的设计原点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Promise——单线程下管理异步操作的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E8%BF%99%E4%B8%AA%E7%9F%9B%E7%9B%BE%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">Promise 如何解决这个矛盾？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Async与Await——更简洁的写法</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        网安创新实践2️⃣：JavaScript语言基础
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">还没起名字组</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-03-16T11:31:09.000Z" class="dt-published" itemprop="datePublished">2026-03-16</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1>JavaScript的设计原点</h1>
+<p>你有没有想过，当你在浏览器里打开一个网页，<strong>看到的一切，本质上都是文件</strong>。</p>
+<ul>
+<li>文字是 <code>.html</code> 文件</li>
+<li>样式是 <code>.css</code> 文件</li>
+<li>逻辑是 <code>.js</code> 文件</li>
+<li>图片是 <code>.jpg</code> / <code>.png</code> 文件</li>
+</ul>
+<p>浏览器要做的，就是在几秒内，<strong>同时下载几十上百个这样的文件</strong>，然后按照 HTML 的指令，把它们渲染成你看到的页面。</p>
+<p>这个场景，在计算机领域有一个专门的名字：<strong>高并发 I/O</strong>（High Concurrency I/O）。<br>
+我们在操作系统课上学过这样的传统的多线程模型，要同时下载这么多文件，通常会这样做：</p>
+<blockquote>
+<p>为每个文件创建一个线程，让它们&quot;同时&quot;去下载。<br>
+但这里会遇到三个现实问题：</p>
+</blockquote>
+<ul>
+<li>线程开销：下载 100 个小文件，就要创建 100 个线程。按照Windows默认的栈空间1M计算，开一个页面，仅线程的栈内存开销就要100MB！</li>
+<li>多个线程同时访问网络缓冲区、磁盘缓存、DOM 结构时，必须加锁。锁会带来阻塞、死锁、性能下降。</li>
+</ul>
+<p>简单计算我们可以发现：<br>
+<strong>传统多线程模型，是为&quot;少量但长期运行的任务&quot;设计的，不适合&quot;大量但短暂的 I/O 任务&quot;。</strong></p>
+<p>为了满足现代浏览器在高并发 I/O 场景下的高性能要求，需要一种全新的并发模型。<br>
+JavaScript 没有选择多线程，采用了单线程的解决方案：</p>
+<blockquote></blockquote>
+<p>“JavaScript defines the concept of an agent. This section gives the mapping of that language-level concept on to the web platform. … Such code can involve <strong style="color: #0969da;">multiple globals/realms that can synchronously access each other</strong>, and thus needs to run in a single execution thread.”</p>
+<blockquote></blockquote>
+<p>这类代码可能涉及多个可以同步访问彼此的全局对象/领域，因此需要在单个执行线程中运行。<br>
+为什么单线程可以解决这样的并发难题？</p>
+<ul>
+<li><strong>所有 I/O 操作（下载文件、读取磁盘、等待网络）都是非阻塞的</strong></li>
+<li>当一个文件在下载时，主线程<strong>不会盲等</strong>，而是立刻去发起下一个文件的下载。（异步）</li>
+</ul>
+<p>这是 JavaScript 单线程 + 非阻塞 I/O 模型的设计原点，也是 Node.js 敢于用 JS 做后端的底气所在——通过异步的方式解决并发问题。</p>
+<h1>Promise——单线程下管理异步操作的解决方案</h1>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 问题：单线程下，如果网络请求等3秒，线程就不能做任何事</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fetchData</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// ❌ 如果JS能&quot;等待&quot;，会这样写（但单线程不允许）</span></span><br><span class="line">  <span class="keyword">const</span> data = <span class="title function_">waitForNetwork</span>(<span class="number">3000</span>);  <span class="comment">// 线程卡住3秒，页面点不动</span></span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实际单线程：不能等，函数立即返回，但结果还没到</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fetchData</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 发起请求后立即继续执行，3秒后结果才到</span></span><br><span class="line">  <span class="title function_">sendNetworkRequest</span>();  <span class="comment">// 不阻塞</span></span><br><span class="line">  <span class="comment">// 问题：如何拿到3秒后的结果？普通return不行（函数已结束）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以程序的执行顺序会被<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Scripting/Events"><code>事件</code></a>驱动，同时也需要<a target="_blank" rel="noopener" href="https://mdn.org.cn/en-US/docs/Web/Events/Event_handlers"><code>事件处理程序</code></a>。</p>
+<p><strong style="color: red;">在事件驱动的异步编程模型中，程序的执行流程由“事件”本身驱动，而具体响应动作的逻辑则通过“事件处理程序”（或称为“事件监听器”）来定义。这两个概念共同构成了该模型的基础机制。</strong></p>
+<h2 id="Promise-如何解决这个矛盾？">Promise 如何解决这个矛盾？</h2>
+<p>=&gt;单线程特性：一次只做一件事，不能&quot;等待&quot;</p>
+<p>=&gt;需要处理耗时操作（网络、定时器、用户点击）</p>
+<p>=&gt;如何不阻塞线程又能拿到结果？</p>
+<p>Promise 设计模式：</p>
+<ol>
+<li>立即返回&quot;承诺对象&quot;（占位符）</li>
+<li>异步操作完成后，通过事件循环通知</li>
+<li>注册的回调在合适的时机执行<br>
+=&gt;完美适配单线程的事件循环机制</li>
+</ol>
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; background: #ffffff; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+  <!-- 左侧：图片 -->
+  <div style="flex: 1.2; min-width: 280px;">
+    <img src="/images/2026-4-21.png" alt="Promise与事件循环机制示意图" style="width: 100%; height: auto; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+  </div>
+  <!-- 右侧：文字说明 -->
+  <div style="flex: 1; min-width: 260px;">
+    <p style="margin: 0 0 1rem 0; line-height: 1.6; color: #1e293b; font-size: 1rem;">
+      <strong style="color: #c2410c;">为解决阻塞问题</strong>，Promise 被立即返回一个“承诺对象”（图中用虚线边框票据表示），作为异步任务的占位符。它在创建时刻（<code style="background: #f1f5f9; padding: 0.2rem 0.4rem; border-radius: 0.25rem;">t0+ε</code>）就已返回，<strong>不阻塞主线程</strong>。
+    </p>
+    <p style="margin: 0; line-height: 1.6; color: #1e293b; font-size: 1rem;">
+      <strong style="color: #0d9488;">事件循环与回调队列</strong><br>
+      异步操作由 Web APIs 在后台完成，完成后将回调放入回调队列。事件循环<strong>不是被动推送</strong>，而是在每个 tick 中<strong style="color: #0d9488;">主动轮询</strong>：
+    </p>
+    <ul style="margin-top: 0.75rem; margin-bottom: 0; padding-left: 1.25rem; line-height: 1.6; color: #334155;">
+      <li>① 检查调用栈是否为空</li>
+      <li>② 若为空，从队列前端拉取一个回调</li>
+      <li>③ 将其推入调用栈执行</li>
+    </ul>
+  </div>
+</div>
+<details>
+<summary>点击展开代码示例</summary>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ✅ Promise 提供的解决方案</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fetchData</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123; <span class="comment">// 1. 立即返回一个Promise对象（状态：pending）</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;             <span class="comment">// 2. 启动一个定时器，并注册一个回调函数</span></span><br><span class="line">      <span class="title function_">resolve</span>(<span class="string">&quot;数据来了&quot;</span>);          <span class="comment">// 4. 3秒后，定时器到期，回调函数被执行，调用resolve()</span></span><br><span class="line">    &#125;, <span class="number">3000</span>);                      <span class="comment">//    resolve()将Promise的状态变为fulfilled</span></span><br><span class="line">  &#125;);                              <span class="comment">//    并传递结果“数据来了”</span></span><br><span class="line">&#125;                                  <span class="comment">// 3. fetchData()函数执行完毕，代码继续往下执行</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise = <span class="title function_">fetchData</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(promise);</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;继续做其他事&quot;</span>);</span><br></pre></td></tr></table></figure>
+</details> 
+<h1>Async与Await——更简洁的写法</h1>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Extensions/Async_JS/Promises#async_%E5%92%8C_await">https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Extensions/Async_JS/Promises#async_和_await</a></p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Archives</a></li>
+        
+          <li><a href="/Todo-list/">Todo-list</a></li>
+        
+          <li><a href="/Timetable/">Timetable</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">JavaScript的设计原点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Promise——单线程下管理异步操作的解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E8%BF%99%E4%B8%AA%E7%9F%9B%E7%9B%BE%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">Promise 如何解决这个矛盾？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Async与Await——更简洁的写法</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&text=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&is_video=false&description=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网安创新实践2️⃣：JavaScript语言基础&body=Check out this article: http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&title=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&name=网安创新实践2️⃣：JavaScript语言基础&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2026/03/16/%E7%BD%91%E5%AE%89%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B52%EF%B8%8F%E2%83%A3%EF%BC%9AJavaScript%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/&t=网安创新实践2️⃣：JavaScript语言基础"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    1984-2026
+    还没起名字组
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Archives</a></li><!--
+     --><!--
+       --><li><a href="/Todo-list/">Todo-list</a></li><!--
+     --><!--
+       --><li><a href="/Timetable/">Timetable</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'CMoments/CMoments.github.io';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>
